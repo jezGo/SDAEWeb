@@ -1,0 +1,10 @@
+static/
+media/
+media/publications/
+sdae/settings.py
+sdae/media/
+sdae/media/publications/
+sdae/static/
+publications/static/
+publications/media/
+*.pyc
