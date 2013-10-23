@@ -1,0 +1,16 @@
+# Create your views here.
+
+from django.http import HttpResponse
+from django.http import Http404
+from django.shortcuts import render, get_object_or_404
+from publications.models import Publication
+
+def publications(request):
+  publicationsList = Publication.objects.all()
+
+  context = {'publicationsList': publicationsList}
+
+  return render(request, 'publications/publications.html', context)
+
+def createPublication(request):
+  return HttpResponse('Aqui puede crear una publicacion')

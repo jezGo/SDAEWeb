@@ -1,0 +1,28 @@
+<html>
+
+<head></head>
+
+<body>
+
+{% load staticfiles %}
+
+{% load static %}
+{% get_static_prefix as STATIC_URL %}
+
+<p>img1
+<img src="{% static "admin/img/icon_searchbox.png"  %}" />
+<img src="{{ STATIC_URL  }}admin/img/icon_searchbox.png" />
+</p>
+
+{% for publication in publicationsList %}
+<div>
+<p><img src="{{STATIC_URL}}{{publication.imageUrl.url}}"/></p>
+<p>Titulo: {{publication.title}}</p>
+<p>Autor: {{publication.author}}</p>
+<p>Contenido: {{publication.content}}</p>
+</div>
+{% endfor %}
+
+</body>
+
+</html>

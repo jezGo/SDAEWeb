@@ -1,0 +1,23 @@
+<html>
+
+<head></head>
+
+<body>
+
+<h1>Home</h1>
+
+{% load staticfiles %}
+
+<img src="{% static "admin/img/icon_searchbox.png"  %}" />
+
+{% for publication in publicationsList %}
+<div>
+<p>Titulo: {{publication.title}}</p>
+<p>Autor: {{publication.author}}</p>
+<p>Contenido: {{publication.content}}</p>
+</div>
+{% endfor %}
+
+</body>
+
+</html>
