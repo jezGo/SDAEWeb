@@ -6,6 +6,7 @@ from django.shortcuts import render, get_object_or_404
 from publications.models import Publication, Event, PublicationType, SDAEUser
 from publications.forms import PublicationForm, EventForm
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 # Publications List
 def publications(request):
@@ -35,6 +36,7 @@ def events(request):
 	return render(request, 'publications/events.html', context)
 
 # Create Event
+@login_required(login_url='/login/')
 def createEvent(request):
 	if request.method != 'POST' :
 		pform = PublicationForm()

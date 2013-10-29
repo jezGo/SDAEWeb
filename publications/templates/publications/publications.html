@@ -5,7 +5,6 @@
 	<title>Publicaciones</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Bootstrap -->
-	<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
 	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 
@@ -13,16 +12,9 @@
 
 <div class="container">
 
-<p>img1
-{% load staticfiles %}
-<img src="{% static "admin/img/icon_searchbox.png"  %}" />
-<img src="{% static "publications/consulta.png"  %}" />
-<img src="{{ STATIC_URL  }}admin/img/icon_searchbox.png" />
-</p>
-
 {% for publication in publicationsList %}
 <div>
-<p><img src="{{STATIC_URL}}{{publication.imageUrl}}"/></p>
+<p><img src="{{MEDIA_URL}}{{publication.imageUrl}}"/></p>
 <p>Titulo: {{publication.title}}</p>
 <p>Autor: {{publication.author}}</p>
 <p>Contenido: {{publication.content}}</p>
