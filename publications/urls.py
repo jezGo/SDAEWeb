@@ -7,4 +7,5 @@ urlpatterns = patterns('',
   url(r'^create/$', views.createPublication, name='createPublication'),
   url(r'^events/$', views.events, name='events'),
   url(r'^events/create/$', views.createEvent, name='createEvent'),
+  url(r'^events/(?P<eventId>\d+)$', views.eventDetails, name='eventDetails'),
 )

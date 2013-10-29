@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from publications.models import Publication, Event
+from publications.models import Publication, Event, Comment
 
 class PublicationForm(forms.ModelForm):
 	class Meta:
@@ -12,3 +12,8 @@ class EventForm (forms.ModelForm):
 	class Meta:
 		model = Event
 		fields = ["startDateTime", "endDateTime", "location", "host"]
+
+class CommentForm (forms.ModelForm):
+	class Meta:
+		model = Comment
+		fields = ["content"]

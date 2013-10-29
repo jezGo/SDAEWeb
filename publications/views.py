@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from publications.models import Publication, Event, PublicationType, SDAEUser
-from publications.forms import PublicationForm, EventForm
+from publications.forms import PublicationForm, EventForm, CommentForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
@@ -34,6 +34,15 @@ def events(request):
 	context = {'eventsList' : eventsList}
 
 	return render(request, 'publications/events.html', context)
+
+# Event details
+def eventDetails(request, eventId):
+	event = get_object_or_404(Event, pk=eventId)
+	commentForm = CommentForm()
+
+	context = {'event':event, 'commentForm':commentForm}
+
+	return render(request, 'publications/event_details.html', context)
 
 # Create Event
 @login_required(login_url='/login/')

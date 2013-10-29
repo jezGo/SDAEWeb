@@ -16,6 +16,8 @@
 
 <body style>
 	<div id="wrap">
+
+		<!-- NAVBAR -->
 		<div class="navbar navbar-default navbar-fixed-top">
 			<div class="container">
 				<div class="nav-header">
@@ -62,20 +64,36 @@
 				</div>
 			</div>
 		</div>
+		<!-- NAVBAR -->
 
+		<!-- CONTENT -->
 		<div class="container">
+			<!-- DATOS DE PUBLICACIÓN -->
+			<p class="lead">{{event.publication.title}}<p>
+			<p>{{event.publication.content}}</p>
+			<!-- DATOS DE PUBLICACIÓN -->
 
-			<form method="POST" action="" {% if form.is_multipart %} enctype="multipart/form-data" {% endif %} class="form-horizontal">
+			<!-- FORMULARIO DE COMENTARIOS -->
+			<form method="POST" action="">
 				{% csrf_token %}
-				<legend>Publicar evento</legend>
+				<legend>Comentar publicación</legend>
 				<fieldset>
-				{{ pform.as_p }}
-				{{ eform.as_p }}
+				{{commentForm.as_p}}
 				</fieldset>
-				<button type="submit" class="btn btn-primary">Publicar</button>
+				<button type="submit" class="btn btn-primary">Comentar</button>
 			</form>
-		</div>
+			<!-- FORMULARIO DE COMENTARIOS -->
 
+			<!-- COMENTARIOS -->
+			{% for comment in event.publication.comment_set.all %}
+				<p><b>El {{comment.published}} {{comment.author}} comentó:</b></p>
+				<p>{{comment.content}}</p>
+			{% endfor %}
+			<!-- COMENTARIOS -->
+		</div>
+		<!-- CONTENT -->
+
+		<!-- FOOTER -->
 		<div id="footer">
 			<div class="container">
 				<p class="text-muted credit">
@@ -83,6 +101,7 @@
 				</p>
 			</div>
 		</div>
+		<!-- FOOTER -->
 	</div>
 	<script src="{{STATIC_URL}}publications/js/jquery-1.10.2.min.js"></script>
 	<script src="{{STATIC_URL}}publications/js/bootstrap.min.js"></script>

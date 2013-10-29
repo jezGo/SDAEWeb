@@ -15,8 +15,8 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'sdae.views.home', name='home'),
     # url(r'^sdae/', include('sdae.foo.urls')),
-    url(r'^login/', login, name='login'),
-    url(r'^logout/', logout, {'next_page':'/login'}, name='logout'),
+    url(r'^login/$', login, name='login'),
+    url(r'^logout/$', logout, {'next_page':'/login'}, name='logout'),
 
     url(r'^publications/', include('publications.urls')),
 

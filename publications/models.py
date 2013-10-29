@@ -50,10 +50,10 @@ class Comment(models.Model):
   content = models.TextField()
   published = models.DateTimeField(auto_now_add=True)
   lastEdited = models.DateTimeField(auto_now=True)
-  author = models.OneToOneField(SDAEUser)
+  author = models.ForeignKey(SDAEUser)
 
   def __unicode__(self):
-    return "Comentario: " + sef.content[20:]
+    return "Comentario: " + self.content
 
 # Vote
 class Vote(models.Model):
