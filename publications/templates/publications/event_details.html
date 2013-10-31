@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-	<title>Publicar Evento</title>
+	<title>SDAE - Evento - {{event.publication.title}}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Bootstrap -->
 	<link href="{{STATIC_URL}}publications/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -69,9 +69,10 @@
 		<!-- CONTENT -->
 		<div class="container">
 			<!-- DATOS DE PUBLICACIÓN -->
+			<p><img src="{{STATIC_URL}}media/{{event.publication.imageUrl}}" alt="eventImage"/></p>
 			<p class="lead">{{event.publication.title}}<p>
 			<p>{{event.publication.content}}</p>
-			<!-- DATOS DE PUBLICACIÓN -->
+			<!-- DATOS DE PUBLICACadminIÓN -->
 
 			<!-- FORMULARIO DE COMENTARIOS -->
 			<form method="POST" action="">

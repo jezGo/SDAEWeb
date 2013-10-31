@@ -17,6 +17,7 @@ def publications(request):
   return render(request, 'publications/publications.html', context)
 
 # Create Publication
+@login_required(login_url='/login/')
 def createPublication(request):
 	if request.method != 'POST':
 		form = PublicationForm()
@@ -38,7 +39,18 @@ def events(request):
 # Event details
 def eventDetails(request, eventId):
 	event = get_object_or_404(Event, pk=eventId)
-	commentForm = CommentForm()
+
+	if request.method != 'POST':
+		commentForm = CommentForm()
+	else:
+		commentForm = CommentForm(request.POST)
+		if commentForm.is_valid():
+			comment = commentForm.save(commit = False)
+
+			comment.publication = Publication.objects.get(pk=eventId)
+			comment.author = SDAEUser.objects.get(user = request.user)
+
+			comment.save()
 
 	context = {'event':event, 'commentForm':commentForm}
 
@@ -47,7 +59,7 @@ def eventDetails(request, eventId):
 # Create Event
 @login_required(login_url='/login/')
 def createEvent(request):
-	if request.method != 'POST' :
+	if request.method != 'POST':
 		pform = PublicationForm()
 		eform = EventForm()
 	else:
@@ -73,3 +85,4 @@ def createEvent(request):
 			return HttpResponseRedirect('/publications/events')
 
 	return render(request, 'publications/events_create.html', {'pform':pform, 'eform':eform})
+	
