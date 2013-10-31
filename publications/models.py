@@ -68,7 +68,7 @@ class Vote(models.Model):
     value = -1
     if (self.isPositive):
       value = +1
-    return "Voto: " + value + "a " + publication.title
+    return "Voto: " + str(value) + " a " + self.publication.title
 
 # Map
 class Map(models.Model):
@@ -185,3 +185,10 @@ class LostAndFound(models.Model):
 
   def __unicode__(self):
     return self.publication.title
+
+# ClassMaterial
+# class ClassMaterial(models.Model):
+#   """Document related to a course"""
+#   publication = models.OneToOneField(Publication)
+#   attachment = models.FileField(max_length=200, upload_to='classMaterial/')
+#   group = models.ManyToManyField(django.contrib.auth.Group)
