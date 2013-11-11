@@ -43,7 +43,14 @@ class Teacher(models.Model):
 	about = models.TextField()
 	courses = models.ManyToManyField(Subject, through='Course')
 	office = models.ForeignKey(Location)
-	# Move academies to individual table?
+	# Move departments and academies to individual table?
+	ACADEMIC_DEPARTMENT_CHOICES = (
+		('DFB', 'Departamento de Formación Básica'),
+		('DISC', 'Departamento de Ingeniería en Sistemas Computacionales'),
+		('DCIC', 'Departamento de Ciencias e Ingeniería de la Computación'),
+		('DFII', 'Departamento de Formación Integral e Institucional'),
+		)
+	department = models.CharField(max_length=4, choices=ACADEMIC_DEPARTMENT_CHOICES)
 	academy = models.CharField(max_length=100)
 	# ?
 	website = models.URLField()
@@ -58,7 +65,7 @@ class Course(models.Model):
 	subject = models.ForeignKey(Subject)
 	scholarCycle = models.CharField(max_length=12)
 
-#ClassSession
+# ClassSession
 class ClassSession(models.Model):
 	"""Class session used to represent schedules"""
 	# subject = models.ForeignKey(Subject)

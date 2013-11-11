@@ -15,11 +15,14 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'sdae.views.home', name='home'),
     # url(r'^sdae/', include('sdae.foo.urls')),
+    url(r'^register/$', 'sdae.views.registerUser', name='register'),
+    url(r'^registerCompany/$', 'sdae.views.registerCompany', name='registerCompany'),
+
     url(r'^login/$', login, name='login'),
     url(r'^logout/$', logout, {'next_page':'/login'}, name='logout'),
 
     url(r'^publications/', include('publications.urls')),
-
+    url(r'^schoolInfo/', include('schoolInfo.urls')),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

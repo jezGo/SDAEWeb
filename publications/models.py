@@ -140,7 +140,7 @@ class Company(models.Model):
   contactPhone = models.CharField(max_length=15, blank=True)
   contactEmail = models.EmailField(blank=True)
   website = models.URLField(blank=True)
-  user = models.OneToOneField(SDAEUser, blank=True, null=True)
+  user = models.OneToOneField(User)
 
   def __unicode__(self):
     return self.name

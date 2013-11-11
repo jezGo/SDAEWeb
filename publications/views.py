@@ -47,7 +47,7 @@ def eventDetails(request, eventId):
 		if commentForm.is_valid():
 			comment = commentForm.save(commit = False)
 
-			comment.publication = Publication.objects.get(pk=eventId)
+			comment.publication = Publication.objects.get(pk=event.publication.id)
 			comment.author = SDAEUser.objects.get(user = request.user)
 
 			comment.save()
@@ -55,6 +55,17 @@ def eventDetails(request, eventId):
 	context = {'event':event, 'commentForm':commentForm}
 
 	return render(request, 'publications/event_details.html', context)
+
+# Vote event
+@login_required(login_url='/login/')
+def votePositive(request, eventId):
+	event = get_object_or_404(Event, pk=eventId)
+
+	if request.method != 'POST':
+		return
+
+	event = get_object_or_404(Event, pk=eventId)
+	vote = Vote(publication=event.publication, author=request.user, isPositive=True)
 
 # Create Event
 @login_required(login_url='/login/')
@@ -85,4 +96,12 @@ def createEvent(request):
 			return HttpResponseRedirect('/publications/events')
 
 	return render(request, 'publications/events_create.html', {'pform':pform, 'eform':eform})
-	
+
+# Delete Event
+@login_required(login_url='/login/')
+def deleteEvent(request):
+	if request.method != 'POST':
+		return HttpResponseRedirect('/publications/events/')
+	else:
+		return HttpResponse("delete event: " + request.POST['eventId']);
+		
