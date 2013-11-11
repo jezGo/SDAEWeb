@@ -1,0 +1,27 @@
+<p>
+{{teacher.name}} {{teacher.lastname}}
+</p>
+
+<p>
+Departamento: {{teacher.department}}
+</p>
+
+<p>
+Ubicación: {{teacher.office}}
+</p>
+
+<p>
+Horario:
+
+{% for day, classSessions in sessionsByDay.items %}
+
+<p>
+{{day}}<br/>
+{% for classSession in  classSessions %}
+{{classSession.get_hour_display}} {{classSession.course.subject}} {{classSession.classGroup}} {{classSession.location}}<br/>
+{% endfor %}
+</p>
+
+{% endfor %}
+
+</p>

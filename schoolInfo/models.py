@@ -8,11 +8,11 @@ from publications.models import Location
 class Subject(models.Model):
 	"""School courses/subjects"""
 	name = models.CharField(max_length=100)
-	description = models.TextField()
-	syllabusUrl = models.FileField(max_length=200, upload_to='subjectsSyllabus/')
-	theoryHours = models.IntegerField()
-	practicHours = models.IntegerField()
-	credits = models.IntegerField()
+	description = models.TextField(blank=True, null=True)
+	syllabusUrl = models.FileField(max_length=200, upload_to='subjectsSyllabus/', blank=True, null=True)
+	theoryHours = models.DecimalField(max_digits=4, decimal_places=2, blank=True, null=True)
+	practicHours = models.DecimalField(max_digits=4, decimal_places=2, blank=True, null=True)
+	credits = models.DecimalField(max_digits=4, decimal_places=2, blank=True, null=True)
 	#academy = models.ForeignKey(Academy)
 	#preRequisites = models.ForeignKey(Subject)
 	LEVEL_CHOICES = (
@@ -39,8 +39,8 @@ class Teacher(models.Model):
 	"""Teachers table"""
 	name = models.CharField(max_length=50)
 	lastname = models.CharField(max_length=50)
-	photoUrl = models.FileField(max_length=200, upload_to='teachersPhotos/')
-	about = models.TextField()
+	photoUrl = models.FileField(max_length=200, upload_to='teachersPhotos/', blank=True, null=True)
+	about = models.TextField(blank=True, null=True)
 	courses = models.ManyToManyField(Subject, through='Course')
 	office = models.ForeignKey(Location)
 	# Move departments and academies to individual table?
@@ -51,9 +51,9 @@ class Teacher(models.Model):
 		('DFII', 'Departamento de Formación Integral e Institucional'),
 		)
 	department = models.CharField(max_length=4, choices=ACADEMIC_DEPARTMENT_CHOICES)
-	academy = models.CharField(max_length=100)
+	academy = models.CharField(max_length=100, blank=True, null=True)
 	# ?
-	website = models.URLField()
+	website = models.URLField(blank=True, null=True)
 
 	def __unicode__(self):
 		return self.name + " " + self.lastname
@@ -64,6 +64,9 @@ class Course(models.Model):
 	teacher = models.ForeignKey(Teacher)
 	subject = models.ForeignKey(Subject)
 	scholarCycle = models.CharField(max_length=12)
+
+	def __unicode__(self):
+		return self.subject.name + " con " + self.teacher.name + " " + self.teacher.lastname + " en " + str(self.scholarCycle)
 
 # ClassSession
 class ClassSession(models.Model):
@@ -96,3 +99,6 @@ class ClassSession(models.Model):
 		('4V', '20:00 - 21:30'),
 		)
 	hour = models.CharField(max_length=2, choices=HOUR_CHOICES)
+
+	def __unicode__(self):
+		return self.course.subject.name + " el " + self.get_day_display() + " a las " + self.get_hour_display()

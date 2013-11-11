@@ -10,4 +10,8 @@ urlpatterns = patterns('',
 
   url(r'^teachers/$', views.teachers, name='teachers'),
   url(r'^teachers/(?P<teacherId>\d+)$', views.teacherDetails, name='teacherDetails'),
+
+  url(r'^schedules/(?P<dayNumber>\d+)$', views.schedules, name='schedules'),
+
+  url(r'^subjects/$', views.subjects, name='subjects'),
 )

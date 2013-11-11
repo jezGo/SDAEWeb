@@ -1,0 +1,13 @@
+Horario del día {{dayName}}
+
+{% for hour, hourClasses in classesByHour.items %}
+
+<p>
+{{hour}}
+</p>
+
+{% for class in hourClasses %}
+{{class.course.subject}} {{class.classGroup}} {{class.location}}<br/>
+{% endfor %}
+
+{% endfor %}

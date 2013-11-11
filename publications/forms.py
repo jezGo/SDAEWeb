@@ -27,8 +27,6 @@ class CompanyForm (forms.ModelForm):
 		model = Company
 		fields = ["name", "address", "contactName", "contactPhone", "contactEmail", "website"]
 
-
-# Register Form
 from django.contrib.auth.forms import UserCreationForm
 # from django.contrib.auth.models import User
 from django import forms
