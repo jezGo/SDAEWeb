@@ -71,8 +71,21 @@
 			<!-- DATOS DE PUBLICACIÓN -->
 			<p><img src="{{STATIC_URL}}media/{{event.publication.imageUrl}}" alt="eventImage"/></p>
 			<p class="lead">{{event.publication.id}}: {{event.publication.title}}<p>
+			<p>Puntos: {{publicationPoints}}</p>
 			<p>{{event.publication.content}}</p>
-			<!-- DATOS DE PUBLICACadminIÓN -->
+			<!-- DATOS DE PUBLICACIÓN -->
+
+			<form action="/publications/vote/{{ event.publication.id }}" method="POST">
+				{% csrf_token %}
+				<input type="hidden" name="vote" value="1">
+				<input type="submit" value="+1" {% ifequal True blockVotes %} disabled="true" {% endifequal %}/>
+			</form>
+
+			<form action="/publications/vote/{{ event.publication.id }}" method="POST">
+				{% csrf_token %}
+				<input type="hidden" name="vote" value="-1">
+				<input type="submit" value="-1" {% ifequal True blockVotes %} disabled="true" {% endifequal %}/>
+			</form>
 
 			<!-- FORMULARIO DE COMENTARIOS -->
 			<form method="POST" action="">

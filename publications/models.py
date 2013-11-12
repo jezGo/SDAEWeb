@@ -93,8 +93,10 @@ class Location(models.Model):
   name = models.CharField(max_length=100)
   type = models.ForeignKey(LocationType)
   map = models.ForeignKey(Map, blank=True)
-  mapX = models.IntegerField(blank=True)
-  mapY = models.IntegerField(blank=True)
+  mapX1 = models.IntegerField(blank=True, null=True)
+  mapX2 = models.IntegerField(blank=True, null=True)
+  mapY1 = models.IntegerField(blank=True, null=True)
+  mapY2 = models.IntegerField(blank=True, null=True)
 
   def __unicode__(self):
     return self.name

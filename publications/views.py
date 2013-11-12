@@ -3,7 +3,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
-from publications.models import Publication, Event, PublicationType, SDAEUser
+from publications.models import Publication, Event, PublicationType, SDAEUser, Vote
 from publications.forms import PublicationForm, EventForm, CommentForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -32,6 +32,8 @@ def createPublication(request):
 def events(request):
 	eventsList = Event.objects.all()
 
+	publicationPointsList = {}
+
 	context = {'eventsList' : eventsList}
 
 	return render(request, 'publications/events.html', context)
@@ -52,20 +54,35 @@ def eventDetails(request, eventId):
 
 			comment.save()
 
-	context = {'event':event, 'commentForm':commentForm}
+	userVotes = Vote.objects.filter(author=SDAEUser.objects.get(user=request.user), publication=event.publication)
+
+	blockVotes = False
+	if len(userVotes) > 0:
+		blockVotes = True
+
+	publicationPoints = len(event.publication.vote_set.filter(isPositive=True)) - len(event.publication.vote_set.filter(isPositive=False))
+
+	context = {'event':event, 'commentForm':commentForm, 'publicationPoints': publicationPoints, 'blockVotes':blockVotes}
 
 	return render(request, 'publications/event_details.html', context)
 
 # Vote event
 @login_required(login_url='/login/')
-def votePositive(request, eventId):
-	event = get_object_or_404(Event, pk=eventId)
-
+def votePublication(request, publicationId):
 	if request.method != 'POST':
-		return
+		return HttpResponseRedirect("/")
 
-	event = get_object_or_404(Event, pk=eventId)
-	vote = Vote(publication=event.publication, author=request.user, isPositive=True)
+	publication = get_object_or_404(Publication, pk=publicationId)
+
+	isPositive = True
+
+	if (request.POST["vote"] == "-1"):
+		isPositive = False
+
+	vote = Vote(publication=publication, author=SDAEUser.objects.get(user=request.user), isPositive=True)
+	vote.save()
+
+	return HttpResponseRedirect("/publications/events/" + publicationId)
 
 # Create Event
 @login_required(login_url='/login/')
