@@ -20,7 +20,7 @@ def registerUser(request):
 		registerForm = RegisterForm(request.POST)
 
 		if registerForm.is_valid():
-			user = registerForm.save()
+			registerForm.save()
 
 			return HttpResponseRedirect("/login/")
 

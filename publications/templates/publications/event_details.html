@@ -71,8 +71,18 @@
 			<!-- DATOS DE PUBLICACIÓN -->
 			<p><img src="{{STATIC_URL}}media/{{event.publication.imageUrl}}" alt="eventImage"/></p>
 			<p class="lead">{{event.publication.id}}: {{event.publication.title}}<p>
+			<p>Author: {{event.publication.author}}</p>
 			<p>Puntos: {{publicationPoints}}</p>
 			<p>{{event.publication.content}}</p>
+
+			<p>
+				<br/>
+				{% ifequal isAuthor True %}
+				Puede borrar
+				{% else %}
+				No puede borrar
+				{% endifequal %}
+			</p>
 			<!-- DATOS DE PUBLICACIÓN -->
 
 			<form action="/publications/vote/{{ event.publication.id }}" method="POST">
