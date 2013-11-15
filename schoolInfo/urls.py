@@ -14,4 +14,7 @@ urlpatterns = patterns('',
   url(r'^schedules/(?P<dayNumber>\d+)$', views.schedules, name='schedules'),
 
   url(r'^subjects/$', views.subjects, name='subjects'),
+
+  url(r'^locations/$', views.locations, name='locations'),
+  url(r'^locations/(?P<locationId>\d+)$', views.locationDetail, name='locationDetails'),
 )

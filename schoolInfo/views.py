@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404
 
 from schoolInfo.models import Teacher, Subject, Course, ClassSession
+from publications.models import Location
 # from schoolInfo.forms import
 
 from string import ascii_uppercase
@@ -76,3 +77,22 @@ def schedules(request, dayNumber):
 # Subjects view
 def subjects(request):
 	return HttpResponse('subjects')
+
+# Locations
+def locations(request):
+	return render(request, 'schoolInfo/locations.html')
+
+# Location Detail
+def locationDetail(request, locationId):
+	location = get_object_or_404(Location, pk=locationId)
+
+	eventsList = location.event_set.all()
+	responseStr = "<h1>" + location.name + "</h1> <br/><h3>Eventos: </h3><div>"
+
+	# for event in eventsList:
+	# 	responseStr += "<p>" + event.publication.title + "</p>"
+
+	# responseStr += "</div>"
+
+	return render(request, 'schoolInfo/location_detail.html', {'eventsList': eventsList})
+	# return HttpResponse(responseStr)

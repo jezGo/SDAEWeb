@@ -1,0 +1,13 @@
+<html>
+
+<h1>{{location.name}}</h1>
+
+<h3>Eventos:</h3>
+
+{% for event in eventsList %}
+<p>
+<a href="/publications/events/{{event.publication.id}}">{{event.publication.title}}</a>
+</p>
+{% endfor %}
+
+</html>

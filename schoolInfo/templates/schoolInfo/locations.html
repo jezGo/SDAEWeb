@@ -1,0 +1,157 @@
+<html>
+
+<head>
+	<title></title>
+
+	<script type="text/javascript" src="{{STATIC_URL}}/publications/js/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript">
+	ubicaciones = {
+		"u1":{"x1":0, "y1":123, "x2":105, "y2":223, "id":1, "name":"Sala Eduardo Torrijos"},
+		"u2":{"x1":0, "y1":0, "x2":105, "y2":100, "id":2, "name":"Laboratorio de Electrónica Digital"},
+		"u3":{"x1":0, "y1":246, "x2":105, "y2":346, "id":3, "name":"Coordinación de Desarrollo Tecnológico"},
+
+		
+		"u4":{"x1":126, "y1":0, "x2":231, "y2":100, "id":5, "name":"Cancha de Volley Ball"},
+		"u5":{"x1":126, "y1":123, "x2":231, "y2":223, "id":4, "name":"Subdirección Académica"},
+		"u6":{"x1":126, "y1":246, "x2":231, "y2":346, "id":6, "name":"Explanada"},
+
+		"u7":{"x1":252, "y1":0, "x2":352, "y2":100, "id":7, "name":"Salón 1111"},
+		"u8":{"x1":252, "y1":123, "x2":352, "y2":223, "id":8, "name":"Dirección General"},
+		"u9":{"x1":252, "y1":246, "x2":352, "y2":346, "id":9, "name":"Sala de Impresiones"},
+	}
+
+	function getLocationAtCoord(x, y) {
+		var offset = $("#map").offset();
+
+		var relX = x - offset.left;
+		var relY = y - offset.top;
+
+		var coordsStr = relX + "," + relY;
+		$("#relCoords").text(coordsStr);
+
+		for (u in ubicaciones) {
+			ubicacion = ubicaciones[u];
+			
+			if (relX > ubicacion.x1 && relX<ubicacion.x2
+				&& relY > ubicacion.y1 && relY<ubicacion.y2) {
+
+				return ubicacion;
+			}
+		}
+
+		return null;
+	}
+
+	function showLocationInfo(e) {
+		var coordsStr = e.pageX + "," + e.pageY;
+		$("#coords").text(coordsStr);
+
+		var location = getLocationAtCoord(e.pageX, e.pageY);
+
+		if (location != null) {
+			$(locationP).text(location.name)
+			$(locationP).css("background-color", "lightgray")
+			$(locationP).css("position", "absolute");
+			$(locationP).css("left", e.pageX);
+			$(locationP).css("top", e.pageY);
+			$(locationP).css("opacity", "100");
+		}
+		else {
+			$(locationP).css("opacity", "0");
+		}
+	}
+
+	function showSelectedLocation(ubicacion) {
+		console.log(ubicacion.x1);
+		console.log(ubicacion.y1);
+
+		var offset = $("#map").offset();
+
+		$("#marcador").css("position", "absolute");
+		$("#marcador").css("left", offset.left + ubicacion.x1 + (ubicacion.x2-ubicacion.x1)/2);
+		$("#marcador").css("top", offset.top + ubicacion.y1 + (ubicacion.y2-ubicacion.y1)/2);
+		$("#marcador").css("width", "10");
+		$("#marcador").css("background-color", "red");
+	}
+
+	/*
+	 * Bind events
+	 */
+	function setup() {
+		$("#map").mousemove(function(e){
+			// var offset = $(this).parent().offset();
+			showLocationInfo(e);
+		});
+
+		$("#map").mouseleave(function(e){
+			$(locationP).css("opacity", "0");
+		});
+
+		$("#map").click(function(e){
+			var location = getLocationAtCoord(e.pageX, e.pageY);
+			window.location = "/schoolInfo/locations/" + location.id
+		});
+
+		$("#locationsSelect").change(function(e) {
+			var options = e.target;
+
+			for (var i=0; i<options.length; i++) {
+
+				if (i != options.value) {
+					continue;
+				}
+
+				var option = options[i];
+
+				for (u in ubicaciones) {
+					ubicacion = ubicaciones[u];
+					console.log(ubicacion.name + " ? " + option.text);
+
+					if (option.text === ubicacion.name) {
+						console.log("seleccionado: " + option.text);
+						showSelectedLocation(ubicacion);
+
+						return;
+					}
+				}
+			}
+		});
+	}
+	</script>
+</head>
+
+<body onload="setup()">
+	<h1>Ubicaciones</h1>
+
+	Seleccione un mapa/nivel
+
+	<p id="coords">0,0</p>
+	<p id="relCoords">0,0</p>
+
+	<!-- 
+	TODO: Load map from selecte floor/location
+	 -->
+	<img id="map" src="{{STATIC_URL}}/schoolInfo/sampleMap.png"/>
+
+	<select id="locationsSelect" multiple="true">
+		<option value="0">Explanada</option>
+		<option value="1">Sala Eduardo Torrijos</option>
+		<option value="2">Dirección General</option>
+		<option value="3">Laboratorio de Electrónica Digital</option>
+		<option value="4">Coordinación de Desarrollo Tecnológico</option>
+		<option value="5">Cancha de Volley Ball</option>
+		<option value="6">Subdirección Académica</option>
+		<option value="7">Salón 1111</option>
+		<option value="8">Sala de Impresiones</option>
+	</select>
+
+	<p id="locationP">
+		ubicacion
+	</p>
+
+	<div id="marcador">
+		*
+	</div>
+</body>
+
+</html>
