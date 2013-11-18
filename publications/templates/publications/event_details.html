@@ -85,15 +85,17 @@
 			</p>
 			<!-- DATOS DE PUBLICACIÓN -->
 
-			<form action="/publications/vote/{{ event.publication.id }}" method="POST">
+			<form action="/publications/vote/" method="POST">
 				{% csrf_token %}
-				<input type="hidden" name="vote" value="1">
+				<input type="hidden" name="voteValue" value="+1" />
+				<input type="hidden" name="publicationId" value="{{ event.publication.id }}" />
 				<input type="submit" value="+1" {% ifequal True blockVotes %} disabled="true" {% endifequal %}/>
 			</form>
 
-			<form action="/publications/vote/{{ event.publication.id }}" method="POST">
+			<form action="/publications/vote/" method="POST">
 				{% csrf_token %}
-				<input type="hidden" name="vote" value="-1">
+				<input type="hidden" name="voteValue" value="-1">
+				<input type="hidden" name="publicationId" value="{{ event.publication.id }}" />
 				<input type="submit" value="-1" {% ifequal True blockVotes %} disabled="true" {% endifequal %}/>
 			</form>
 

@@ -1,7 +1,6 @@
 # Create your views here.
 
-from django.http import HttpResponse, HttpResponseRedirect
-from django.http import Http404
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.shortcuts import render, get_object_or_404
 from publications.models import Publication, Event, PublicationType, SDAEUser, Vote
 from publications.forms import PublicationForm, EventForm, CommentForm
@@ -40,7 +39,7 @@ def events(request):
 
 # Event details
 def eventDetails(request, eventId):
-	event = get_object_or_404(Event, pk=eventId)
+	event = get_object_or_404(Publication, pk=eventId).event
 
 	if request.method != 'POST':
 		commentForm = CommentForm()
@@ -77,21 +76,39 @@ def eventDetails(request, eventId):
 
 # Vote event
 @login_required(login_url='/login/')
-def votePublication(request, publicationId):
+def votePublication(request):
 	if request.method != 'POST':
 		return HttpResponseRedirect("/")
 
+	publicationId = request.POST['publicationId']
 	publication = get_object_or_404(Publication, pk=publicationId)
 
 	isPositive = True
 
-	if (request.POST["vote"] == "-1"):
+	if (request.POST["voteValue"] == "-1"):
 		isPositive = False
 
 	vote = Vote(publication=publication, author=SDAEUser.objects.get(user=request.user), isPositive=True)
 	vote.save()
 
 	return HttpResponseRedirect("/publications/events/" + publicationId)
+
+# Save Event
+def saveEvent(eform, pform, user):
+	publication = pform.save(commit = False)
+
+	publicationAuthor = SDAEUser.objects.get(user=user)
+	publicationType = PublicationType.objects.get(name='Evento')
+	publication.type = publicationType
+	publication.author = publicationAuthor
+	publication.save()
+
+	event = eform.save(commit = False)
+
+	event.publication = publication
+	event.save()
+
+	eform.save_m2m()
 
 # Create Event
 @login_required(login_url='/login/')
@@ -102,22 +119,33 @@ def createEvent(request):
 	else:
 		pform = PublicationForm(request.POST)
 		eform = EventForm(request.POST)
+
 		if pform.is_valid() and eform.is_valid():
-			#
-			publication = pform.save(commit = False)
+			saveEvent(eform, pform, request.user)
 
-			# TODO: Get AuthorUser from session
-			publicationAuthor = SDAEUser.objects.get(user=User.objects.get(username='mkfnx'))
-			publicationType = PublicationType.objects.get(name='Evento')
-			publication.type = publicationType
-			publication.author = publicationAuthor
-			publication.save()
+			return HttpResponseRedirect('/publications/events')
 
-			#
-			event = eform.save(commit = False)
+	return render(request, 'publications/events_create.html', {'pform':pform, 'eform':eform})
 
-			event.publication = publication
-			event.save()
+# Edit event
+@login_required(login_url='/login/')
+def editEvent(request, eventId):
+	publication = get_object_or_404(Publication, pk=eventId)
+
+	if publication.author.user != request.user:
+		return HttpResponseForbidden()
+
+	event = publication.event
+
+	if request.method != 'POST':
+			pform = PublicationForm(instance=publication)
+			eform = EventForm(instance=event)
+	else:
+		pform = PublicationForm(request.POST, instance = publication)
+		eform = EventForm(request.POST, instance = event)
+
+		if pform.is_valid() and eform.is_valid():
+			saveEvent(eform, pform, request.user)
 
 			return HttpResponseRedirect('/publications/events')
 
@@ -129,5 +157,4 @@ def deleteEvent(request):
 	if request.method != 'POST':
 		return HttpResponseRedirect('/publications/events/')
 	else:
-		return HttpResponse("delete event: " + request.POST['eventId']);
-		
+		return HttpResponse("delete event: " + request.POST['publicationId']);

@@ -7,7 +7,7 @@
 <body>
 {% for event in eventsList%}
 <div>
-<p><a href="/publications/events/{{event.pk}}">{{ event.publication.title }}</a>
+<p><a href="/publications/events/{{event.publication.pk}}">{{ event.publication.title }}</a>
 </p>
 <p>{{ event.publication.content }}</p>
 </div>
