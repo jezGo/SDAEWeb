@@ -94,5 +94,5 @@ def locationDetail(request, locationId):
 
 	# responseStr += "</div>"
 
-	return render(request, 'schoolInfo/location_detail.html', {'eventsList': eventsList})
+	return render(request, 'schoolInfo/location_detail.html', {'location' : location, 'eventsList': eventsList})
 	# return HttpResponse(responseStr)

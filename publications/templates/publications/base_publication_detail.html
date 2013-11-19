@@ -1,0 +1,63 @@
+{% extends "publications/base.html" %}
+
+{% block title %} SDAE - Detalle de publicación {% endblock %}
+
+{% block content %}
+<!-- DATOS DE PUBLICACIÓN -->
+{% block generalInfo %}
+	<p><img src="{{STATIC_URL}}media/{{publication.imageUrl}}" alt="publicationImage"/></p>
+	<p class="lead">{{publication.title}}<p>
+	<p>Publicado por: {{publication.author}}</p>
+	<p>Fecha: {{publication.published}}</p>
+	<p>Puntos: {{publicationPoints}}</p>
+	<p>{{publication.content}}</p>
+{% endblock %}
+
+{% block additionalInfo %}
+{% endblock %}
+<!-- DATOS DE PUBLICACIÓN -->
+
+<!-- CONTROLES DE EDICIÓN -->
+<p>
+	<br/>
+	{% ifequal isAuthor True %}
+	<input type="button" value="Editar"/>
+	<input type="button" value="Borrar"/>
+	{% endifequal %}
+</p>
+<!-- CONTROLES DE EDICIÓN -->
+
+<!-- CONTROLES DE VOTACIÓN -->
+<form action="/publications/vote/" method="POST">
+	{% csrf_token %}
+	<input type="hidden" name="voteValue" value="+1" />
+	<input type="hidden" name="publicationId" value="{{ publication.id }}" />
+	<input type="submit" value="+1" {% ifequal True blockVotes %} disabled="true" {% endifequal %}/>
+</form>
+
+<form action="/publications/vote/" method="POST">
+	{% csrf_token %}
+	<input type="hidden" name="voteValue" value="-1">
+	<input type="hidden" name="publicationId" value="{{ publication.id }}" />
+	<input type="submit" value="-1" {% ifequal True blockVotes %} disabled="true" {% endifequal %}/>
+</form>
+<!-- CONTROLES DE VOTACIÓN -->
+
+<!-- FORMULARIO DE COMENTARIOS -->
+<form method="POST" action="">
+	{% csrf_token %}
+	<legend>Comentar publicación</legend>
+	<fieldset>
+	{{commentForm.as_p}}
+	</fieldset>
+	<button type="submit" class="btn btn-primary">Comentar</button>
+</form>
+<!-- FORMULARIO DE COMENTARIOS -->
+
+<!-- COMENTARIOS -->
+{% for comment in publication.comment_set.all %}
+	<p><b>El {{comment.published}} {{comment.author}} comentó:</b></p>
+	<p>{{comment.content}}</p>
+{% endfor %}
+<!-- COMENTARIOS -->
+{% endblock %}

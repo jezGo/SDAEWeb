@@ -1,17 +1,16 @@
-<html>
+{% extends "publications/base.html" %}
 
-<head>
-<title>Events</title>
-</head>
+{% block title %} SDAE - Lista de publicaciones {% endblock %}
 
-<body>
+{% block content %}
+
 {% for event in eventsList%}
-<div>
-<p><a href="/publications/events/{{event.publication.pk}}">{{ event.publication.title }}</a>
-</p>
-<p>{{ event.publication.content }}</p>
-</div>
+	<div>
+	<p>
+	<a href="/publications/events/{{event.publication.pk}}">{{ event.publication.title }}</a>
+	</p>
+	<p>{{ event.publication.content }}</p>
+	</div>
 {% endfor %}
-</body>
 
-</html>
+{% endblock %}

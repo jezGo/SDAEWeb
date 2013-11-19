@@ -1,23 +1,17 @@
-<html>
+{% extends "publications/base.html" %}
 
-<head></head>
+{% block title %} SDAE - Inicio {% endblock %}
 
-<body>
+{% block content %}
+	{% load staticfiles %}
 
-<h1>Home</h1>
+	<img src="{% static "admin/img/icon_searchbox.png"  %}" />
 
-{% load staticfiles %}
-
-<img src="{% static "admin/img/icon_searchbox.png"  %}" />
-
-{% for publication in publicationsList %}
-<div>
-<p>Título: {{publication.title}}</p>
-<p>Autor: {{publication.author}}</p>
-<p>Contenido: {{publication.content}}</p>
-</div>
-{% endfor %}
-
-</body>
-
-</html>
+	{% for publication in publicationsList %}
+	<div>
+	<p>Título: {{publication.title}}</p>
+	<p>Autor: {{publication.author}}</p>
+	<p>Contenido: {{publication.content}}</p>
+	</div>
+	{% endfor %}
+{% endblock %}

@@ -1,6 +1,10 @@
-<html>
+{% extends "publications/base.html" %}
 
-<h1>{{location.name}}</h1>
+{% block title %} SDAE - Info. Escolar - Ubicación - {{location.name}} {% endblock %}
+
+{% block  content%}
+
+<h1>{{location}}</h1>
 
 <h3>Eventos:</h3>
 
@@ -10,4 +14,4 @@
 </p>
 {% endfor %}
 
-</html>
+{% endblock %}

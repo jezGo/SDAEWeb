@@ -53,23 +53,28 @@ def eventDetails(request, eventId):
 
 			comment.save()
 
-	requestUser = SDAEUser.objects.get(user=request.user)
-	userVotes = Vote.objects.filter(author=requestUser, publication=event.publication)
-	publicationAuthor = event.publication.author
-	isAuthor = (requestUser == event.publication.author)
+	if not request.user.is_authenticated():
+		blockVotes = True
+		isAuthor = False
+		userVotes = []
+	else:
+		requestUser = SDAEUser.objects.get(user=request.user)
+		userVotes = Vote.objects.filter(author=requestUser, publication=event.publication)
+		publicationAuthor = event.publication.author
+		isAuthor = (requestUser == event.publication.author)
 
-	blockVotes = False
 	if len(userVotes) > 0:
 		blockVotes = True
 
 	publicationPoints = len(event.publication.vote_set.filter(isPositive=True)) - len(event.publication.vote_set.filter(isPositive=False))
 
 	context = {
-	'event':event,
-	'commentForm':commentForm,
+	'event': event,
+	'publication': event.publication,
 	'publicationPoints': publicationPoints,
-	'blockVotes':blockVotes,
-	'isAuthor':isAuthor
+	'blockVotes': blockVotes,
+	'isAuthor': isAuthor,
+	'commentForm': commentForm,
 	}
 
 	return render(request, 'publications/event_details.html', context)

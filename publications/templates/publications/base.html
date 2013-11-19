@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<title>{% block title %}SDAE{% endblock %}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Bootstrap -->
+	<link href="{{STATIC_URL}}publications/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="{{STATIC_URL}}publications/css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
+	<link href="{{STATIC_URL}}publications/css/sticky-footer-navbar.css" rel="stylesheet" media="screen">
+	{% block extraJS%}
+	{% endblock %}
+</head>
+
+<body style>
+	<div id="wrap">
+		<div class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<div class="nav-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="/">SDAE</a>
+				</div>
+
+				<div class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						{% block menuNavBar %}
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Publicaciones
+								<b class="caret"></b>
+							</a>
+							<ul class="dropdown-menu">
+								{% block publicationsMenuOptions %}
+								<li><a href="#">Avisos</a></li>
+								<li><a href="/publications/events/">Eventos</a></li>
+								<li><a href="#">Ofertas de Empleo</a></li>
+								<li><a href="#">Encontrado-Perdido</a></li>
+								<li><a href="#">Compra-Venta</a></li>
+								{% endblock %}
+							</ul>
+						</li>
+
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Info. Escolar
+								<b class="caret"></b>
+							</a>
+							<ul class="dropdown-menu">
+								{% block schoolInfoMenuOptions %}
+								<li><a href="/schoolInfo/schedules/">Horarios</a></li>
+								<li><a href="/schoolInfo/teachers/">Profesores</a></li>
+								<li><a href="#">Materias</a></li>
+								<li><a href="/schoolInfo/locations/">Lugares</a></li>
+								<li><a href="#">Actividades</a></li>
+								{% endblock %}
+							</ul>
+						</li>
+
+						{% if user.is_authenticated %}
+						<li>
+							<!-- <form action="search" method="GET"> -->
+							<form method="GET">
+								<input type="text" name="searchQuery"/>
+								<input type="submit" value="Buscar"/>
+							</form>
+						</li>
+						<li>
+						<a href="/logout">Cerrar Sesión ({{ user }})</a>
+						</li>
+						{% else %}
+						<li>
+						<a href="/login">Iniciar Sesión</a>
+						</li>
+						{% endif %}
+						{% endblock %}
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			{% block content %}
+			{% endblock %}
+		</div>
+
+		<div id="footer">
+			<div class="container">
+				{% block footer %}
+				<p class="text-muted credit">
+					SDAE <a href="http://www.isc.escom.ipn.mx/">ESCOM</a>
+				</p>
+				{% endblock %}
+			</div>
+		</div>
+	</div>
+	<script src="{{STATIC_URL}}publications/js/jquery-1.10.2.min.js"></script>
+	<script src="{{STATIC_URL}}publications/js/bootstrap.min.js"></script>
+</body>
+
+</html>

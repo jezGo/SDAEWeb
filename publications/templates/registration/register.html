@@ -1,33 +1,15 @@
-<!DOCTYPE html>
-<html>
+{% extends "publications/base.html" %}
 
-<head>
-	<title>Registrarse</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- Bootstrap -->
-	<link href="{{STATIC_URL}}publications/css/bootstrap.min.css" rel="stylesheet" media="screen">
-	<link href="{{STATIC_URL}}publications/css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
-	<!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"> -->
-</head>
+{% block title %} SDAE - Registrarse {% endblock %}
 
-<body>
-	<div class="container">
-
-	<form method="POST" class="form-signin">
-		{% csrf_token %}
-		<h2>Registrarse</h2>
-		<fieldset>
-		{{ registerForm.as_p }}
-		</fieldset>
-		<button type="submit" class="btn btn-lg btn-primary">Registrarse</button>
-	</form>
-
-	</div>
-
-	<script src="{{STATIC_URL}}publications/js/jquery-1.10.2.min.js"></script>
-	<script src="{{STATIC_URL}}publications/js/bootstrap.min.js"></script>
-	<!-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script> -->
-</body>
-
-</html>
+{% block content %}
+<form method="POST" class="form-signin">
+	{% csrf_token %}
+	<h2>Registrarse</h2>
+	<fieldset>
+	{{ registerForm.as_p }}
+	</fieldset>
+	<button type="submit" class="btn btn-lg btn-primary">Registrarse</button>
+</form>
+{% endblock %}
  

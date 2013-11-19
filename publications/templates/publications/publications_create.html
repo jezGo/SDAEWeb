@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html>
+{% extends "publications/base.html" %}
 
-<head>
-	<title>Publicar</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- Bootstrap -->
-	<link href="{{STATIC_URL}}publications/css/bootstrap.min.css" rel="stylesheet" media="screen">
-</head>
+{% block title %} SDAE - Publicaciones - Publicar {% endblock %}
 
-<body>
-
+{% block content %}
 <div class="container">
 	<form method="POST" action="" {% if form.is_multipart %} enctype="multipart/form-data" {% endif %} class="form-horizontal">
 	{% csrf_token %}
@@ -20,10 +13,4 @@
 	<button type="submit" class="btn btn-primary">Guardar</button>
 	</form>
 </div>
-
-</body>
-
-<script src="{{STATIC_URL}}publications/js/jquery-1.10.2.min.js"></script>
-<script src="{{STATIC_URL}}publications/js/bootstrap.min.js"></script>
-
-</html>
+{% endblock %}

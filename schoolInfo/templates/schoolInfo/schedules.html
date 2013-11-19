@@ -1,3 +1,9 @@
+{% extends "publications/base.html" %}
+
+{% block title %} SDAE - Info. Escolar - Horarios - {{dayName}} {% endblock %}
+
+{% block content %}
+
 Horario del día {{dayName}}
 
 {% for hour, hourClasses in classesByHour.items %}
@@ -11,3 +17,4 @@ Horario del día {{dayName}}
 {% endfor %}
 
 {% endfor %}
+{% endblock %}

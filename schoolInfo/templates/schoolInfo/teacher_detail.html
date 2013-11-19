@@ -1,3 +1,9 @@
+{% extends "publications/base.html" %}
+
+{% block title %} SDAE - Info. Escolar - Profesor - {{teacher.name}} {{teacher.lastname}} {% endblock %}
+
+{% block content %}
+
 <p>
 {{teacher.name}} {{teacher.lastname}}
 </p>
@@ -26,3 +32,5 @@ Horario:
 {% endfor %}
 
 </p>
+
+{% endblock %}

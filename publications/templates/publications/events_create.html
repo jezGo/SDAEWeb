@@ -1,91 +1,16 @@
-<!DOCTYPE html>
-<html lang="es">
+{% extends "publications/base.html" %}
 
-<head>
-	<title>Publicar Evento</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- Bootstrap -->
-	<link href="{{STATIC_URL}}publications/css/bootstrap.min.css" rel="stylesheet" media="screen">
-	<link href="{{STATIC_URL}}publications/css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
-	<link href="{{STATIC_URL}}publications/css/sticky-footer-navbar.css" rel="stylesheet" media="screen">
-</head>
+{% block title %} SDAE - Eventos - Publicar {% endblock %}
 
-<!-- RESPONSIVE IMAGES TEMPLATE -->
-<!-- <img src="..." class="img-responsive" alt="Responsive image"> -->
-<!-- RESPONSIVE IMAGES TEMPLATE -->
-
-<body style>
-	<div id="wrap">
-		<div class="navbar navbar-default navbar-fixed-top">
-			<div class="container">
-				<div class="nav-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="/">SDAE</a>
-				</div>
-
-				<div class="collapse navbar-collapse">
-					<ul class="nav navbar-nav">
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Publicaciones
-								<b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Avisos</a></li>
-								<li><a href="/publications/events/">Eventos</a></li>
-								<li><a href="#">Ofertas de Empleo</a></li>
-								<li><a href="#">Encontrado-Perdido</a></li>
-								<li><a href="#">Compra-Venta</a></li>
-							</ul>
-						</li>
-
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Info. Escolar
-								<b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Horarios</a></li>
-								<li><a href="/schoolInfo/teachers/">Profesores</a></li>
-								<li><a href="#">Materias</a></li>
-								<li><a href="#">Lugares</a></li>
-								<li><a href="#">Actividades</a></li>
-							</ul>
-						</li>
-
-						<li>
-							<a href="/logout">Cerrar Sesión ({{ user }})</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-
-		<div class="container">
-			<form method="POST" action="" {% if form.is_multipart %} enctype="multipart/form-data" {% endif %} class="form-horizontal">
-				{% csrf_token %}
-				<legend>Publicar evento</legend>
-				<fieldset>
-				{{ pform.as_p }}
-				{{ eform.as_p }}
-				</fieldset>
-				<input type="hidden" name="" value="" />
-				<button type="submit" class="btn btn-primary">Publicar</button>
-			</form>
-		</div>
-
-		<div id="footer">
-			<div class="container">
-				<p class="text-muted credit">
-					SDAE <a href="http://www.isc.escom.ipn.mx/">ESCOM</a>
-				</p>
-			</div>
-		</div>
-	</div>
-	<script src="{{STATIC_URL}}publications/js/jquery-1.10.2.min.js"></script>
-	<script src="{{STATIC_URL}}publications/js/bootstrap.min.js"></script>
-</body>
-
-</html>
+{% block content %}
+<form method="POST" action="" {% if form.is_multipart %} enctype="multipart/form-data" {% endif %} class="form-horizontal">
+{% csrf_token %}
+<legend>Publicar evento</legend>
+<fieldset>
+{{ pform.as_p }}
+{{ eform.as_p }}
+</fieldset>
+<input type="hidden" name="" value="" />
+<button type="submit" class="btn btn-primary">Publicar</button>
+</form>
+{% endblock %}
