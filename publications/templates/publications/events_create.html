@@ -1,16 +1,19 @@
-{% extends "publications/base.html" %}
+{% extends "publications/base_publication_create.html" %}
 
 {% block title %} SDAE - Eventos - Publicar {% endblock %}
 
-{% block content %}
-<form method="POST" action="" {% if form.is_multipart %} enctype="multipart/form-data" {% endif %} class="form-horizontal">
-{% csrf_token %}
-<legend>Publicar evento</legend>
-<fieldset>
-{{ pform.as_p }}
-{{ eform.as_p }}
-</fieldset>
-<input type="hidden" name="" value="" />
-<button type="submit" class="btn btn-primary">Publicar</button>
-</form>
+{% block formLegend %}Publicar Evento{% endblock %}
+
+{% block specificInfo %}
+{% for efield in eform %}
+<div class="form-group">
+	{{ efield.errors }}
+	<label for="{{efield.auto_id}}" class="col-sm-2 control-label">
+		{{efield.label}}:
+	</label>
+	<div class="col-sm-10">
+	{{efield}}
+	</div>
+</div>
+{% endfor %}
 {% endblock %}

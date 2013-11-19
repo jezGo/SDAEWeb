@@ -1,5 +1,6 @@
 from django import forms
 from django.forms import ModelForm
+from django.forms import TextInput, Textarea, FileInput, ClearableFileInput, Select, SelectMultiple, DateTimeInput, SplitDateTimeWidget
 from publications.models import Publication, Event, Comment, SDAEUser, Company
 from django.contrib.auth.models import User
 
@@ -8,12 +9,24 @@ class PublicationForm(forms.ModelForm):
 	class Meta:
 		model = Publication
 		fields = ["title", "content", "imageUrl", "tags"]
+		widgets = {
+			"title" : TextInput(attrs={"class":"form-control"}),
+			"content" : Textarea(attrs={"class":"form-control"}),
+			"imageUrl" : FileInput(attrs={"class":"btn"}),
+			"tags" : SelectMultiple(attrs={"class":"form-control"}),
+		}
 
 # Event Form
 class EventForm (forms.ModelForm):
 	class Meta:
 		model = Event
 		fields = ["startDateTime", "endDateTime", "location", "host"]
+		widgets = {
+			"startDateTime" : DateTimeInput(attrs={"class":"form-control", "placeholder":"DD/MM/AAAA HH:MM"}),
+			"endDateTime" : DateTimeInput(attrs={"class":"form-control", "placeholder":"DD/MM/AAAA HH:MM"}),
+			"location" : Select(attrs={"class":"form-control"}),
+			"host" : SelectMultiple(attrs={"class":"form-control"}),
+		}
 
 # Comment Form
 class CommentForm (forms.ModelForm):

@@ -63,6 +63,7 @@ def eventDetails(request, eventId):
 		publicationAuthor = event.publication.author
 		isAuthor = (requestUser == event.publication.author)
 
+	blockVotes = False
 	if len(userVotes) > 0:
 		blockVotes = True
 

@@ -1,3 +1,5 @@
+#coding: utf-8
+
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -30,15 +32,14 @@ class PublicationType(models.Model):
 # Publication
 class Publication(models.Model):
   """Publications table. Used as header for all types of publications"""
-  title = models.CharField(max_length=100)
-  content = models.TextField()
-  type = models.ForeignKey(PublicationType)
-  published = models.DateTimeField(auto_now_add=True)
-  lastEdited = models.DateTimeField(auto_now=True)
-  imageUrl = models.FileField(max_length=200, upload_to='publications/', blank=True)
-  author = models.ForeignKey(SDAEUser)
-  # author = models.OneToOneField(SDAEUser)
-  tags = models.ManyToManyField(Tag, blank=True)
+  title = models.CharField(max_length=100, verbose_name="Título")
+  content = models.TextField(verbose_name="Contenido")
+  type = models.ForeignKey(PublicationType, verbose_name="Tipo")
+  published = models.DateTimeField(auto_now_add=True, verbose_name="Publicado")
+  lastEdited = models.DateTimeField(auto_now=True, verbose_name="Última Edición")
+  imageUrl = models.FileField(max_length=200, upload_to='publications/', blank=True, verbose_name="Imagen")
+  author = models.ForeignKey(SDAEUser, verbose_name="Autor")
+  tags = models.ManyToManyField(Tag, blank=True, verbose_name="Etiquetas")
 
   def __unicode__(self):
     return self.title
@@ -104,11 +105,11 @@ class Location(models.Model):
 # Event
 class Event(models.Model):
   """Events table"""
-  publication = models.OneToOneField(Publication)
-  startDateTime = models.DateTimeField()
-  endDateTime = models.DateTimeField()
-  location = models.ForeignKey(Location)
-  host = models.ManyToManyField(SDAEUser)
+  publication = models.OneToOneField(Publication, verbose_name="Publicación")
+  startDateTime = models.DateTimeField(verbose_name="Inicia")
+  endDateTime = models.DateTimeField(verbose_name="Termina")
+  location = models.ForeignKey(Location, verbose_name="Lugar")
+  host = models.ManyToManyField(SDAEUser, verbose_name="Organizadores")
 
   def __unicode__(self):
     return self.publication.title

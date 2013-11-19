@@ -1,0 +1,39 @@
+{% extends "publications/base.html" %}
+
+{% block title %} SDAE - Publicación - Publicar {% endblock %}
+
+{% block content %}
+<form
+method="POST"
+action=""
+{% if form.is_multipart %} enctype="multipart/form-data" {% endif %}
+role="form"
+class="form-horizontal">
+{% csrf_token %}
+<legend>{% block formLegend%}{% endblock %}</legend>
+
+{% block generalInfo %}
+{% for pfield in pform %}
+<div class="form-group">
+	{{ pfield.errors }}
+	<label for="{{pfield.auto_id}}" class="col-sm-2 control-label">
+		{{pfield.label}}:
+	</label>
+	<div class="col-sm-10">
+	{{pfield}}
+	</div>
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block specificInfo %}
+{% endblock %}
+
+<div class="form-group">
+	<div class="col-sm-offset-2 col-sm-10">
+		<button type="submit" class="btn btn-primary">Publicar</button>
+	</div>
+</div>
+
+</form>
+{% endblock %}

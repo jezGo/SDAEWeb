@@ -33,13 +33,11 @@
 								<b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
-								{% block publicationsMenuOptions %}
 								<li><a href="#">Avisos</a></li>
 								<li><a href="/publications/events/">Eventos</a></li>
 								<li><a href="#">Ofertas de Empleo</a></li>
 								<li><a href="#">Encontrado-Perdido</a></li>
 								<li><a href="#">Compra-Venta</a></li>
-								{% endblock %}
 							</ul>
 						</li>
 
@@ -48,17 +46,29 @@
 								<b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
-								{% block schoolInfoMenuOptions %}
 								<li><a href="/schoolInfo/schedules/">Horarios</a></li>
 								<li><a href="/schoolInfo/teachers/">Profesores</a></li>
 								<li><a href="#">Materias</a></li>
 								<li><a href="/schoolInfo/locations/">Lugares</a></li>
 								<li><a href="#">Actividades</a></li>
-								{% endblock %}
 							</ul>
 						</li>
 
 						{% if user.is_authenticated %}
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								Publicar
+								<b class="caret"></b>
+							</a>
+							<ul class="dropdown-menu">
+								{% block createPublicationMenuOptions %}
+								<li><a href="/publications/events/create/">Evento</a></li>
+								<li><a href="#">Encontrado-Perdido</a></li>
+								<li><a href="#">Compra-Venta</a></li>
+								{% endblock %}
+							</ul>
+						</li>
+
 						<li>
 							<!-- <form action="search" method="GET"> -->
 							<form method="GET">
@@ -66,6 +76,7 @@
 								<input type="submit" value="Buscar"/>
 							</form>
 						</li>
+
 						<li>
 						<a href="/logout">Cerrar Sesión ({{ user }})</a>
 						</li>
