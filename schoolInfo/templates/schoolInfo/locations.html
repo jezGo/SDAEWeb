@@ -91,12 +91,19 @@ function showLocationInfo(e) {
 
 	var location = getLocationAtCoord(e.pageX, e.pageY);
 
+	var offset = $("#map").offset();
+
+	var relX = e.pageX - offset.left;
+	var relY = e.pageY - offset.top/2;
+
 	if (location != null) {
 		$(locationP).text(location.name)
 		$(locationP).css("background-color", "lightgray")
 		$(locationP).css("position", "absolute");
-		$(locationP).css("left", e.pageX + 10);
-		$(locationP).css("top", e.pageY + 10);
+		// $(locationP).css("left", e.pageX + 10);
+		// $(locationP).css("top", e.pageY + 10);
+		$(locationP).css("left", relX + 20);
+		$(locationP).css("top", relY + 40);
 		$(locationP).css("opacity", "100");
 	}
 	else {
@@ -111,8 +118,11 @@ function showSelectedLocation(ubicacion) {
 	var offset = $("#map").offset();
 
 	$("#marcador").css("position", "absolute");
-	$("#marcador").css("left", offset.left + ubicacion.x1 + (ubicacion.x2-ubicacion.x1)/2);
-	$("#marcador").css("top", offset.top + ubicacion.y1 + (ubicacion.y2-ubicacion.y1)/2);
+	// $("#marcador").css("left", offset.left + ubicacion.x1 + (ubicacion.x2-ubicacion.x1)/2);
+	// $("#marcador").css("top", offset.top + ubicacion.y1 + (ubicacion.y2-ubicacion.y1)/2);
+
+	$("#marcador").css("left", ubicacion.x1 + (ubicacion.x2-ubicacion.x1)/2);
+	$("#marcador").css("top", offset.top/2 + ubicacion.y1 + (ubicacion.y2-ubicacion.y1)/2);
 	$("#marcador").css("width", "10");
 	$("#marcador").css("background-color", "red");
 }
