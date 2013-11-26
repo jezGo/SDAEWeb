@@ -6,6 +6,10 @@ from schoolInfo.models import Teacher, Subject, Course, ClassSession
 from publications.models import Location
 # from schoolInfo.forms import
 
+def schoolInfo(request):
+	#return render(request, 'schoolInfo/teachers.html', {'teachersByLastnameDict':teachersByLastnameDict})
+	return HttpResponse('schoolInfo')
+
 from string import ascii_uppercase
 # Teachers list
 def teachers(request):

@@ -42,7 +42,7 @@ class Teacher(models.Model):
 	photoUrl = models.FileField(max_length=200, upload_to='teachersPhotos/', blank=True, null=True)
 	about = models.TextField(blank=True, null=True)
 	courses = models.ManyToManyField(Subject, through='Course')
-	office = models.ForeignKey(Location)
+	office = models.ForeignKey(Location, blank=True, null=True)
 	# Move departments and academies to individual table?
 	ACADEMIC_DEPARTMENT_CHOICES = (
 		('DFB', 'Departamento de Formación Básica'),
@@ -50,7 +50,7 @@ class Teacher(models.Model):
 		('DCIC', 'Departamento de Ciencias e Ingeniería de la Computación'),
 		('DFII', 'Departamento de Formación Integral e Institucional'),
 		)
-	department = models.CharField(max_length=4, choices=ACADEMIC_DEPARTMENT_CHOICES)
+	department = models.CharField(max_length=4, choices=ACADEMIC_DEPARTMENT_CHOICES, blank=True, null=True)
 	academy = models.CharField(max_length=100, blank=True, null=True)
 	# ?
 	website = models.URLField(blank=True, null=True)

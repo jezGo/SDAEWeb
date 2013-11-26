@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from django.forms import TextInput, Textarea, FileInput, ClearableFileInput, Select, SelectMultiple, DateTimeInput, SplitDateTimeWidget
-from publications.models import Publication, Event, Comment, SDAEUser, Company
+from publications.models import Publication, Event, Comment, SDAEUser, Company, UserType, Student
 from django.contrib.auth.models import User
 
 # Publication Form
@@ -56,12 +56,16 @@ class RegisterForm(UserCreationForm):
 		fields = ["username", "email", "first_name", "last_name"]
 
 	def save(self, commit=True):
-		theUser = super(RegisterForm, self).save(commit=False)
+		user = super(RegisterForm, self).save(commit=False)
 
 		if commit:
-			theUser.save()
-			sdaeUser = SDAEUser(user=theUser)
+			user.save()
+
+			sdaeUser = SDAEUser(user=user, type=UserType.objects.get(name="Alumno"))
 			sdaeUser.save()
+
+			userStudent = Student(sdaeUser = sdaeUser)
+			userStudent.save()
 
 			return sdaeUser
 		else:

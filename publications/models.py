@@ -3,20 +3,100 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
+# UserType
+class UserType(models.Model):
+  """User types catalog."""
+  name = models.CharField(max_length="20", verbose_name="nombre")
+
+  def __unicode__(self):
+    return self.name
+
+# SDAEUSER
 class SDAEUser(models.Model):
-  """User of the app. Integrates with the Django Users Model"""
-  user = models.OneToOneField(User)
-  studentId = models.CharField(max_length=10, blank=True)
-  profileImageUrl = models.CharField(max_length=200, blank=True)
-  
+  """General user of the app. Integrates with the Django Users Model"""
+  user = models.OneToOneField(User, verbose_name="usuario")
+  type = models.ForeignKey(UserType, verbose_name="tipo")
+  profileImageUrl = models.CharField(max_length=200, blank=True, null=True, verbose_name="imagen de perfil")
+  # TODO: Replace bellow fields for a auth services table and detail table.
+  # TODO: Search a social integration plugin
+  facebookUsername = models.CharField(max_length=80, blank=True, null=True, verbose_name="usuario de facebook")
+  facebookAuthToken = models.CharField(max_length=100, blank=True, null=True, verbose_name="token de facebook")
+  twitterUsername = models.CharField(max_length=20, blank=True, null=True, verbose_name="usuario de twitter")
+  twitterAuthToken = models.CharField(max_length=100, blank=True, null=True, verbose_name="token de twitter")
+
   def __unicode__(self):
     return self.user.username
+
+  class Meta:
+    verbose_name = "Usuario SDAE"
+    verbose_name_plural = "Usuarios SDAE"
+
+# Student
+class Student(models.Model):
+  """Table for user type Student"""
+  sdaeUser = models.OneToOneField(SDAEUser)
+  studentId = models.CharField(max_length=10, verbose_name="boleta", blank=True, null=True)
+  startDate = models.DateField(blank=True, null=True)
+  endDate = models.DateField(blank=True, null=True)
+
+  def __unicode__(self):
+    return self.sdaeUser.user.username
+
+  class Meta:
+    verbose_name = "Alumno"
+    verbose_name_plural = "Alumnos"
+
+# Teacher
+class UserTeacher(models.Model):
+  """Table for user type teacher"""
+  sdaeUser = models.OneToOneField(SDAEUser)
+  teacher = models.OneToOneField("schoolInfo.Teacher")
+  teacherId = models.CharField(max_length=10, verbose_name="boleta", blank=True, null=True)
+
+  def __unicode__(self):
+    return self.teacher
+
+# School Department
+class SchoolDepartment(models.Model):
+  name = models.CharField(max_length=60, verbose_name="nombre")
+  manager = models.CharField(max_length=60, verbose_name="encargado")
+  description = models.TextField(blank=True, null=True, verbose_name="descripción")
+  serviceHours = models.CharField(max_length=80, blank=True, null=True, verbose_name="horario de servicio")
+  sdaeUser = models.OneToOneField(SDAEUser)
+
+  def __unicode__(self):
+    return self.name
+
+# Students Club
+class StudentsClub(models.Model):
+  name = models.CharField(max_length=60, verbose_name="nombre")
+  teacherManager = models.CharField(max_length=60, verbose_name="profesor encargado")
+  studentManager = models.CharField(max_length=60, verbose_name="alumno representante")
+  description = models.TextField(blank=True, null=True, verbose_name="descripción")
+  website = models.CharField(max_length=100, verbose_name="sitio web")
+  sdaeUser = models.OneToOneField(SDAEUser)
+
+  def __unicode__(self):
+    return self.name
+
+# Company
+class Company(models.Model):
+  """Company who will post job offers"""
+  sdaeUser = models.OneToOneField(SDAEUser)
+  name = models.CharField(max_length=80)
+  address = models.CharField(max_length=200, blank=True)
+  contactName = models.CharField(max_length=100)
+  contactPhone = models.CharField(max_length=15, blank=True)
+  contactEmail = models.EmailField(blank=True)
+  website = models.URLField(blank=True)
+
+  def __unicode__(self):
+    return self.name
 
 # Tag
 class Tag(models.Model):
   """Tags for publications"""
-  name = models.CharField(max_length=100)
+  name = models.CharField(max_length=100, verbose_name="nombre")
 
   def __unicode__(self):
     return self.name
@@ -40,9 +120,14 @@ class Publication(models.Model):
   imageUrl = models.FileField(max_length=200, upload_to='publications/', blank=True, verbose_name="Imagen")
   author = models.ForeignKey(SDAEUser, verbose_name="Autor")
   tags = models.ManyToManyField(Tag, blank=True, verbose_name="Etiquetas")
+  hightlighted = models.BooleanField(default=False)
 
   def __unicode__(self):
     return self.title
+
+  class Meta:
+    verbose_name = "Publicación"
+    verbose_name_plural = "Publicaciones"
 
 # Comment
 class Comment(models.Model):
@@ -110,40 +195,32 @@ class Event(models.Model):
   endDateTime = models.DateTimeField(verbose_name="Termina")
   location = models.ForeignKey(Location, verbose_name="Lugar")
   host = models.ManyToManyField(SDAEUser, verbose_name="Organizadores")
+  parentEvent = models.ForeignKey('Event', blank=True, null=True, verbose_name="Evento Principal")
+  speaker = models.CharField(max_length=100, blank=True, null=True)
+  #attendants = models.ManyToManyField(SDAEUser)
 
   def __unicode__(self):
     return self.publication.title
 
 # EventActivity
-class EventActivity(models.Model):
-  """EventActivities Table"""
-  publication = models.OneToOneField(Publication)
-  event = models.ForeignKey(Event)
-  speaker = models.CharField(max_length=100, blank=True)
-  startDateTime = models.DateTimeField()
-  endDateTime = models.DateTimeField()
-  location = models.ForeignKey(Location)
+# class EventActivity(models.Model):
+#   """EventActivities Table"""
+#   publication = models.OneToOneField(Publication)
+#   event = models.ForeignKey(Event)
+#   speaker = models.CharField(max_length=100, blank=True)
+#   startDateTime = models.DateTimeField()
+#   endDateTime = models.DateTimeField()
+#   location = models.ForeignKey(Location)
   #attendants = models.ManyToManyField(SDAEUser)
 
-  def __unicode__(self):
-    return self.publication.title
+  # def __unicode__(self):
+  #   return self.publication.title
 
 # JobType
 class JobType(models.Model):
   """Jobs Types table"""
   name = models.CharField(max_length=50)
   # Full time, Part time, Project, Social Service, Internship
-
-# Company
-class Company(models.Model):
-  """Company who will post job offers"""
-  name = models.CharField(max_length=80)
-  address = models.CharField(max_length=200, blank=True)
-  contactName = models.CharField(max_length=100)
-  contactPhone = models.CharField(max_length=15, blank=True)
-  contactEmail = models.EmailField(blank=True)
-  website = models.URLField(blank=True)
-  user = models.OneToOneField(User)
 
   def __unicode__(self):
     return self.name
@@ -189,8 +266,8 @@ class LostAndFound(models.Model):
   def __unicode__(self):
     return self.publication.title
 
-# ClassMaterial
-# class ClassMaterial(models.Model):
+# CourseMaterial
+# class CourseMaterial(models.Model):
 #   """Document related to a course"""
 #   publication = models.OneToOneField(Publication)
 #   attachment = models.FileField(max_length=200, upload_to='classMaterial/')

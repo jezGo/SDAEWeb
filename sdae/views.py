@@ -6,9 +6,11 @@ from publications.models import Publication
 from publications.forms import RegisterForm, CompanyForm, UserForm
 
 def home(request):
-  publicationsList = Publication.objects.all()
+  highlightedPublications = Publication.objects.all()[:5]
 
-  context = {'publicationsList': publicationsList}
+  context = {
+  'publicationIndexes':range(len(highlightedPublications)),
+  'highlightedPublications': highlightedPublications, }
 
   return render(request, 'sdae/home.html', context)
 
@@ -20,7 +22,8 @@ def registerUser(request):
 		registerForm = RegisterForm(request.POST)
 
 		if registerForm.is_valid():
-			registerForm.save()
+			# Calling a custom save method. Defined in forms view
+			user = registerForm.save()
 
 			return HttpResponseRedirect("/login/")
 
