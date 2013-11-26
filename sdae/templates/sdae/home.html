@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block sidebarItems %}
-<div class="pane panel-default">
+<div class="pane panel-primary">
 	<div class="panel-heading">Secciones</div>
 
 	<div class="list-group">
@@ -54,12 +54,12 @@
 
 <div class="row">
 	<div class="container">
-		<div class="panel panel-default">
+		<div class="panel panel-primary">
 			<div class="panel-heading">Nuevo</div>
 			<div class="container">
 				{% for publication in highlightedPublications%}
 				<div class="media">
-					<a class="pull-left" href="{{publicationDetailUrl}}">
+					<a class="pull-left" href="{{publication.detailedInfoUrl}}">
 						<img class="media-object" src="{{STATIC_URL}}media/{{publication.imageUrl}}" alt="{{publication.title}}">
 					</a>
 					<div class="media-body">

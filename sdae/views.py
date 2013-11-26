@@ -8,9 +8,29 @@ from publications.forms import RegisterForm, CompanyForm, UserForm
 def home(request):
   highlightedPublications = Publication.objects.all()[:5]
 
+  publications = []
+
+  for publication in highlightedPublications:
+  	detailedInfoUrl = '#'
+
+  	if publication.type.name == 'Anuncio':
+  		detailedInfoUrl = '/publications/anouncements/' + str(publication.pk)
+  	elif publication.type.name == 'Evento':
+  		detailedInfoUrl = '/publications/events/' + str(publication.pk)
+  	elif publication.type.name == 'Oferta de Empleo':
+  		detailedInfoUrl = '/publications/joboffers/' + str(publication.pk)
+  	elif publication.type.name == 'Encontrado-Perdido':
+  		detailedInfoUrl = '/publications/lostfound/' + str(publication.pk)
+  	elif publication.type.name == 'Compra-Venta':
+  		detailedInfoUrl = '/publications/buysell/' + str(publication.pk)
+
+  	publication.detailedInfoUrl = detailedInfoUrl
+  	publications.append(publication)
+
   context = {
   'publicationIndexes':range(len(highlightedPublications)),
-  'highlightedPublications': highlightedPublications, }
+  'highlightedPublications': publications,
+   }
 
   return render(request, 'sdae/home.html', context)
 
