@@ -2,12 +2,18 @@
 
 {% block title %} SDAE - Lista de publicaciones {% endblock %}
 
+{% block breadcrumbs %}
+	<li><a href="/">Inicio</a></li>
+	<li><a href="/publications/">Publicaciones</a></li>
+	<li class="active">Eventos</li>
+{% endblock %}
+
 {% block content %}
 
 {% for event in eventsList%}
 	<div>
 	<p>
-	<a href="/publications/events/{{event.publication.pk}}">{{ event.publication.title }}</a>
+	<a href="/publications/events/{{event.publication.pk}}">{{ event.publication.title }}</a>  
 	</p>
 	<p>{{ event.publication.content }}</p>
 	</div>

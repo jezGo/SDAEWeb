@@ -5,7 +5,7 @@
 {% block content %}
 <!-- DATOS DE PUBLICACIÓN -->
 {% block generalInfo %}
-	<p><img src="{{STATIC_URL}}media/{{publication.imageUrl}}" alt="publicationImage"/></p>
+	<p><img src="{{STATIC_URL}}media/{{publication.imageUrl}}" alt="{{publication.title}}"/></p>
 	<p class="lead">{{publication.title}}<p>
 	<p>Publicado por: {{publication.author}}</p>
 	<p>Fecha: {{publication.published}}</p>
@@ -21,7 +21,7 @@
 <p>
 	<br/>
 	{% ifequal isAuthor True %}
-	<input type="button" value="Editar"/>
+	<a href="/publications/events/edit/{{publication.id}}">Editar</a>
 	<input type="button" value="Borrar"/>
 	{% endifequal %}
 </p>
