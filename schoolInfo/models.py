@@ -58,12 +58,17 @@ class Teacher(models.Model):
 	def __unicode__(self):
 		return self.name + " " + self.lastname
 
+# Group
+class Group(models.Model):
+	name = models.CharField(max_length=4)
+
 # Course: Intermediate relation for a MtM relation between Teacher and Subject
 #		  which could be reused in the ClassSession model
 class Course(models.Model):
 	teacher = models.ForeignKey(Teacher)
 	subject = models.ForeignKey(Subject)
 	scholarCycle = models.CharField(max_length=12)
+	group = models.ForeignKey(Group)
 
 	def __unicode__(self):
 		return self.subject.name + " con " + self.teacher.name + " " + self.teacher.lastname + " en " + str(self.scholarCycle)
@@ -75,8 +80,6 @@ class ClassSession(models.Model):
 	# teacher = models.ForeignKey(Teacher)
 	course = models.ForeignKey(Course)
 	location = models.ForeignKey(Location)
-	# ClassGroups catalog?
-	classGroup = models.CharField(max_length=4)
 	DAYS_CHOICES = (
 		('LU', 'Lunes'),
 		('MA', 'Martes'),

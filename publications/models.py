@@ -109,6 +109,10 @@ class PublicationType(models.Model):
   def __unicode__(self):
     return self.name
 
+  class Meta:
+    verbose_name = "Tipo de Publicación"
+    verbose_name_plural = "Tipos de Publicaciones"
+
 # Publication
 class Publication(models.Model):
   """Publications table. Used as header for all types of publications"""
@@ -133,7 +137,7 @@ class Publication(models.Model):
 class Comment(models.Model):
   """Comments table"""
   publication = models.ForeignKey(Publication)
-  content = models.TextField()
+  content = models.TextField(verbose_name="Comentario", blank=False, null=False)
   published = models.DateTimeField(auto_now_add=True)
   lastEdited = models.DateTimeField(auto_now=True)
   author = models.ForeignKey(SDAEUser)
@@ -159,6 +163,7 @@ class Vote(models.Model):
 # Map
 class Map(models.Model):
   """Maps table"""
+  id = models.AutoField(primary_key=True)
   name = models.CharField(max_length=100)
   imageUrl = models.FileField(max_length=200, upload_to='maps/', blank=True)
 

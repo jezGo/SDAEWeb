@@ -9,9 +9,9 @@ from django.contrib.auth.decorators import login_required
 
 # Publications List
 def publications(request):
-  publicationsList = Publication.objects.all()
+  publicationTypesList = PublicationType.objects.all()
 
-  context = {'publicationsList': publicationsList}
+  context = {'publicationTypesList': publicationTypesList}
 
   return render(request, 'publications/publications.html', context)
 
@@ -30,8 +30,6 @@ def createPublication(request):
 # Events List
 def events(request):
 	eventsList = Event.objects.all()
-
-	publicationPointsList = {}
 
 	context = {'eventsList' : eventsList}
 
@@ -54,18 +52,27 @@ def eventDetails(request, eventId):
 			comment.save()
 
 	if not request.user.is_authenticated():
-		blockVotes = True
 		isAuthor = False
-		userVotes = []
+		userVote = None
 	else:
-		requestUser = SDAEUser.objects.get(user=request.user)
-		userVotes = Vote.objects.filter(author=requestUser, publication=event.publication)
+		# requestUser = SDAEUser.objects.get(user=request.user)
+		requestUser = request.user.sdaeuser
+		try:
+			userVote = Vote.objects.get(author=requestUser, publication=event.publication)
+		except:
+			userVote = None
+
 		publicationAuthor = event.publication.author
 		isAuthor = (requestUser == event.publication.author)
 
-	blockVotes = False
-	if len(userVotes) > 0:
-		blockVotes = True
+	blockPositiveVote = False
+	blockNegativeVote = False
+
+	if userVote:
+		if userVote.isPositive:
+			blockPositiveVote = True
+		else:
+			blockNegativeVote = True
 
 	publicationPoints = len(event.publication.vote_set.filter(isPositive=True)) - len(event.publication.vote_set.filter(isPositive=False))
 
@@ -73,7 +80,8 @@ def eventDetails(request, eventId):
 	'event': event,
 	'publication': event.publication,
 	'publicationPoints': publicationPoints,
-	'blockVotes': blockVotes,
+	'blockPositiveVote': blockPositiveVote,
+	'blockNegativeVote': blockNegativeVote,
 	'isAuthor': isAuthor,
 	'commentForm': commentForm,
 	}
@@ -89,13 +97,24 @@ def votePublication(request):
 	publicationId = request.POST['publicationId']
 	publication = get_object_or_404(Publication, pk=publicationId)
 
-	isPositive = True
+	su = request.user.sdaeuser
 
+	previousVote = None
+	try:
+		previousVote = Vote.objects.get(publication=publication, author=request.user.sdaeuser)
+	except:
+		previousVote = None
+
+	isPositive = True
 	if (request.POST["voteValue"] == "-1"):
 		isPositive = False
 
-	vote = Vote(publication=publication, author=SDAEUser.objects.get(user=request.user), isPositive=True)
-	vote.save()
+	if previousVote and not previousVote.isPositive == isPositive:
+		previousVote.isPositive = isPositive
+		previousVote.save()
+	else:
+		vote = Vote(publication=publication, author=request.user.sdaeuser, isPositive=True)
+		vote.save()
 
 	return HttpResponseRedirect("/publications/events/" + publicationId)
 
@@ -159,8 +178,20 @@ def editEvent(request, eventId):
 
 # Delete Event
 @login_required(login_url='/login/')
-def deleteEvent(request):
+def deletePublication(request):
 	if request.method != 'POST':
-		return HttpResponseRedirect('/publications/events/')
-	else:
-		return HttpResponse("delete event: " + request.POST['publicationId']);
+		return HttpResponseRedirect('/publications/')
+
+	publicationId = request.POST['publicationId']
+	publication = Publication.objects.get(pk=publicationId)
+	publication.delete()
+
+	try:
+		event = publication.event
+		event.delete()
+	except:
+		pass
+		
+	referer = request.META['HTTP_REFERER']
+
+	return HttpResponseRedirect(referer[:referer.rfind('/')])

@@ -1,12 +1,17 @@
 {% extends "publications/base.html" %}
 
+{% block extraJS %}
+<link href="{{STATIC_URL}}publications/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<script src="{{STATIC_URL}}publications/js/bootstrap-datetimepicker.min.js"></script>
+{% endblock %}
+
 {% block title %} SDAE - Publicación - Publicar {% endblock %}
 
 {% block content %}
 <form
 method="POST"
 action=""
-{% if form.is_multipart %} enctype="multipart/form-data" {% endif %}
+enctype="multipart/form-data"
 role="form"
 class="form-horizontal">
 {% csrf_token %}
@@ -15,7 +20,7 @@ class="form-horizontal">
 {% block generalInfo %}
 {% for pfield in pform %}
 <div class="form-group">
-	{{ pfield.errors }}
+	<span class="text-danger">{{ pfield.errors }}</span>
 	<label for="{{pfield.auto_id}}" class="col-sm-2 control-label">
 		{{pfield.label}}:
 	</label>

@@ -9,6 +9,7 @@
 	<link href="{{STATIC_URL}}publications/css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
 	<link href="{{STATIC_URL}}publications/css/sticky-footer-navbar.css" rel="stylesheet" media="screen">
 	<link href="{{STATIC_URL}}publications/css/offcanvas.css" rel="stylesheet">
+	<link href="{{STATIC_URL}}publications/css/bootstrap-docs.css" rel="stylesheet">
 
 	{% block extraJS%}
 	{% endblock %}
@@ -120,23 +121,25 @@
 				</div>
 				 -->
 				{% endblock %}
-			</div>
+			</div> <!-- sidebar -->
 
 			<div class="col-xs-12 col-sm-9">
 				<div class="row">
-					<div class="container">
+					<!-- <div class="container"> -->
 					{% block sidebarButton %}
 					<p class="pull-left visible-xs">
 						<button class="btn btn-primary btn-xs" data-toggle="offcanvas" type="button">Menú</button>
 					</p>
 					{% endblock%}
-					</div>
+					<!-- </div> -->
 				</div>
 
+				<div class="container">
 				{% block content %}
 				{% endblock %}
-			</div>
-		</div>
+				</div> <!-- block content -->
+			</div> <!-- content column -->
+		</div> <!-- row offcanvas left  -->
 	</div> <!-- container -->
 
 	<div id="footer">

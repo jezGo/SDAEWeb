@@ -48,20 +48,22 @@ function setup() {
 	});
 }
 
-ubicaciones = {
-	"u1":{"x1":0, "y1":123, "x2":105, "y2":223, "id":1, "name":"Sala Eduardo Torrijos"},
-	"u2":{"x1":0, "y1":0, "x2":105, "y2":100, "id":2, "name":"Laboratorio de Electrónica Digital"},
-	"u3":{"x1":0, "y1":246, "x2":105, "y2":346, "id":3, "name":"Coordinación de Desarrollo Tecnológico"},
+ubicaciones = {{locations|safe}}
+
+// {
+// 	"u1":{"x1":0, "y1":123, "x2":105, "y2":223, "id":1, "name":"Sala Eduardo Torrijos"},
+// 	"u2":{"x1":0, "y1":0, "x2":105, "y2":100, "id":2, "name":"Laboratorio de Electrónica Digital"},
+// 	"u3":{"x1":0, "y1":246, "x2":105, "y2":346, "id":3, "name":"Coordinación de Desarrollo Tecnológico"},
 
 	
-	"u4":{"x1":126, "y1":0, "x2":231, "y2":100, "id":5, "name":"Cancha de Volley Ball"},
-	"u5":{"x1":126, "y1":123, "x2":231, "y2":223, "id":4, "name":"Subdirección Académica"},
-	"u6":{"x1":126, "y1":246, "x2":231, "y2":346, "id":6, "name":"Explanada"},
+// 	"u4":{"x1":126, "y1":0, "x2":231, "y2":100, "id":5, "name":"Cancha de Volley Ball"},
+// 	"u5":{"x1":126, "y1":123, "x2":231, "y2":223, "id":4, "name":"Subdirección Académica"},
+// 	"u6":{"x1":126, "y1":246, "x2":231, "y2":346, "id":6, "name":"Explanada"},
 
-	"u7":{"x1":252, "y1":0, "x2":352, "y2":100, "id":7, "name":"Salón 1111"},
-	"u8":{"x1":252, "y1":123, "x2":352, "y2":223, "id":8, "name":"Dirección General"},
-	"u9":{"x1":252, "y1":246, "x2":352, "y2":346, "id":9, "name":"Sala de Impresiones"},
-}
+// 	"u7":{"x1":252, "y1":0, "x2":352, "y2":100, "id":7, "name":"Salón 1111"},
+// 	"u8":{"x1":252, "y1":123, "x2":352, "y2":223, "id":8, "name":"Dirección General"},
+// 	"u9":{"x1":252, "y1":246, "x2":352, "y2":346, "id":9, "name":"Sala de Impresiones"},
+// }
 
 function getLocationAtCoord(x, y) {
 	var offset = $("#map").offset();
@@ -170,6 +172,10 @@ var insideMap = true;
 {% block content%}
 <h1>Ubicaciones</h1>
 
+<p>
+	{{someLocation}}
+</p>
+
 Seleccione un mapa/nivel
 
 <p id="coords">0,0</p>
@@ -180,13 +186,13 @@ TODO: Load map from selected floor/location
  -->
 <img
 id="map"
-src="{{STATIC_URL}}/schoolInfo/sampleMap.png"
+src="{{STATIC_URL}}/schoolInfo/planoESCOM.png"
 onmousemove = "showLocationInfo(event)"
 onclick="goToLocationDetails(event)"
 />
 
 <select id="locationsSelect" size="5" onchange="showLocationOnMap(event)">
-	<option value="0">Explanada</option>
+	<!-- <option value="0">Explanada</option>
 	<option value="1">Sala Eduardo Torrijos</option>
 	<option value="2">Dirección General</option>
 	<option value="3">Laboratorio de Electrónica Digital</option>
@@ -194,7 +200,11 @@ onclick="goToLocationDetails(event)"
 	<option value="5">Cancha de Volley Ball</option>
 	<option value="6">Subdirección Académica</option>
 	<option value="7">Salón 1111</option>
-	<option value="8">Sala de Impresiones</option>
+	<option value="8">Sala de Impresiones</option> -->
+
+	<option value="0">2101</option>
+	<option value="1">2102</option>
+	<option value="2">2103</option>
 </select>
 
 <div id="marcador">

@@ -2,62 +2,173 @@
 
 {% block title %} SDAE - Detalle de publicación {% endblock %}
 
+{% block breadcrumbs %}
+<li><a href="/">Inicio</a></li>
+<li><a href="/publications/">Publicaciones</a></li>
+{% endblock %}
+
+{% block sidebarItems %}
+<div class="pane panel-primary">
+	<div class="panel-heading">Secciones</div>
+
+	<div class="list-group">
+		<a class="list-group-item" href="/">Inicio</a>
+		<a class="list-group-item" href="/publications/">Publicationes</a>
+		<a class="list-group-item" href="/publications/events/">Eventos</a>
+	</div>
+</div>
+{% endblock %}
+
 {% block content %}
+<!--DELETE PUBLICATION MODAL-->
+<div class="modal fade" id="deletePublicationModal" tabindex="-1" role="dialog" aria-labelledby="deletePublicationModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">¿Borrar publicación?</h4>
+      </div>
+      <div class="modal-body">
+        ¿Desea borrar la publicación?
+      </div>
+      <div class="modal-footer">
+      	{% csrf_token %}
+      	<form>
+			{% csrf_token %}
+			<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+		</form>
+    	<form action="/publications/delete/" method="POST" class="pull-right">
+			{% csrf_token %}
+			<input type="hidden" name="publicationId" value="{{ publication.id }}" />
+			<input class="btn btn-danger" type="submit" value="Borrar" class="pull-right" />
+		</form>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--DELETE PUBLICATION MODAL-->
+
 <!-- DATOS DE PUBLICACIÓN -->
 {% block generalInfo %}
-	<p><img src="{{STATIC_URL}}media/{{publication.imageUrl}}" alt="{{publication.title}}"/></p>
-	<p class="lead">{{publication.title}}<p>
-	<p>Publicado por: {{publication.author}}</p>
-	<p>Fecha: {{publication.published}}</p>
-	<p>Puntos: {{publicationPoints}}</p>
-	<p>{{publication.content}}</p>
-{% endblock %}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<img src="{% ifequal publication.imageUrl '' %}{{STATIC_URL}}publications/imgs/imagePlaceholder.png{% else %}{{STATIC_URL}}media/{{publication.imageUrl}}{% endifequal %}" alt="{{publication.title}}" style="width: 100%; height: auto;">
+			</div>
 
-{% block additionalInfo %}
+			<div class="col-md-8">
+				<h3>
+					{{publication.title}}
+				</h3>
+
+				<!-- CONTROLES DE VOTACIÓN -->
+				<div class="row">
+					<div class="container">
+						<div class="col-md-1">
+							<form action="/publications/vote/" method="POST">
+								{% csrf_token %}
+								<input type="hidden" name="voteValue" value="+1" />
+								<input type="hidden" name="publicationId" value="{{ publication.id }}" />
+								<input class="btn btn-success pull-left" type="submit" value="+1" {% ifequal True blockPositiveVote %} disabled="true" {% endifequal %}/>
+							</form>
+						</div>
+
+						<div class="col-md-1">
+							<form action="/publications/vote/" method="POST">
+								{% csrf_token %}
+								<input type="hidden" name="voteValue" value="-1">
+								<input type="hidden" name="publicationId" value="{{ publication.id }}" />
+								<input class="btn btn-danger" type="submit" value="-1" {% ifequal True blockNegativeVote %} disabled="true" {% endifequal %}/>
+							</form>
+						</div>
+
+						<div id="fb-root"></div>
+						<script>(function(d, s, id) {
+						  var js, fjs = d.getElementsByTagName(s)[0];
+						  if (d.getElementById(id)) return;
+						  js = d.createElement(s); js.id = id;
+						  js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1&appId=203989219732333";
+						  fjs.parentNode.insertBefore(js, fjs);
+						}(document, 'script', 'facebook-jssdk'));</script>
+
+						<div class="col-md-3">
+							<div class="fb-share-button" data-href="http://192.168.1.74:8000" data-type="button_count"></div>
+						</div>
+
+						{% ifequal isAuthor True %}
+						<div class="col-md-2">
+							<a class="btn btn-default" href="/publications/events/edit/{{publication.id}}">Editar</a>
+						</div>
+						<div class="col-md-2">
+							<button class="btn btn-default" data-toggle="modal" data-target="#deletePublicationModal"/>Borrar</button>
+						</div>
+						{% endifequal %}
+					</div>
+				</div>
+				<!-- CONTROLES DE VOTACIÓN -->
+
+				<p>
+					Por {{publication.author}} el {{publication.published}}
+					<br/>{{publicationPoints}} puntos
+				</p>
+
+				{% block additionalInfo %}
+				{% endblock %}
+			</div>
+		</div>
+
+		<hr class="featurette-divider"></hr>
+
+		<div class="row">
+			<div class="container">
+			<p class="lead">Detalles</p>
+			<p><big>{{publication.content}}</big></p>
+			</div>
+		</div>
+	</div>
 {% endblock %}
 <!-- DATOS DE PUBLICACIÓN -->
 
-<!-- CONTROLES DE EDICIÓN -->
-<p>
-	<br/>
-	{% ifequal isAuthor True %}
-	<a href="/publications/events/edit/{{publication.id}}">Editar</a>
-	<input type="button" value="Borrar"/>
-	{% endifequal %}
-</p>
-<!-- CONTROLES DE EDICIÓN -->
-
-<!-- CONTROLES DE VOTACIÓN -->
-<form action="/publications/vote/" method="POST">
-	{% csrf_token %}
-	<input type="hidden" name="voteValue" value="+1" />
-	<input type="hidden" name="publicationId" value="{{ publication.id }}" />
-	<input type="submit" value="+1" {% ifequal True blockVotes %} disabled="true" {% endifequal %}/>
-</form>
-
-<form action="/publications/vote/" method="POST">
-	{% csrf_token %}
-	<input type="hidden" name="voteValue" value="-1">
-	<input type="hidden" name="publicationId" value="{{ publication.id }}" />
-	<input type="submit" value="-1" {% ifequal True blockVotes %} disabled="true" {% endifequal %}/>
-</form>
-<!-- CONTROLES DE VOTACIÓN -->
+<hr class="featurette-divider">
 
 <!-- FORMULARIO DE COMENTARIOS -->
 <form method="POST" action="">
 	{% csrf_token %}
 	<legend>Comentar publicación</legend>
-	<fieldset>
-	{{commentForm.as_p}}
-	</fieldset>
-	<button type="submit" class="btn btn-primary">Comentar</button>
+	{% for field in commentForm %}
+	<div class="form-group">
+		<span class="text-danger">{{ field.errors }}</span>
+		<label for="{{field.auto_id}}" class="col-sm-2 control-label">
+			{{field.label}}:
+		</label>
+		<div class="col-sm-10">
+		{{field}}
+		</div>
+	</div>
+	{% endfor %}
+
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<button type="submit" class="btn btn-primary">Comentar</button>
+		<!-- </div> -->
+	</div>
 </form>
 <!-- FORMULARIO DE COMENTARIOS -->
 
+<hr class="featurette-divider">
+
+<p class="lead">Comentarios</p>
 <!-- COMENTARIOS -->
-{% for comment in publication.comment_set.all %}
-	<p><b>El {{comment.published}} {{comment.author}} comentó:</b></p>
+
+{% ifequal publication.comment_set.all.count 0 %}
+	<p>No hay comentarios todavía.</p>
+{% else %}
+	{% for comment in publication.comment_set.all %}
+	<!-- <p><b>El {{comment.published}} {{comment.author}} comentó:</b></p> -->
+	<p><strong>{{comment.author}} comentó:</strong></p>
 	<p>{{comment.content}}</p>
+	<hr class="featurette-divider">
 {% endfor %}
+{% endifequal %}
 <!-- COMENTARIOS -->
 {% endblock %}

@@ -3,8 +3,15 @@
 {% block title %} SDAE - Evento - {{publication.title}} {% endblock %}
 
 {% block additionalInfo %}
+
 <p>
-Información específica del evento
-Organizador:
+Se realizará en: {{publication.event.location}}
 </p>
+
+Organizado por:
+<ul>
+{% for host in publication.event.host.all %}
+	<li>{{host}}</li>
+{% endfor %}
+</ul>
 {% endblock %}

@@ -22,7 +22,7 @@ class EventForm (forms.ModelForm):
 		model = Event
 		fields = ["startDateTime", "endDateTime", "location", "host"]
 		widgets = {
-			"startDateTime" : DateTimeInput(attrs={"class":"form-control", "placeholder":"DD/MM/AAAA HH:MM"}),
+			"startDateTime" : DateTimeInput(attrs={"class":"form-control input-append date", "placeholder":"DD/MM/AAAA HH:MM"}),
 			"endDateTime" : DateTimeInput(attrs={"class":"form-control", "placeholder":"DD/MM/AAAA HH:MM"}),
 			"location" : Select(attrs={"class":"form-control"}),
 			"host" : SelectMultiple(attrs={"class":"form-control"}),
@@ -33,6 +33,9 @@ class CommentForm (forms.ModelForm):
 	class Meta:
 		model = Comment
 		fields = ["content"]
+		widgets = {
+			"content" : Textarea(attrs={"class":"form-control"})
+		}
 
 # Company Form
 class CompanyForm (forms.ModelForm):

@@ -22,17 +22,14 @@
 <div id="publications-carousel" class="carousel slide" data-ride="carousel">
 	<ol class="carousel-indicators">
 		{% for index in publicationIndexes %}
-		<li 
-		data-target="#publications-carousel" 
-		data-slide-to="{{index}}" 
-		{% ifequal index publicationIndexes.0 %} class="active" {% endifequal %}></li>
+		<li data-target="#publications-carousel" data-slide-to="{{index}}" {% ifequal index publicationIndexes.0 %} class="active" {% endifequal %}></li>
 		{% endfor %}
 	</ol>
 
 	<div class="carousel-inner">
 		{% for publication in highlightedPublications %}
-		<div class="item active">
-			<img src="{{STATIC_URL}}media/publications/{{publication.imageUrl}}" alt="{{publication.title}}">
+		<div class="item {% ifequal publication highlightedPublications.0 %} active {% endifequal %}">
+			<img src="{% ifequal publication.imageUrl '' %}{{STATIC_URL}}publications/imgs/imagePlaceholder.png{% else %}{{STATIC_URL}}media/{{publication.imageUrl}}{% endifequal %}" alt="{{publication.title}}">
 			<div class="carousel-caption">
 				<h3>{{publication.title}}</h3>
 				<p>{{publication.content}}</p>
@@ -59,12 +56,14 @@
 			<div class="container">
 				{% for publication in highlightedPublications%}
 				<div class="media">
-					<a class="pull-left" href="{{publication.detailedInfoUrl}}">
-						<img class="media-object" src="{{STATIC_URL}}media/{{publication.imageUrl}}" alt="{{publication.title}}">
+					<a class="pull-left thumbnail" href="{{publication.detailedInfoUrl}}">
+						<img class="media-object" src="{% ifequal publication.imageUrl '' %}{{STATIC_URL}}publications/imgs/imagePlaceholder.png{% else %}{{STATIC_URL}}media/{{publication.imageUrl}}{% endifequal %}" alt="{{publication.title}}" style="width: 128px; height: auto">
 					</a>
 					<div class="media-body">
-						<h4 class="media-heading">{{publication.title}}</h4>
-						{{publication.content|truncatechars:140}}
+						<a href="{{publication.detailedInfoUrl}}">
+							<h4 class="media-heading">{{publication.title}}</h4>
+						</a>
+						{{publication.content|truncatechars:280}}
 					</div>
 				</div>
 				{% endfor %}

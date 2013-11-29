@@ -3,12 +3,15 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404
 
 from schoolInfo.models import Teacher, Subject, Course, ClassSession
-from publications.models import Location
+from publications.models import Location, Map
 # from schoolInfo.forms import
+
+import json
 
 def schoolInfo(request):
 	#return render(request, 'schoolInfo/teachers.html', {'teachersByLastnameDict':teachersByLastnameDict})
 	return HttpResponse('schoolInfo')
+
 
 from string import ascii_uppercase
 # Teachers list
@@ -80,11 +83,29 @@ def schedules(request, dayNumber):
 
 # Subjects view
 def subjects(request):
-	return HttpResponse('subjects')
+	teachersList = Subject.objects.all()
+	alphabet = list(ascii_uppercase)
+	teachersByLastnameDict = {}
+
+	for letter in alphabet:
+		teachersByLastnameDict.setdefault(letter, [])
+
+	for teacher in teachersList:
+		teachersWithLetterList = teachersByLastnameDict.get(teacher.name[0].upper())
+		teachersWithLetterList.append(teacher)
+
+	return render(request, 'schoolInfo/teachers.html', {'teachersByLastnameDict':teachersByLastnameDict})
 
 # Locations
 def locations(request):
-	return render(request, 'schoolInfo/locations.html')
+	locations = Location.objects.filter(map=Map.objects.get(name='ESCOM Piso 1'))
+
+	locsDict = {}
+	for l in locations:
+		locsDict[l.id] = {'id':l.id, 'name':l.name, 'x1':l.mapX1, 'x2':l.mapX2,  'y1':l.mapY1, 'y2':l.mapY2}
+
+	context = {"locations":json.dumps(locsDict)}
+	return render(request, 'schoolInfo/locations.html', context)
 
 # Location Detail
 def locationDetail(request, locationId):
