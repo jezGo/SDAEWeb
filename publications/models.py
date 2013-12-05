@@ -192,6 +192,19 @@ class Location(models.Model):
   def __unicode__(self):
     return self.name
 
+# School Announcement
+# class CourseMaterial(models.Model):
+#   """Publication from administrative school departments"""
+#   publication = models.OneToOneField(Publication)
+#   attachment = models.FileField(max_length=200, upload_to='classMaterial/')
+
+# CourseMaterial
+# class CourseMaterial(models.Model):
+#   """Document related to a course"""
+#   publication = models.OneToOneField(Publication)
+#   attachment = models.FileField(max_length=200, upload_to='classMaterial/')
+#   group = models.ManyToManyField(django.contrib.auth.Group)
+
 # Event
 class Event(models.Model):
   """Events table"""
@@ -261,19 +274,12 @@ class BuySell(models.Model):
 class LostAndFound(models.Model):
   """Lost and found table"""
   publication = models.OneToOneField(Publication)
-  isLostType = models.BooleanField() # True if is a lost item, false if is found
-  lostOrFoundDate = models.DateField(blank=True)
-  lostOrFoundTime = models.TimeField(blank=True)
-  lastSeenLocation = models.ForeignKey(Location, blank=True, null=True)
-  reward = models.DecimalField(blank=True, max_digits=7, decimal_places=2)
+  isLostType = models.BooleanField(verbose_name="¿Es objeto perdido?") # True if is a lost item, false if is found
+  lostOrFoundDate = models.DateField(blank=True, verbose_name="Fecha de extravío")
+  lostOrFoundTime = models.TimeField(blank=True, verbose_name="Hora de extravío")
+  lastSeenLocation = models.ForeignKey(Location, blank=True, null=True, verbose_name="Última localización donde se vio")
+  reward = models.DecimalField(blank=True, max_digits=7, decimal_places=2, verbose_name="Recompenza")
   isActive = models.BooleanField(default=True)
 
   def __unicode__(self):
     return self.publication.title
-
-# CourseMaterial
-# class CourseMaterial(models.Model):
-#   """Document related to a course"""
-#   publication = models.OneToOneField(Publication)
-#   attachment = models.FileField(max_length=200, upload_to='classMaterial/')
-#   group = models.ManyToManyField(django.contrib.auth.Group)

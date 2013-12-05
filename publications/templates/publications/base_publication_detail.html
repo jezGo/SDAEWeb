@@ -13,7 +13,7 @@
 
 	<div class="list-group">
 		<a class="list-group-item" href="/">Inicio</a>
-		<a class="list-group-item" href="/publications/">Publicationes</a>
+		<a class="list-group-item" href="/publications/">Publicaciones</a>
 		<a class="list-group-item" href="/publications/events/">Eventos</a>
 	</div>
 </div>
@@ -82,6 +82,7 @@
 							</form>
 						</div>
 
+						<!-- facebook -->
 						<div id="fb-root"></div>
 						<script>(function(d, s, id) {
 						  var js, fjs = d.getElementsByTagName(s)[0];
@@ -94,6 +95,7 @@
 						<div class="col-md-3">
 							<div class="fb-share-button" data-href="http://192.168.1.74:8000" data-type="button_count"></div>
 						</div>
+						<!-- facebook -->
 
 						{% ifequal isAuthor True %}
 						<div class="col-md-2">
@@ -108,7 +110,7 @@
 				<!-- CONTROLES DE VOTACIÓN -->
 
 				<p>
-					Por {{publication.author}} el {{publication.published}}
+					Publicado por {{publication.author}} el {{publication.published}}
 					<br/>{{publicationPoints}} puntos
 				</p>
 

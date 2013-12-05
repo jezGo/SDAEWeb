@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from django.forms import TextInput, Textarea, FileInput, ClearableFileInput, Select, SelectMultiple, DateTimeInput, SplitDateTimeWidget
-from publications.models import Publication, Event, Comment, SDAEUser, Company, UserType, Student
+from publications.models import Publication, Event, Comment, SDAEUser, Company, UserType, Student, LostAndFound
 from django.contrib.auth.models import User
 
 # Publication Form
@@ -9,7 +9,7 @@ class PublicationForm(forms.ModelForm):
 	class Meta:
 		model = Publication
 		fields = ["title", "content", "imageUrl", "tags"]
-		widgets = {
+		widgets = {		
 			"title" : TextInput(attrs={"class":"form-control"}),
 			"content" : Textarea(attrs={"class":"form-control"}),
 			"imageUrl" : FileInput(attrs={"class":"btn"}),
@@ -73,3 +73,9 @@ class RegisterForm(UserCreationForm):
 			return sdaeUser
 		else:
 			return None
+
+
+class LostFoundForm(forms.ModelForm):
+	class Meta:
+		model= LostAndFound			
+		fields = ["isLostType", "lostOrFoundDate", "lostOrFoundTime", "lastSeenLocation", "reward", "isActive"]

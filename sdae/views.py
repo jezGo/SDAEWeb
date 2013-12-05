@@ -5,6 +5,7 @@ from django.shortcuts import render, get_object_or_404
 from publications.models import Publication
 from publications.forms import RegisterForm, CompanyForm, UserForm
 
+# Home Page View
 def home(request):
   highlightedPublications = Publication.objects.all()[:5]
 

@@ -1,0 +1,41 @@
+{% extends "publications/base.html" %}
+
+{% block title %} SDAE - Lista de objetos perdidos{% endblock %}
+
+{% block filters %}
+ <a href="#" class="list-group-item active">Categorías</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+{% endblock %}
+
+{% block content %}
+
+{% for lostandfound in lostandfoundList %}      
+
+
+<div class="media">
+       <a class="pull-left" href="#">
+                <img width="64" height="64" class="media-object" src="{{MEDIA_URL}}{{publication.imageUrl}}" alt="publication">
+              </a>
+      
+	<div class="media-body">
+                <h4 class="media-heading"><strong>	 <a class="pull-left" href="/publications/lostandfound/{{lostandfound.publication.pk}}">
+{{ lostandfound.publication.title|upper }}</a></strong></br>
+				<p>{{ lostandfound.publication.content }}
+                        recompensa:${{lostandfound.reward}}</p>
+ 	</div> <!--media-body-->
+	
+</div><!-- end media-->
+<div class="brd"></div>
+
+{% endfor %}
+
+{% endblock %}
+

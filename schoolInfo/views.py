@@ -58,7 +58,12 @@ def teacherDetails(request, teacherId):
 # Schedules view
 from datetime import datetime
 
-def schedules(request, dayNumber):
+# Schedules subcat page
+def schedules(request):
+	return HttpResponse("schedules")
+
+# Schedule of the day
+def daySchedule(request, dayNumber):
 	if int(dayNumber) < 1 or int(dayNumber) > 5:
 		return HttpResponse(dayNumber + ' is an invalid day number')
 
@@ -121,3 +126,7 @@ def locationDetail(request, locationId):
 
 	return render(request, 'schoolInfo/location_detail.html', {'location' : location, 'eventsList': eventsList})
 	# return HttpResponse(responseStr)
+
+# School activity
+def activities(request):
+	return HttpResponse('school activities')
