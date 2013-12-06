@@ -3,8 +3,7 @@
 {% block title %} SDAE - Detalle de publicación {% endblock %}
 
 {% block breadcrumbs %}
-<li><a href="/">Inicio</a></li>
-<li><a href="/publications/">Publicaciones</a></li>
+
 {% endblock %}
 
 {% block sidebarItems %}
@@ -19,7 +18,22 @@
 </div>
 {% endblock %}
 
+
+
 {% block content %}
+<!-- controles de edicion-->
+					<div >
+						{% ifequal isAuthor True %}
+						<div class="col-md-1">
+							<a class="btn btn-default btn-info" href="/publications/events/edit/{{publication.id}}">Editar</a>
+						</div>
+						<div class="col-md-1">
+							<button class="btn btn-default  btn-warning" data-toggle="modal" data-target="#deletePublicationModal"/>Borrar</button>
+						</div>
+						{% endifequal %}
+						<!--fin controles de edicion -->
+					</div>
+
 <!--DELETE PUBLICATION MODAL-->
 <div class="modal fade" id="deletePublicationModal" tabindex="-1" role="dialog" aria-labelledby="deletePublicationModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -51,17 +65,19 @@
 <!-- DATOS DE PUBLICACIÓN -->
 {% block generalInfo %}
 	<div class="container">
+		<div class="jumbotron">
 		<div class="row">
 			<div class="col-md-4">
 				<img src="{% ifequal publication.imageUrl '' %}{{STATIC_URL}}publications/imgs/imagePlaceholder.png{% else %}{{STATIC_URL}}media/{{publication.imageUrl}}{% endifequal %}" alt="{{publication.title}}" style="width: 100%; height: auto;">
 			</div>
 
 			<div class="col-md-8">
-				<h3>
-					{{publication.title}}
-				</h3>
+			<p class="media-heading">{{publication.title|upper}}
+					
+				</p>
 
 				<!-- CONTROLES DE VOTACIÓN -->
+
 				<div class="row">
 					<div class="container">
 						<div class="col-md-1">
@@ -97,21 +113,16 @@
 						</div>
 						<!-- facebook -->
 
-						{% ifequal isAuthor True %}
-						<div class="col-md-2">
-							<a class="btn btn-default" href="/publications/events/edit/{{publication.id}}">Editar</a>
-						</div>
-						<div class="col-md-2">
-							<button class="btn btn-default" data-toggle="modal" data-target="#deletePublicationModal"/>Borrar</button>
-						</div>
-						{% endifequal %}
 					</div>
+
 				</div>
+			</div>
 				<!-- CONTROLES DE VOTACIÓN -->
 
-				<p>
-					Publicado por {{publication.author}} el {{publication.published}}
-					<br/>{{publicationPoints}} puntos
+			<p	class="textt">
+				{{publicationPoints}} puntos<br/>
+					Publicado por:<strong> {{publication.author}} </strong>el <strong>{{publication.published}}</strong>
+					
 				</p>
 
 				{% block additionalInfo %}
@@ -123,16 +134,32 @@
 
 		<div class="row">
 			<div class="container">
-			<p class="lead">Detalles</p>
-			<p><big>{{publication.content}}</big></p>
+			<p class="media-heading"><strong>Detalles</strong></p>
+			<p class="details"><big>{{publication.content}}</big></p>
 			</div>
 		</div>
 	</div>
 {% endblock %}
 <!-- DATOS DE PUBLICACIÓN -->
 
+
+
+
 <hr class="featurette-divider">
 
+<p class="lead">Comentarios</p>
+<!-- COMENTARIOS -->
+
+{% ifequal publication.comment_set.all.count 0 %}
+	<p>No hay comentarios todavía.</p>
+{% else %}
+	{% for comment in publication.comment_set.all %}
+	<!-- <p><b>El {{comment.published}} {{comment.author}} comentó:</b></p> -->
+<div class="post-info"><strong><p class="published">El {{comment.published}}&nbsp; {{comment.author}} comentó:</strong></p>
+		<p class="content">{{comment.content}}</p></div>
+{% endfor %}
+{% endifequal %}
+<!-- COMENTARIOS -->
 <!-- FORMULARIO DE COMENTARIOS -->
 <form method="POST" action="">
 	{% csrf_token %}
@@ -156,21 +183,5 @@
 	</div>
 </form>
 <!-- FORMULARIO DE COMENTARIOS -->
-
-<hr class="featurette-divider">
-
-<p class="lead">Comentarios</p>
-<!-- COMENTARIOS -->
-
-{% ifequal publication.comment_set.all.count 0 %}
-	<p>No hay comentarios todavía.</p>
-{% else %}
-	{% for comment in publication.comment_set.all %}
-	<!-- <p><b>El {{comment.published}} {{comment.author}} comentó:</b></p> -->
-	<p><strong>{{comment.author}} comentó:</strong></p>
-	<p>{{comment.content}}</p>
-	<hr class="featurette-divider">
-{% endfor %}
-{% endifequal %}
-<!-- COMENTARIOS -->
 {% endblock %}
+

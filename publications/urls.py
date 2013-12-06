@@ -10,12 +10,13 @@ urlpatterns = patterns('',
   # url(r'^create/$', views.createPublication, name='createPublication'),
   url(r'^vote/$', views.votePublication, name='votePublication'),
   url(r'^delete/$', views.deletePublication, name='deletePublication'),
+  url(r'^tag/$', views.createTag, name='createTag'),
 
   # Announcements actions
-  # url(r'^announcements/$', views.announcements, name='announcements'),
-  # url(r'^announcements/create/$', views.createAnnouncement, name='createAnnouncement'),
-  # url(r'^announcements/(?P<publicationId>\d+)$', views.announcementDetails, name='announcementDetails'),
-  # url(r'^announcements/edit/(?P<publicationId>\d+)$', views.editAnnouncement, name='editAnnouncement'),
+url(r'^advertisement/$', views.advertisement, name='advertisement'),
+url(r'^advertisement/create/$', views.createAdvertisement, name='createAdvertisement'),
+url(r'^advertisement/(?P<advertisementID>\d+)$', views.AdvertisementDetail, name='AdvertisementDetail'),
+url(r'^advertisement/edit/(?P<advertisementID>\d+)$', views.editAdvertisement, name='editAdvertisement'),
 
   # Class material actions
   # url(r'^classmaterial/$', views.classMaterial, name='classMaterial'),
@@ -26,24 +27,28 @@ urlpatterns = patterns('',
   # Event actions
   url(r'^events/$', views.events, name='events'),
   url(r'^events/create/$', views.createEvent, name='createEvent'),
-  url(r'^events/(?P<publicationId>\d+)$', views.eventDetails, name='eventDetails'),
-  url(r'^events/edit/(?P<publicationId>\d+)$', views.editEvent, name='editEvent'),
+  url(r'^events/(?P<eventId>\d+)$', views.eventDetails, name='eventDetails'),
+  url(r'^events/edit/(?P<eventId>\d+)$', views.editEvent, name='editEvent'),
 
   # Job Offer actions
-  # url(r'^joboffers/$', views.joboffers, name='joboffers'),
-  # url(r'^joboffers/create/$', views.createJobOffer, name='createJobOffer'),
-  # url(r'^joboffers/(?P<publicationId>\d+)$', views.jobOfferDetails, name='jobOfferDetails'),
-  # url(r'^joboffers/edit/(?P<publicationId>\d+)$', views.editJobOffer, name='editJobOffer'),
+url(r'^joboffer/$', views.joboffer, name='joboffer'),
+url(r'^joboffer/create/$', views.createJobOffer, name='createJobOffer'),
+url(r'^joboffer/details/(?P<jobofferID>\d+)$', views.JobOfferDetail, name='JobOfferDetail'),
 
   # Lost and Found Actions
-  # url(r'^lostandfound/$', views.lostAndFound, name='lostAndFound'),
-  # url(r'^lostandfound/create/$', views.createLostAndFound, name='createLostAndFound'),
-  # url(r'^lostandfound/(?P<publicationId>\d+)$', views.lostAndFoundDetails, name='lostAndFoundDetails'),
-  # url(r'^lostandfound/edit/(?P<publicationId>\d+)$', views.editLostAndFound, name='editLostAndFound'),
+  url(r'^lostandfound/$', views.LostandFound, name='LostandFound'),
+  url(r'^lostandfound/create/$', views.createLostAndFound, name='createLostAndFound'),
+  url(r'^lostandfound/(?P<lostandfoundID>\d+)$', views.LostAndFoundDetails, name='LostAndFoundDetails'),
+  url(r'^lostandfound/edit/(?P<lostandfoundID>\d+)$', views.editLostAndFound, name='editLostAndFound'),
   
   # Buy and Sell Actions
-  # url(r'^buyandsell/$', views.buyandsell, name='buyandsell'),
-  # url(r'^buyandsell/create/$', views.createBuyAndSell, name='createBuyAndSell'),
-  # url(r'^buyandsell/(?P<publicationId>\d+)$', views.buyAndSellDetails, name='buyAndSellDetails'),
-  # url(r'^buyandsell/edit/(?P<publicationId>\d+)$', views.editBuyAndSell, name='editBuyAndSell'),
+url(r'^buysell/$', views.buysell, name='buysell'),
+url(r'^buysell/create/$', views.createBuySell, name='createBuySell'),
+url(r'^buysell/(?P<buysellID>\d+)$', views.BuySellDetail, name=' BuySellDetail'),
+#url(r'^buysell/edit/(?P<buysellID>\d+)$', views.EditBuySell, name='EditBuySell'),
+  #COurseMtaerial Actions
+ url(r'^material/$', views.Coursematerial, name='Coursematerial'),
+  url(r'^material/create/$', views.createCourseMaterial, name='createCourseMaterial'),
+
+  url(r'^search/$', views.search, name='search'),
 )

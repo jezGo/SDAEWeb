@@ -1,27 +1,18 @@
 {% extends "publications/base_publication_create.html" %}
 
-{% block title %} SDAE - Eventos - Publicar {% endblock %}
-
-{% block breadcrumbs %}
-<li><a href="/">Inicio</a></li>
-<li><a href="/publications/">Publicaciones</a></li>	
-<li class="active">Publicar Evento</li>
-{% endblock %}
+{% block title %} SDAE - Crear Tag - Publicar {% endblock %}
 
 {% block formLegend %}Publicar Evento{% endblock %}
 
 {% block specificInfo %}
-{% for efield in eform %}
+{% for efield in tgform %}
 <div class="form-group">
-	<span class="text-danger">{{ efield.errors }}</span>
+	{{ efield.errors }}
 	<label for="{{efield.auto_id}}" class="col-sm-2 control-label">
 		{{efield.label}}:
 	</label>
 	<div class="col-sm-10">
 	{{efield}}
-	
-
-
 	</div>
 </div>
 {% endfor %}

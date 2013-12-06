@@ -1,11 +1,11 @@
 {% extends "publications/base_publication_create.html" %}
 
-{% block title %} SDAE - Eventos - Publicar {% endblock %}
+{% block title %} SDAE -Anuncios - Publicar {% endblock %}
 
-{% block formLegend %}Publicar Perdido/Encontrado{% endblock %}
+{% block formLegend %}Publicar Anuncios{% endblock %}
 
 {% block specificInfo %}
-{% for efield in lform %}
+{% for efield in aform %}
 <div class="form-group">
 	{{ efield.errors }}
 	<label for="{{efield.auto_id}}" class="col-sm-2 control-label">

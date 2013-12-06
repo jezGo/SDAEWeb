@@ -8,9 +8,13 @@ from publications.models import Location, Map
 
 import json
 
+
+	return render(request, 'publications/company.html', context)
+
 def schoolInfo(request):
 	#return render(request, 'schoolInfo/teachers.html', {'teachersByLastnameDict':teachersByLastnameDict})
 	return HttpResponse('schoolInfo')
+
 
 
 from string import ascii_uppercase
@@ -26,7 +30,7 @@ def teachers(request):
 	for teacher in teachersList:
 		teachersWithLetterList = teachersByLastnameDict.get(teacher.lastname[0].upper())
 		teachersWithLetterList.append(teacher)
-
+	
 	return render(request, 'schoolInfo/teachers.html', {'teachersByLastnameDict':teachersByLastnameDict})
 
 # Teacher detailed info

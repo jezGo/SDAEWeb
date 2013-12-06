@@ -1,0 +1,45 @@
+{% extends "publications/base_publication_detail.html" %}
+
+{% block title %} SDAE - Evento - {{publication.title}} {% endblock %}
+
+
+
+{% block breadcrumbs %}
+<li><a href="/">Inicio</a></li>
+<li><a href="/publications/">Publicaciones</a></li>
+<li><a href="/publications/buysell">Compra/Venta</a></li>
+<li class="active"> {{buysell.publication.title}}<span class="divider">/</span></li>
+{% endblock %}
+
+
+{% block additionalInfo %}
+
+
+
+
+<p>
+
+      <p class="lead">Esta a la Venta: {{buysell.isSell}}</p>
+      <p class="lead">Es nuevo: {{buysell.isNew}}</p>
+     
+     <p class="lead">Precio: {{buysell.price}}</p>
+       <p class="lead">Especificaciones:{{buysell.specsUrl}}</p>
+  <p class="lead">disponible:{{buysell.isAvailable}}</p>
+
+</p>
+
+			
+{% endblock %}
+
+{% block breadcrumb %}
+<div>
+<ul class="breadcrumb">
+  <li><a href="/publications/Index">Inicio</a> <span class="divider">/</span></li>
+    <li><a href="/publications/">Publicaciones</a> <span class="divider">/</span></li>
+     <li><a href="/publications/buysell">Eventos</a> <span class="divider">/</span></li>
+        <li class="active"> {{buysell.publication.title}}<span class="divider">/</span></li>
+
+
+</ul>
+</div>
+{% endblock %}

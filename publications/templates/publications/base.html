@@ -5,17 +5,20 @@
 	<title>{% block title %}SDAE{% endblock %}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Bootstrap -->
-	<link href="{{STATIC_URL}}publications/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="{{STATIC_URL}}publications/css/bootstrap.css" rel="stylesheet" media="screen">
 	<link href="{{STATIC_URL}}publications/css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
 	<link href="{{STATIC_URL}}publications/css/sticky-footer-navbar.css" rel="stylesheet" media="screen">
 	<link href="{{STATIC_URL}}publications/css/offcanvas.css" rel="stylesheet">
 	<link href="{{STATIC_URL}}publications/css/bootstrap-docs.css" rel="stylesheet">
+	<link href="{{STATIC_URL}}publications/css/carousel.css" rel="stylesheet" media="screen">
+	<link href="{{STATIC_URL}}publications/css/calendario_dw-estilos.css" type="text/css" rel="STYLESHEET">
+	
 
 	{% block extraJS%}
 	{% endblock %}
 </head>
 
-<body>
+<body onLoad="hora()">
 	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="container">
 			<div class="nav-header">
@@ -36,11 +39,11 @@
 							<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="/publications/announcements">Avisos</a></li>
+							<li><a href="/publications/advertisement">Avisos</a></li>
 							<li><a href="/publications/events/">Eventos</a></li>
 							<li><a href="/publications/joboffers">Ofertas de Empleo</a></li>
 							<li><a href="/publications/lostandfound">Encontrado-Perdido</a></li>
-							<li><a href="/publications/buyandsell">Compra-Venta</a></li>
+							<li><a href="/publications/buysell">Compra-Venta</a></li>
 						</ul>
 					</li>
 
@@ -54,7 +57,7 @@
 							<li><a href="/schoolInfo/teachers/">Profesores</a></li>
 							<li><a href="/schoolInfo/subjects/">Materias</a></li>
 							<li><a href="/schoolInfo/locations/">Lugares</a></li>
-							<li><a href="/schoolInfo/activities/">Actividades</a></li>
+							<li><a href="/schoolInfo/activities/">Materiales</a></li>
 						</ul>
 					</li>
 
@@ -66,9 +69,12 @@
 						</a>
 						<ul class="dropdown-menu">
 							{% block createPublicationMenuOptions %}
-							<li><a href="/publications/events/create/">Evento</a></li>
-							<li><a href="#">Encontrado-Perdido</a></li>
-							<li><a href="#">Compra-Venta</a></li>
+								<li><a href="/publications/events/create/">Evento</a></li>
+								<li><a href="/publications/foundlost/create/">Encontrado-Perdido</a></li>
+								<li><a href="/publications/buysell/create/">Compra-Venta</a></li>
+								<li><a href="/publications/joboffer/create/">Oferta Laboral</a></li>
+								<li><a href="/publications/advertisement/create/">Anuncio</a></li>
+								<li><a href="/publications/tag/" target="_blank" onClick="window.open(this.href, this.target, 'width=300,height=400'); return false;" >Etiqueta</a></li>
 							{% endblock %}
 						</ul>
 					</li> <!-- publish menú -->
@@ -89,11 +95,12 @@
 					{% endif %}
 				</ul>
 
+
 				{% if user.is_authenticated %}
-				<form method="GET" action="search" class="navbar-form navbar-right" role="search">
+				<form method="GET" action="/publications/search" class="navbar-form navbar-right" role="search">
 					<div class="form-group">
-						<label class="sr-only" for="searchQuery">Búsqueda</label>
-						<input type="text" id="searchQuery" name="searchQuery" class="form-control"/>
+						<label class="sr-only" for="q">Búsqueda</label>
+						<input type="text" id="q" name="q" class="form-control" value="Search the site&hellip;"  onfocus="this.value=(this.value=='Search the site&hellip;')? '' : this.value ;" />
 					</div>
 					<button type="submit" id="search" class="btn btn-primary">Buscar</button>
 				</form>
@@ -152,9 +159,99 @@
 		</div>
 	</div>
 
-	<script src="{{STATIC_URL}}publications/js/jquery-1.10.2.min.js"></script>
+	<script src="{{STATIC_URL}}publications/js/jquery-1.10.2.min.js"></script>	
+	<script src="{{STATIC_URL}}publications/js/jquery-1.4.4.min.js"></script>
 	<script src="{{STATIC_URL}}publications/js/bootstrap.min.js"></script>
 	<script src="{{STATIC_URL}}publications/js/offcanvas.js"></script>
+		<script src="{{STATIC_URL}}publications/js/holder.js"></script>
+	<!--Calendar-->
+     <script type="text/javascript" src="{{STATIC_URL}}publications/js/calendario-jquery/calendario_dw/calendario_dw.js"></script>
+		   <script type="text/javascript">
+   $(document).ready(function(){
+      $(".campofecha").calendarioDW();
+   })
+   </script>
+   <script language="javascript">
+function time()
+{
+   hoy = new Date();
+   ann = hoy.getFullYear();
+   mes = hoy.getMonth()+1;
+   dia = hoy.getDate();
+   hor = hoy.getHours();
+   min = hoy.getMinutes();
+   seg =  hoy.getSeconds();
+  
+   if (min < 10) min = "0"+min
+   if (seg < 10) seg = "0"+seg
+   window.status = dia+"/"+ mes+"/"+ ann+"  "+ hor+":"+ min+":"+ seg
+   setTimeout('time()',1001);
+}
+</script>
+<!-- PRIMER PASO: Copiar dentro del tag HEAD -->
+
+<script language="JavaScript1.2">
+
+
+function hora(){
+
+if (!document.layers&&!document.all)
+
+return
+
+var Digital=new Date()
+
+var horas=Digital.getHours()
+
+var minutos=Digital.getMinutes()
+
+var segundos=Digital.getSeconds()
+
+var dn="AM" 
+
+if (horas>12){
+
+dn="PM"
+
+horas=horas-12
+
+}
+
+if (horas==0)
+
+horas=12
+
+if (minutos<=9)
+
+minutos="0"+minutos
+
+if (segundos<=9)
+
+segundos="0"+segundos
+
+mrelog=""+horas+":"+minutos+":"
+
++segundos+" "+dn+""
+
+if (document.layers){
+
+document.layers.relog.document.write(mrelog)
+
+document.layers.relog.document.close()
+
+}
+
+else if (document.all)
+
+relog.innerHTML=mrelog
+
+setTimeout("hora()",1000)
+
+}
+
+//-->
+
+</script>
 </body>
 
 </html>

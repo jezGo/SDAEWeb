@@ -1,0 +1,46 @@
+{% extends "publications/base.html" %}
+
+{% block title %} SDAE - Lista de anuncios{% endblock %}
+
+{% block filters %}
+ <a href="#" class="list-group-item active">Categorías</a>
+          {% for tags in tagList%}
+            <a href="#" class="list-group-item">{{tags.name}}</a>
+             {% endfor %}
+              <form action="" method="POST">
+        {% csrf_token %}
+<fieldset>
+{{ pform.as_p }}
+{{ eform.as_p }}
+</fieldset>
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+      
+        
+      </form>
+            
+{% endblock %}
+
+{% block content %}
+
+{% for advertisement in advertisementList%}
+
+      
+
+<div class="media">
+              <a class="pull-left" href="#">
+                <img width="64" height="64" class="media-object" src="{{MEDIA_URL}}{{publication.imageUrl}}" alt="publication">
+              </a>
+      
+	<div class="media-body">
+                <h4 class="media-heading"><strong>	 <a class="pull-left" href="/publications/advertisement/{{advertisement.publication.pk}}">
+{{ advertisement.publication.title|upper }}</a></strong></br>
+				<p>{{ advertisement.publication.content }}</p>
+ 	</div> <!--media-body-->
+	
+</div><!-- end media-->
+<div class="brd"></div>
+
+{% endfor %}
+
+{% endblock %}
+

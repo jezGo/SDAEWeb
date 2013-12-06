@@ -1,17 +1,24 @@
 {% extends "publications/base_publication_detail.html" %}
 
 {% block title %} SDAE - Evento - {{publication.title}} {% endblock %}
+{% block breadcrumbs %}
+<li><a href="/">Inicio</a></li>
+<li><a href="/publications/">Publicaciones</a></li>
+<li><a href="/publications/events">Eventos</a></li>
+<li class="active"> {{event.publication.title}}<span class="divider">/</span></li>
+{% endblock %}
 
 {% block additionalInfo %}
 
-<p>
+<p class="textt">
 Se realizará en: {{publication.event.location}}
 </p>
-
+<p class="cont">
 Organizado por:
-<ul>
+<ul class="contRight">
 {% for host in publication.event.host.all %}
-	<li>{{host}}</li>
+	<li class="contRight"><p class="contRight">{{host}}</p></li>
 {% endfor %}
 </ul>
+</p>
 {% endblock %}

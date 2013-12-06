@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from django.forms import TextInput, Textarea, FileInput, ClearableFileInput, Select, SelectMultiple, DateTimeInput, SplitDateTimeWidget
-from publications.models import Publication, Event, Comment, SDAEUser, Company, UserType, Student, LostAndFound
+from publications.models import Publication, Event, Comment, UserType, LostAndFound, Vote, JobOffer, BuySell, Company, PublicationType, Tag, Student, SDAEUser, Advertisement,  CourseMaterial
 from django.contrib.auth.models import User
 
 # Publication Form
@@ -22,8 +22,8 @@ class EventForm (forms.ModelForm):
 		model = Event
 		fields = ["startDateTime", "endDateTime", "location", "host"]
 		widgets = {
-			"startDateTime" : DateTimeInput(attrs={"class":"form-control input-append date", "placeholder":"DD/MM/AAAA HH:MM"}),
-			"endDateTime" : DateTimeInput(attrs={"class":"form-control", "placeholder":"DD/MM/AAAA HH:MM"}),
+			"startDateTime" : DateTimeInput(attrs={"class":" form-control campofecha", "id":"relog","placeholder":"DD/MM/AAAA HH:MM"}),
+			"endDateTime" : DateTimeInput(attrs={"class":" form-control campofecha", "placeholder":"DD/MM/AAAA HH:MM"}),
 			"location" : Select(attrs={"class":"form-control"}),
 			"host" : SelectMultiple(attrs={"class":"form-control"}),
 		}
@@ -79,3 +79,39 @@ class LostFoundForm(forms.ModelForm):
 	class Meta:
 		model= LostAndFound			
 		fields = ["isLostType", "lostOrFoundDate", "lostOrFoundTime", "lastSeenLocation", "reward", "isActive"]
+
+class  AdvertisementForm(forms.ModelForm):
+	class Meta:
+		model=  Advertisement		
+		fields = ["EffectiveDate", "directedTo", "isActive"]
+
+class JobOfferForm(forms.ModelForm):
+	class Meta:
+		model= JobOffer			
+		fields = ["company", "appointmentDate", "appointmentAdress", "laboralAddress", "compensation", "isOpen"]
+
+class BuySellForm(forms.ModelForm):
+	class Meta:
+		model= BuySell		
+		fields = ["isSell", "isNew", "price", "specsUrl", "isAvailable"]
+             
+
+class PublicationTypeForm(forms.ModelForm):
+	class Meta:
+		model=PublicationType
+		fields =["name"]
+
+
+class TagForm(forms.ModelForm):
+	class Meta:
+		model=Tag
+		fields =["name"]
+
+class  CourseMaterialForm(forms.ModelForm):
+	class Meta:
+		model= CourseMaterial
+		fields =["attachment"]
+		widgets = {		
+			"attachment" : FileInput(attrs={"class":"btn"})
+			}
+			

@@ -1,0 +1,73 @@
+{% extends "publications/base.html" %}
+
+{% block title %} SDAE - Busqueda{% endblock %}
+
+{% block filters %}
+ <a href="#" class="list-group-item active">Categorías</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+{% endblock %}
+
+{% block content %}
+
+
+
+      <h1>-------------- Buscar ---------------</h1>
+
+    
+<h3>Tú busqueda fue: <strong>{{ query }}</strong></h3>
+{% if publication %}
+</br>
+<p class="details">Resultados:{{ publication|length }} publication{{publication|pluralize }}.</p>
+
+
+
+{% for publi in publication %}  
+                <div class="feat_prod_box">
+                
+                
+                <div class="prod_det_box">
+                    <span class="special_icon">
+<img  src = "{{STATIC_URL}}publications/images/evento.png" alt="" title="found" 
+/></span> 
+                    <div class="box_top"></div>
+                    <div class="box_center">
+                    <div class="prod_title"><a href="/publications/details/{{event.pk}}">{{ event.publication.title }}</a></div>
+
+                     <p class="title">{{ publi.title }}</p></br></br>
+                     <p class="details">autor:{{ publi.author }}</p>
+                      <p class="details">etiquetas:{%for tag in publi.tags.all %} {{tag.name}} {% endfor%}</p>
+                       <p class="details">descripción:{{ publi.content }}</p>
+                    <a href="/publications/events/" class="more">- more details -</a>
+                    <div class="cl"></div>
+                    </div>
+              
+                    <div class="box_bottom"></div>  
+    
+                </div>    
+            <div class="cl"></div>
+           
+ </div> <!-- end feat_prod_box -->
+        {% endfor %}
+
+{% else %}
+<h3>No hay publicaciones que coincidan con el criterio de búsqueda.</h3>
+{% endif %}
+
+        </div>
+
+        <!-- End Content -->
+
+
+
+
+
+{% endblock %}
+

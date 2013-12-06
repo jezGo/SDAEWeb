@@ -1,0 +1,31 @@
+{% extends "publications/base.html" %}
+
+{% block title %} SDAE - {% endblock %}
+
+
+{% block content %}
+
+
+{% for publication in publicationList %}
+			
+				    
+					<li>{{publication.author}}: {{publication.title}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; última modificación {{publication.lastEdited}}</li>
+						
+			{% endfor %}
+
+{% block encabezado %} 
+	<h1>Bienvenido</h1>
+{% endblock %}
+
+	<h3>Hola  {{ user|upper }}
+		la última vez que te vimos por aquí fue el {{user.last_login}}.</h3>
+	<h3>Eres miembro desde el {{user.date_joined}}</h3>
+
+
+
+
+      
+
+			
+			
+		{% endblock %}

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from publications.models import Tag, PublicationType, Publication, SDAEUser, Comment, Vote, Map, LocationType, Location, Event, JobType, Company, JobOffer, BuySell, LostAndFound, Student, UserTeacher, SchoolDepartment, StudentsClub, UserType, Advertisement, CourseMaterial
+from publications.models import Tag, PublicationType, Publication, SDAEUser, Comment, Vote, Map, LocationType, Location, Event, JobType, Company, JobOffer, BuySell, LostAndFound, Student, UserTeacher, SchoolDepartment, StudentsClub, UserType, Advertisement
 from schoolInfo.models import Subject, Teacher, Course, ClassSession
 
 admin.site.register(Tag)
@@ -23,7 +23,6 @@ admin.site.register(SchoolDepartment)
 admin.site.register(StudentsClub)
 admin.site.register(UserType)
 admin.site.register(Advertisement)
-admin.site.register(CourseMaterial)
 
 admin.site.register(Subject)
 admin.site.register(Teacher)

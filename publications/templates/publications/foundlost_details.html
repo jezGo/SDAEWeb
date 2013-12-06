@@ -1,19 +1,12 @@
 {% extends "publications/base_publication_detail.html" %}
 
 {% block title %} SDAE - Encontrado/Perdido- {{publication.title}} {% endblock %}
-{% block changes %}
-<p class="changes">
-  <br/>
-  <div class="permission">
-  {% ifequal isAuthor True%}
-  <a href="/publications/lostandfound/edit/{{publication.pk}}"> <img src="{{STATIC_URL}}publications/iconos/update.png"   id="delete" alt="ipod classic" title="actualizar" border="0" /></a>
-              <a href="/publications/delete/{{lostandfound.pk}}/"> <img src="{{STATIC_URL}}publications/iconos/delete.png"  id="delete" alt="ipod classic" title="borrar" border="0" /></a> 
-              {% else%}
-              <p> Usuario sin permisos de edición</p>
-    {% endifequal%}          
-</div> <!--end permission-->
-</p>
-{% endblock%}
+{% block breadcrumbs %}
+<li><a href="/">Inicio</a></li>
+<li><a href="/publications/">Publicaciones</a></li>
+<li><a href="/publications/lostandfound">Perdido/Encontrado</a></li>
+<li class="active"> {{lostandfound.publication.title}}<span class="divider">/</span></li>
+{% endblock %}
 
 
 {% block filters %}
@@ -28,34 +21,21 @@
             <a href="#" class="list-group-item">Link</a>
             <a href="#" class="list-group-item">Link</a>
 {% endblock %}
-{
+
 
 {% block additionalInfo %}
   
 
 
-</br>
 <p>
-       <p class="lead"> Objeto perdido:{{foundlost.isLostType}}</p>
-      <p class="lead">Etiquetas:{%for tag in lostandfound.publication.tags.all %} {{tag.name}} <br/> {% endfor %}}</p>
+    
+      <p class="lead">Etiquetas:{%for tag in lostandfound.publication.tags.all %} {{tag.name}} <br/> {% endfor %}</p>
       <p class="lead">Fecha y hora de extravío: {{lostandfound.lostOrFoundDate}}/{{lostandfound.lostOrFoundTime}}</p>
      
-     <p class="lead"> lugar de extravío:{{lostandfound.lastSeenLocation}}</p>
-   <p class="lead">    Recompensa:  <p class="lead">{{lostandfound.reward}}</p>
-  <p class="lead">Activo:{{lostandfound.isActive}}</p>
+     <p class="contRight"> lugar de extravío:{{lostandfound.lastSeenLocation}}</p>
+   <p class="contRight">    Recompensa: $ {{lostandfound.reward}}</p>
+
 </p>
 			
 {% endblock %}
 
-{% block breadcrumb %}
-<div>
-<ul class="breadcrumb">
-  <li><a href="/publications/Index">Inicio</a> <span class="divider">/</span></li>
-    <li><a href="/publications/">Publicaciones</a> <span class="divider">/</span></li>
-     <li><a href="/publications/lostandfound">Perdido/Encontrado</a> <span class="divider">/</span></li>
-        <li class="active"> {{lostandfound.publication.title}}<span class="divider">/</span></li>
-
-
-</ul>
-</div>
-{% endblock %}

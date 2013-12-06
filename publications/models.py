@@ -192,11 +192,14 @@ class Location(models.Model):
   def __unicode__(self):
     return self.name
 
-# School Announcement
-# class CourseMaterial(models.Model):
-#   """Publication from administrative school departments"""
-#   publication = models.OneToOneField(Publication)
-#   attachment = models.FileField(max_length=200, upload_to='classMaterial/')
+# School Material
+class CourseMaterial(models.Model):
+ """Publication from administrative school departments"""
+ publication = models.OneToOneField(Publication)
+ attachment = models.FileField(max_length=400, upload_to='publications/', verbose_name="Archivo")
+
+ def __unicode__(self):
+    return self.publication.title
 
 # CourseMaterial
 # class CourseMaterial(models.Model):
@@ -280,6 +283,18 @@ class LostAndFound(models.Model):
   lastSeenLocation = models.ForeignKey(Location, blank=True, null=True, verbose_name="Última localización donde se vio")
   reward = models.DecimalField(blank=True, max_digits=7, decimal_places=2, verbose_name="Recompenza")
   isActive = models.BooleanField(default=True)
+
+  def __unicode__(self):
+    return self.publication.title
+
+#   advertisement
+
+class Advertisement(models.Model):
+  """ advertisement table"""
+  publication = models.OneToOneField(Publication)
+  EffectiveDate = models.DateField(blank=True, verbose_name="Vigencia") # True if is a lost item, false if is found
+  directedTo = models.CharField(blank=True, null=True, max_length=60, verbose_name="Dirigido a")
+  isActive = models.BooleanField(default=True, verbose_name="¿Está Activo?")
 
   def __unicode__(self):
     return self.publication.title

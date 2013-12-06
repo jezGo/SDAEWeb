@@ -1,0 +1,47 @@
+{% extends "publications/base_publication_detail.html" %}
+
+{% block title %} SDAE - Anuncio - {{publication.title}} {% endblock %}
+
+
+
+{% block filters %}
+ <a href="#" class="list-group-item active">Categorías</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+{% endblock %}
+{
+
+{% block additionalInfo %}
+
+
+</br>
+<p>
+
+      <p class="lead">Fecha de Vigencia: {{advertisement.EffectiveDate}}</p>
+      <p class="lead">Fecha de fin: {{advertisement.directedTo}}</p>
+     <p class="lead">Activo: {{advertisement.isActive}}</p
+     <p class="lead"> {{advertisement.location}}</p>
+</p>
+
+			
+{% endblock %}
+
+{% block breadcrumb %}
+<div>
+<ul class="breadcrumb">
+  <li><a href="/publications/Index">Inicio</a> <span class="divider">/</span></li>
+    <li><a href="/publications/">Publicaciones</a> <span class="divider">/</span></li>
+     <li><a href="/publications/advertisement">Anuncios</a> <span class="divider">/</span></li>
+        <li class="active"> {{advertisement.publication.title}}<span class="divider">/</span></li>
+
+
+</ul>
+</div>
+{% endblock %}

@@ -2,7 +2,15 @@
 
 {% block extraJS %}
 <link href="{{STATIC_URL}}publications/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<link href="{{STATIC_URL}}publications/css/calendario_dw-estilos.css" type="text/css" rel="STYLESHEET">
 <script src="{{STATIC_URL}}publications/js/bootstrap-datetimepicker.min.js"></script>
+<!--Calendar-->
+     <script type="text/javascript" src="{{STATIC_URL}}publications/js/calendario-jquery/calendario_dw/calendario_dw.js"></script>
+	<script type="text/javascript">
+   $(document).ready(function(){
+      $(".campofecha").calendarioDW();
+   })
+   </script>
 {% endblock %}
 
 {% block title %} SDAE - Publicación - Publicar {% endblock %}

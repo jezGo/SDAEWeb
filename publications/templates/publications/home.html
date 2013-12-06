@@ -1,0 +1,100 @@
+{% extends "publications/base.html" %}
+
+{% block title %} SDAE - Inicio {% endblock %}
+
+{% block breadcrumbs %}
+<li class="active">Inicio</li>
+{% endblock %}
+
+{% block sidebarItems %}
+<div class="pane panel-primary">
+	<div class="panel-heading">Secciones</div>
+
+	<div class="list-group">
+		<a class="list-group-item" href="/publications">Publicaciones</a>
+		<a class="list-group-item" href="/schoolInfo">Información Escolar</a>
+	</div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div id="publications-carousel" class="carousel slide" data-ride="carousel">
+	<ol class="carousel-indicators">
+		{% for index in publicationIndexes %}
+		<li data-target="#publications-carousel" data-slide-to="{{index}}" {% ifequal index publicationIndexes.0 %} class="active" {% endifequal %}></li>
+		{% endfor %}
+	</ol>
+
+	<div class="carousel-inner">
+		{% for publication in highlightedPublications %}
+		<div class="item {% ifequal publication highlightedPublications.0 %} active {% endifequal %}">
+			<img src="{% ifequal publication.imageUrl '' %}{{STATIC_URL}}publications/imgs/imagePlaceholder.png{% else %}{{STATIC_URL}}media/{{publication.imageUrl}}{% endifequal %}" alt="{{publication.title}}">
+			<div class="carousel-caption">
+				<h3>{{publication.title}}</h3>
+				<p>{{publication.content}}</p>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+	<a class="left carousel-control" href="#publications-carousel" data-slide="prev">
+		<span class="glyphicon glyphicon-chevron-left"></span>
+	</a>
+
+	<a class="right carousel-control" href="#publications-carousel" data-slide="next">
+		<span class="glyphicon glyphicon-chevron-right"></span>
+	</a>
+</div>
+
+<hr class="featurette-divider"></hr>
+
+<div class="row">
+	<div class="container">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Nuevo</div>
+			<div class="container">
+				{% for publication in highlightedPublications%}
+				<div class="media">
+					<a class="pull-left thumbnail" href="{{publication.detailedInfoUrl}}">
+						<img class="media-object" src="{% ifequal publication.imageUrl '' %}{{STATIC_URL}}publications/imgs/imagePlaceholder.png{% else %}{{STATIC_URL}}media/{{publication.imageUrl}}{% endifequal %}" alt="{{publication.title}}" style="width: 128px; height: auto">
+					</a>
+					<div class="media-body">
+						<a href="{{publication.detailedInfoUrl}}">
+							<h4 class="media-heading">{{publication.title}}</h4>
+						</a>
+						{{publication.content|truncatechars:280}}
+					</div>
+				</div>
+				{% endfor %}
+			</div> <!-- new items container->
+		</div> <!-- new items panel -->
+
+		<!-- <div class="panel panel-default">
+			<div class="panel-heading">Recomendado</div>
+
+			<div class="container">
+				<div class="media">
+					<a class="pull-left" href="#">
+						<img class="media-object" src="{{STATIC_URL}}publications/imgs/mediaItemPlaceholder.png" alt="...">
+					</a>
+					<div class="media-body">
+						<h4 class="media-heading">Media heading</h4>
+						Media Content
+					</div>
+				</div>
+
+				<div class="media">
+					<a class="pull-left" href="#">
+						<img class="media-object" src="{{STATIC_URL}}publications/imgs/mediaItemPlaceholder.png" alt="...">
+					</a>
+					<div class="media-body">
+						<h4 class="media-heading">Media heading</h4>
+						Media Content
+					</div>
+				</div>
+			</div>
+		</div> --> <!-- recomended items panel -->
+	</div> <!-- row container -->
+</div> <!-- row -->
+{% endblock %}

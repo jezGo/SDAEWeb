@@ -5,23 +5,18 @@
 {% block breadcrumbs %}
 <li><a href="/">Inicio</a></li>
 <li><a href="/publications/">Publicaciones</a></li>	
-<li class="active">Publicar Evento</li>
+<li class="active">Publicar Material</li>
 {% endblock %}
 
-{% block formLegend %}Publicar Evento{% endblock %}
-
 {% block specificInfo %}
-{% for efield in eform %}
+{% for efield in cmform %}
 <div class="form-group">
-	<span class="text-danger">{{ efield.errors }}</span>
+	{{ efield.errors }}
 	<label for="{{efield.auto_id}}" class="col-sm-2 control-label">
 		{{efield.label}}:
 	</label>
 	<div class="col-sm-10">
 	{{efield}}
-	
-
-
 	</div>
 </div>
 {% endfor %}

@@ -1,0 +1,29 @@
+{% extends "publications/base.html" %}
+
+{% block title %} SDAE - Lista de Compra/venta{% endblock %}
+
+
+{% block content %}
+
+{% for coursematerial in coursematerialList %}    
+
+      
+
+<div class="media">
+              <a class="pull-left" href="#">
+                <img width="64" height="64" class="media-object" data-src="{{STATIC_URL}}media/{{publication.imageUrl}}" alt="publication">
+              </a>
+      
+	<div class="media-body">
+                <h4 class="media-heading"><strong>	 <a class="pull-left" href="/publications/coursematerial/{{coursematerial.publication.pk}}">
+{{ coursematerial.publication.title|upper }}</a></strong></br>
+				<p>{{ coursematerial.publication.content }}</p>
+				<a>{{ coursematerial.attachment }}</a>
+ 	</div> <!--media-body-->
+	
+</div><!-- end media-->
+<div class="brd"></div>
+
+{% endfor %}
+
+{% endblock %}

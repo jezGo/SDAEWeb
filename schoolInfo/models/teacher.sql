@@ -1,179 +1,179 @@
-INSERT INTO teacher(name, lastname) VALUES('Ocampo Botello', 'Fabiola')
-INSERT INTO teacher(name, lastname) VALUES('Ojeda Guillen', 'Didier')
-INSERT INTO teacher(name, lastname) VALUES('Sanchez Garcia', 'Luz Maria')
-INSERT INTO teacher(name, lastname) VALUES('Luna Benoso', 'Benjamin')
-INSERT INTO teacher(name, lastname) VALUES('Estrada Elizalde', 'Serafin')
-INSERT INTO teacher(name, lastname) VALUES('Ortuño Araujo', 'Jesus')
-INSERT INTO teacher(name, lastname) VALUES('Diaz Huerta', 'Claudia Celia')
-INSERT INTO teacher(name, lastname) VALUES('Morales Cruz', 'Juan Carlos')
-INSERT INTO teacher(name, lastname) VALUES('Flores Delgado', 'Raquel')
-INSERT INTO teacher(name, lastname) VALUES('Martinez Guerrero', 'Jose Alfredo')
-INSERT INTO teacher(name, lastname) VALUES('Almazan Farfan', 'Rocio')
-INSERT INTO teacher(name, lastname) VALUES('Castillo Cabrera', 'Gelacio')
-INSERT INTO teacher(name, lastname) VALUES('Martínez García', 'César Róman')
-INSERT INTO teacher(name, lastname) VALUES('Herrera Yañez', 'Crispin')
-INSERT INTO teacher(name, lastname) VALUES('Sanchez Garfias', 'Flavio Arturo')
-INSERT INTO teacher(name, lastname) VALUES('Catalan Salgado', 'Edgar Armando')
-INSERT INTO teacher(name, lastname) VALUES('Resendiz Muñoz', 'Rocio')
-INSERT INTO teacher(name, lastname) VALUES('Peredo Valderrama', 'Ruben')
-INSERT INTO teacher(name, lastname) VALUES('Juarez Martinez', 'Genaro')
-INSERT INTO teacher(name, lastname) VALUES('Velez Saldaña', 'Ulises')
-INSERT INTO teacher(name, lastname) VALUES('Pescador Rojas', ' Miriam')
-INSERT INTO teacher(name, lastname) VALUES('Botello Castillo', 'Alejandro')
-INSERT INTO teacher(name, lastname) VALUES('Ortega Pacheco', 'Jose David')
-INSERT INTO teacher(name, lastname) VALUES('Zagal Flores', 'Roberto Eswart')
-INSERT INTO teacher(name, lastname) VALUES('Ramirez Tenorio', 'Rafael')
-INSERT INTO teacher(name, lastname) VALUES('Cifuentes Alvarez', 'Alejandro Sigfrido')
-INSERT INTO teacher(name, lastname) VALUES('Garcia Ortega', 'Victor Hugo')
-INSERT INTO teacher(name, lastname) VALUES('Sanchez Palacios', 'Maria Susana')
-INSERT INTO teacher(name, lastname) VALUES('Perez Vera', 'Sandra Mercedes')
-INSERT INTO teacher(name, lastname) VALUES('Ramirez Morales', 'Mario Augusto')
-INSERT INTO teacher(name, lastname) VALUES('Alcantara Mendez', 'Alberto Jesus')
-INSERT INTO teacher(name, lastname) VALUES('Juarez Leon', 'Carlos')
-INSERT INTO teacher(name, lastname) VALUES('Carballo Jimenez', 'Juan Manuel')
-INSERT INTO teacher(name, lastname) VALUES('Chavez Lima', 'Eduardo')
-INSERT INTO teacher(name, lastname) VALUES('Montes Casiano', 'Hermes Francisco')
-INSERT INTO teacher(name, lastname) VALUES('Cancino Calderon', 'Sergio')
-INSERT INTO teacher(name, lastname) VALUES('DurÀn Camarillo', 'Edmundo René')
-INSERT INTO teacher(name, lastname) VALUES('Ferrer Tenorio', 'Jorge')
-INSERT INTO teacher(name, lastname) VALUES('Aguilar Sanchez', 'Fernando')
-INSERT INTO teacher(name, lastname) VALUES('Mendoza Macias', 'Elba')
-INSERT INTO teacher(name, lastname) VALUES('Gonzalez Cisneros', 'Alejandro')
-INSERT INTO teacher(name, lastname) VALUES('Diaz Toala', 'Ivan')
-INSERT INTO teacher(name, lastname) VALUES('Cervantes De', 'Anda  Ismael')
-INSERT INTO teacher(name, lastname) VALUES('Marquez Arreguin', 'Guillermo')
-INSERT INTO teacher(name, lastname) VALUES('Lazcano Xoxotla', 'Laura')
-INSERT INTO teacher(name, lastname) VALUES('Moscoso Malagon', 'Yosafat')
-INSERT INTO teacher(name, lastname) VALUES('Lopez Rabadan', 'Jose Jaime')
-INSERT INTO teacher(name, lastname) VALUES('Morales Gonzalez', 'Angel')
-INSERT INTO teacher(name, lastname) VALUES('Sanchez Quintanilla', 'Gilberto')
-INSERT INTO teacher(name, lastname) VALUES('Hernandez Garcia', 'Rosa Alba')
-INSERT INTO teacher(name, lastname) VALUES('Garcia Mendoza', 'Consuelo Varinia')
-INSERT INTO teacher(name, lastname) VALUES('Olvera Aldana', 'Miguel')
-INSERT INTO teacher(name, lastname) VALUES('Cañedo Suarez', 'Leticia')
-INSERT INTO teacher(name, lastname) VALUES('Rios De', 'La Torre  Ignacio')
-INSERT INTO teacher(name, lastname) VALUES('Buitron Damaso', 'Israel')
-INSERT INTO teacher(name, lastname) VALUES('Saucedo Delgado', 'Rafael Norman')
-INSERT INTO teacher(name, lastname) VALUES('Mandujano Jose', 'Roberto')
-INSERT INTO teacher(name, lastname) VALUES('Salinas Lugo', 'Sergio')
-INSERT INTO teacher(name, lastname) VALUES('Juarez Gambino', 'Joel Omar')
-INSERT INTO teacher(name, lastname) VALUES('Hernandez Contreras', 'Euler')
-INSERT INTO teacher(name, lastname) VALUES('Rocha Bernabe', 'Rosario')
-INSERT INTO teacher(name, lastname) VALUES('Enriquez Zarate', 'Jose Asuncion')
-INSERT INTO teacher(name, lastname) VALUES('Maldonado Muñoz', 'Miguel Angel')
-INSERT INTO teacher(name, lastname) VALUES('Lopez Rodriguez', 'Claudia Alejan')
-INSERT INTO teacher(name, lastname) VALUES('Vera Hernandez', 'Gumersindo')
-INSERT INTO teacher(name, lastname) VALUES('Mendez Segundo', 'Laura')
-INSERT INTO teacher(name, lastname) VALUES('Cordero Lopez', 'Martha Rosa')
-INSERT INTO teacher(name, lastname) VALUES('Jimenez Contreras', 'Edith Adriana')
-INSERT INTO teacher(name, lastname) VALUES('Ortega Gonzalez', 'Ruben')
-INSERT INTO teacher(name, lastname) VALUES('Jurado Jimenez', 'Roberto')
-INSERT INTO teacher(name, lastname) VALUES('Ortiz Ramirez', 'Jose Antonio')
-INSERT INTO teacher(name, lastname) VALUES('Rivera De la Rosa', 'Monica')
-INSERT INTO teacher(name, lastname) VALUES('Juarez Ramirez', 'Jazmin Adriana')
-INSERT INTO teacher(name, lastname) VALUES('Lopez Rojas', 'Ariel')
-INSERT INTO teacher(name, lastname) VALUES('Gutierrez Aldana', 'Eduardo')
-INSERT INTO teacher(name, lastname) VALUES('Araujo Diaz', 'David')
-INSERT INTO teacher(name, lastname) VALUES('Hernandez Jaime', 'Josefina')
-INSERT INTO teacher(name, lastname) VALUES('Carreto Arellano', 'Chadwick')
-INSERT INTO teacher(name, lastname) VALUES('Sosa Savedra', 'Julio Cesar')
-INSERT INTO teacher(name, lastname) VALUES('HernÀndez Cruz', 'Macario')
-INSERT INTO teacher(name, lastname) VALUES('Ortigoza Campos', 'Andres')
-INSERT INTO teacher(name, lastname) VALUES('Sanchez Moreno', 'Adriana De La P')
-INSERT INTO teacher(name, lastname) VALUES('Manzanilla Granados', 'Hector Manuel')
-INSERT INTO teacher(name, lastname) VALUES('Torres Gonzalez', 'Enrique')
-INSERT INTO teacher(name, lastname) VALUES('Perez De', 'Los Santos Mondragon Tanibet')
-INSERT INTO teacher(name, lastname) VALUES('Silva Martinez', 'Jorge Javier')
-INSERT INTO teacher(name, lastname) VALUES('Gutierrez ', 'Mejia Darwin')
-INSERT INTO teacher(name, lastname) VALUES('Aragon Garcia', 'Maribel')
-INSERT INTO teacher(name, lastname) VALUES('Rangel Guzman', 'Alfredo')
-INSERT INTO teacher(name, lastname) VALUES('Puebla Lomas', 'Jaime Hugo')
-INSERT INTO teacher(name, lastname) VALUES('Hernandez Rubio', 'Erika')
-INSERT INTO teacher(name, lastname) VALUES('Suarez Castañon', 'Miguel Santiago')
-INSERT INTO teacher(name, lastname) VALUES('Rodriguez Flores', 'Eduardo')
-INSERT INTO teacher(name, lastname) VALUES('Cruz Lazaro', 'Apolinar Francisco')
-INSERT INTO teacher(name, lastname) VALUES('Guzman Aguilar', 'Florencio')
-INSERT INTO teacher(name, lastname) VALUES('Maldonado Castillo', 'Idalia')
-INSERT INTO teacher(name, lastname) VALUES('Celis Dominguez', 'Adriana Berenice')
-INSERT INTO teacher(name, lastname) VALUES('Cortez Duarte', 'Nidia Asunción')
-INSERT INTO teacher(name, lastname) VALUES('Diaz Santiago', 'Ricardo Felipe')
-INSERT INTO teacher(name, lastname) VALUES('Moreno Cervantes', 'Axel Ernesto')
-INSERT INTO teacher(name, lastname) VALUES('Martinez Perales', 'Jose Cruz')
-INSERT INTO teacher(name, lastname) VALUES('Flores Mendoza', 'Yaxkin')
-INSERT INTO teacher(name, lastname) VALUES('Silva Sanchez', 'Carlos')
-INSERT INTO teacher(name, lastname) VALUES('Perez Perez', 'Jose Juan')
-INSERT INTO teacher(name, lastname) VALUES('Tecla Parra', 'Roberto')
-INSERT INTO teacher(name, lastname) VALUES('De Luna Caballero', 'Roberto')
-INSERT INTO teacher(name, lastname) VALUES('Vazquez Arreguin', 'Roberto')
-INSERT INTO teacher(name, lastname) VALUES('Morales Guitron', 'Sandra Luz')
-INSERT INTO teacher(name, lastname) VALUES('Ceballos Sebastian', 'Ricardo')
-INSERT INTO teacher(name, lastname) VALUES('Tirado Lule', 'Judith Margarita')
-INSERT INTO teacher(name, lastname) VALUES('Reyes Bermejo', 'Tlatoani De Jesus')
-INSERT INTO teacher(name, lastname) VALUES('Calderon Sambarino', 'Maria Julia')
-INSERT INTO teacher(name, lastname) VALUES('Alcaraz Torres', 'Juan Jesus')
-INSERT INTO teacher(name, lastname) VALUES('Santillan Luna', 'Raul')
-INSERT INTO teacher(name, lastname) VALUES('Salinas Hernandez', 'Encarnacion')
-INSERT INTO teacher(name, lastname) VALUES('Dorantes Gonzalez', 'Marco Antonio')
-INSERT INTO teacher(name, lastname) VALUES('Lopez Carrera', 'Benjamin')
-INSERT INTO teacher(name, lastname) VALUES('Perez Vera', 'Monserrat Gabriela')
-INSERT INTO teacher(name, lastname) VALUES('Rangel Gonzalez', 'Josue')
-INSERT INTO teacher(name, lastname) VALUES('Viveros Vela', 'Karina')
-INSERT INTO teacher(name, lastname) VALUES('Godoy Calderon', 'Salvador')
-INSERT INTO teacher(name, lastname) VALUES('Leon Hernandez', 'Miguel Abel')
-INSERT INTO teacher(name, lastname) VALUES('Gomez Mayorga', 'Margarita Elizabeth')
-INSERT INTO teacher(name, lastname) VALUES('Bustos Farias', 'Eduardo')
-INSERT INTO teacher(name, lastname) VALUES('Barranco Jimenez', 'Marco Antonio')
-INSERT INTO teacher(name, lastname) VALUES('Guzman Flores', 'Jessie Paulina')
-INSERT INTO teacher(name, lastname) VALUES('Torres Manriquez', 'Juan Jose')
-INSERT INTO teacher(name, lastname) VALUES('Jimenez Benitez', 'Jose Alfredo')
-INSERT INTO teacher(name, lastname) VALUES('Figueroa Del Prado', 'Felipe De Jesus')
-INSERT INTO teacher(name, lastname) VALUES('Cruz Garcia', 'Daniel')
-INSERT INTO teacher(name, lastname) VALUES('Flores Carapia', 'Rolando')
-INSERT INTO teacher(name, lastname) VALUES('Ocotitla Rojas', 'Nancy')
-INSERT INTO teacher(name, lastname) VALUES('Melara Abarca', 'Reyna Elia')
-INSERT INTO teacher(name, lastname) VALUES('Galiñanes Rodriguez', 'Maria Gabriela')
-INSERT INTO teacher(name, lastname) VALUES('Vera Romero', 'Juan')
-INSERT INTO teacher(name, lastname) VALUES('Kolesnikova XX', 'Olga')
-INSERT INTO teacher(name, lastname) VALUES('Gonzalez Trujillo', 'Miguel')
-INSERT INTO teacher(name, lastname) VALUES('Garcia Sales', 'Juan Vicente')
-INSERT INTO teacher(name, lastname) VALUES('Galicia Mejia', 'Ruben')
-INSERT INTO teacher(name, lastname) VALUES('Montiel Sanchez', 'Angel Salvador')
-INSERT INTO teacher(name, lastname) VALUES('Serrano Talamantes', 'J. Felix')
-INSERT INTO teacher(name, lastname) VALUES('Arzate Gordillo', 'Jacqueline')
-INSERT INTO teacher(name, lastname) VALUES('Hernandez Aguilar', 'Jose Luis')
-INSERT INTO teacher(name, lastname) VALUES('Paz Rodriguez', 'Hector Manuel')
-INSERT INTO teacher(name, lastname) VALUES('Guzman Renteria', 'Cesar Saul')
-INSERT INTO teacher(name, lastname) VALUES('Martinez Acosta', 'Lilian')
-INSERT INTO teacher(name, lastname) VALUES('Martinez Nuño', 'Jesus Alfredo')
-INSERT INTO teacher(name, lastname) VALUES('Flores Fuentes', 'Naria Adriana')
-INSERT INTO teacher(name, lastname) VALUES('Calderón Osorno', 'José Luis')
-INSERT INTO teacher(name, lastname) VALUES('Chavarria Baez', 'Lorena')
-INSERT INTO teacher(name, lastname) VALUES('Dorantes Villa', 'Claudia Jisela')
-INSERT INTO teacher(name, lastname) VALUES('Jimenez Villanueva', 'Martha Patricia')
-INSERT INTO teacher(name, lastname) VALUES('Mosso Garcia', 'Ivan Giovanny')
-INSERT INTO teacher(name, lastname) VALUES('Aguilar Garcia', 'Rafael')
-INSERT INTO teacher(name, lastname) VALUES('Soto Ramos', 'Manuel Alejandro')
-INSERT INTO teacher(name, lastname) VALUES('Muñoz Salazar', 'Laura')
-INSERT INTO teacher(name, lastname) VALUES('Villegas Navarrete', 'Sonia')
-INSERT INTO teacher(name, lastname) VALUES('Solorza Guzman', 'Misael')
-INSERT INTO teacher(name, lastname) VALUES('Ukranio Coronilla', 'Contreras')
-INSERT INTO teacher(name, lastname) VALUES('De La O Torres', 'Saul')
-INSERT INTO teacher(name, lastname) VALUES('Rojas', 'Luna Hector')
-INSERT INTO teacher(name, lastname) VALUES('Esquivel Centeno', 'Jose Armando')
-INSERT INTO teacher(name, lastname) VALUES('Rueda Melendez', 'Marco Antonio')
-INSERT INTO teacher(name, lastname) VALUES('Martinez Diaz', 'Juan Carlos')
-INSERT INTO teacher(name, lastname) VALUES('Silva Garcia', 'Victor Manuel')
-INSERT INTO teacher(name, lastname) VALUES('Duran Ledezma', 'Angel Adalberto')
-INSERT INTO teacher(name, lastname) VALUES('Franco Martinez', 'Edgardo Adrian')
-INSERT INTO teacher(name, lastname) VALUES('Salazar Ramirez', 'Manuel')
-INSERT INTO teacher(name, lastname) VALUES('Castillo Marrufo', 'Juan Antonio')
-INSERT INTO teacher(name, lastname) VALUES('Sanchez Juarez', 'Jose')
-INSERT INTO teacher(name, lastname) VALUES('Aldape Pérez', 'Mario')
-INSERT INTO teacher(name, lastname) VALUES('Winfield Reyes', 'Ana Maria')
-INSERT INTO teacher(name, lastname) VALUES('Jimenez Galan', 'Yasmin Ivette')
-INSERT INTO teacher(name, lastname) VALUES('Davalos Lopez', 'Jose Carlos')
-INSERT INTO teacher(name, lastname) VALUES('Gutierrez Garcia', 'Juan Jesus')
-INSERT INTO teacher(name, lastname) VALUES('Dominguez Mendoza', 'Tatiana Nayeli')
-INSERT INTO teacher(name, lastname) VALUES('Mujica Ascencio', 'Cesar')
-INSERT INTO teacher(name, lastname) VALUES('Lopez Leiva', 'Luis Octavio')
-INSERT INTO teacher(name, lastname) VALUES('Cortes Galicia', 'Jorge')
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Ocampo Botello', 'Fabiola');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Ojeda Guillen', 'Didier');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Sanchez Garcia', 'Luz Maria');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Luna Benoso', 'Benjamin');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Estrada Elizalde', 'Serafin');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Ortuño Araujo', 'Jesus');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Diaz Huerta', 'Claudia Celia');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Morales Cruz', 'Juan Carlos');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Flores Delgado', 'Raquel');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Martinez Guerrero', 'Jose Alfredo');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Almazan Farfan', 'Rocio');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Castillo Cabrera', 'Gelacio');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Martínez García', 'César Róman');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Herrera Yañez', 'Crispin');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Sanchez Garfias', 'Flavio Arturo');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Catalan Sacgalgado', 'Edgar Armando');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Resendiz Muñoz', 'Rocio');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Peredo Valderrama', 'Ruben');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Juarez Martinez', 'Genaro');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Velez Saldaña', 'Ulises');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Pescador Rojas', ' Miriam');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Botello Castillo', 'Alejandro');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Ortega Pacheco', 'Jose David');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Zagal Flores', 'Roberto Eswart');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Ramirez Tenorio', 'Rafael');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Cifuentes Alvarez', 'Alejandro Sigfrido');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Garcia Ortega', 'Victor Hugo');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Sanchez Palacios', 'Maria Susana');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Perez Vera', 'Sandra Mercedes');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Ramirez Morales', 'Mario Augusto');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Alcantara Mendez', 'Alberto Jesus');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Juarez Leon', 'Carlos');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Carballo Jimenez', 'Juan Manuel');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Chavez Lima', 'Eduardo');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Montes Casiano', 'Hermes Francisco');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Cancino Calderon', 'Sergio');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('DurÀn Camarillo', 'Edmundo René');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Ferrer Tenorio', 'Jorge');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Aguilar Sanchez', 'Fernando');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Mendoza Macias', 'Elba');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Gonzalez Cisneros', 'Alejandro');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Diaz Toala', 'Ivan');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Cervantes De', 'Anda  Ismael');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Marquez Arreguin', 'Guillermo');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Lazcano Xoxotla', 'Laura');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Moscoso Malagon', 'Yosafat');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Lopez Rabadan', 'Jose Jaime');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Morales Gonzalez', 'Angel');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Sanchez Quintanilla', 'Gilberto');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Hernandez Garcia', 'Rosa Alba');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Garcia Mendoza', 'Consuelo Varinia');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Olvera Aldana', 'Miguel');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Cañedo Suarez', 'Leticia');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Rios De', 'La Torre  Ignacio');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Buitron Damaso', 'Israel');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Saucedo Delgado', 'Rafael Norman');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Mandujano Jose', 'Roberto');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Salinas Lugo', 'Sergio');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Juarez Gambino', 'Joel Omar');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Hernandez Contreras', 'Euler');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Rocha Bernabe', 'Rosario');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Enriquez Zarate', 'Jose Asuncion');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Maldonado Muñoz', 'Miguel Angel');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Lopez Rodriguez', 'Claudia Alejan');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Vera Hernandez', 'Gumersindo');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Mendez Segundo', 'Laura');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Cordero Lopez', 'Martha Rosa');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Jimenez Contreras', 'Edith Adriana');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Ortega Gonzalez', 'Ruben');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Jurado Jimenez', 'Roberto');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Ortiz Ramirez', 'Jose Antonio');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Rivera De la Rosa', 'Monica');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Juarez Ramirez', 'Jazmin Adriana');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Lopez Rojas', 'Ariel');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Gutierrez Aldana', 'Eduardo');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Araujo Diaz', 'David');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Hernandez Jaime', 'Josefina');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Carreto Arellano', 'Chadwick');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Sosa Savedra', 'Julio Cesar');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('HernÀndez Cruz', 'Macario');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Ortigoza Campos', 'Andres');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Sanchez Moreno', 'Adriana De La P');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Manzanilla Granados', 'Hector Manuel');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Torres Gonzalez', 'Enrique');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Perez De', 'Los Santos Mondragon Tanibet');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Silva Martinez', 'Jorge Javier');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Gutierrez ', 'Mejia Darwin');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Aragon Garcia', 'Maribel');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Rangel Guzman', 'Alfredo');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Puebla Lomas', 'Jaime Hugo');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Hernandez Rubio', 'Erika');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Suarez Castañon', 'Miguel Santiago');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Rodriguez Flores', 'Eduardo');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Cruz Lazaro', 'Apolinar Francisco');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Guzman Aguilar', 'Florencio');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Maldonado Castillo', 'Idalia');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Celis Dominguez', 'Adriana Berenice');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Cortez Duarte', 'Nidia Asunción');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Diaz Santiago', 'Ricardo Felipe');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Moreno Cervantes', 'Axel Ernesto');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Martinez Perales', 'Jose Cruz');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Flores Mendoza', 'Yaxkin');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Silva Sanchez', 'Carlos');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Perez Perez', 'Jose Juan');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Tecla Parra', 'Roberto');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('De Luna Caballero', 'Roberto');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Vazquez Arreguin', 'Roberto');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Morales Guitron', 'Sandra Luz');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Ceballos Sebastian', 'Ricardo');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Tirado Lule', 'Judith Margarita');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Reyes Bermejo', 'Tlatoani De Jesus');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Calderon Sambarino', 'Maria Julia');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Alcaraz Torres', 'Juan Jesus');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Santillan Luna', 'Raul');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Salinas Hernandez', 'Encarnacion');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Dorantes Gonzalez', 'Marco Antonio');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Lopez Carrera', 'Benjamin');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Perez Vera', 'Monserrat Gabriela');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Rangel Gonzalez', 'Josue');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Viveros Vela', 'Karina');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Godoy Calderon', 'Salvador');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Leon Hernandez', 'Miguel Abel');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Gomez Mayorga', 'Margarita Elizabeth');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Bustos Farias', 'Eduardo');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Barranco Jimenez', 'Marco Antonio');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Guzman Flores', 'Jessie Paulina');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Torres Manriquez', 'Juan Jose');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Jimenez Benitez', 'Jose Alfredo');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Figueroa Del Prado', 'Felipe De Jesus');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Cruz Garcia', 'Daniel');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Flores Carapia', 'Rolando');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Ocotitla Rojas', 'Nancy');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Melara Abarca', 'Reyna Elia');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Galiñanes Rodriguez', 'Maria Gabriela');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Vera Romero', 'Juan');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Kolesnikova XX', 'Olga');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Gonzalez Trujillo', 'Miguel');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Garcia Sales', 'Juan Vicente');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Galicia Mejia', 'Ruben');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Montiel Sanchez', 'Angel Salvador');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Serrano Talamantes', 'J. Felix');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Arzate Gordillo', 'Jacqueline');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Hernandez Aguilar', 'Jose Luis');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Paz Rodriguez', 'Hector Manuel');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Guzman Renteria', 'Cesar Saul');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Martinez Acosta', 'Lilian');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Martinez Nuño', 'Jesus Alfredo');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Flores Fuentes', 'Naria Adriana');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Calderón Osorno', 'José Luis');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Chavarria Baez', 'Lorena');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Dorantes Villa', 'Claudia Jisela');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Jimenez Villanueva', 'Martha Patricia');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Mosso Garcia', 'Ivan Giovanny');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Aguilar Garcia', 'Rafael');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Soto Ramos', 'Manuel Alejandro');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Muñoz Salazar', 'Laura');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Villegas Navarrete', 'Sonia');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Solorza Guzman', 'Misael');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Ukranio Coronilla', 'Contreras');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('De La O Torres', 'Saul');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Rojas', 'Luna Hector');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Esquivel Centeno', 'Jose Armando');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Rueda Melendez', 'Marco Antonio');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Martinez Diaz', 'Juan Carlos');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Silva Garcia', 'Victor Manuel');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Duran Ledezma', 'Angel Adalberto');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Franco Martinez', 'Edgardo Adrian');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Salazar Ramirez', 'Manuel');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Castillo Marrufo', 'Juan Antonio');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Sanchez Juarez', 'Jose');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Aldape Pérez', 'Mario');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Winfield Reyes', 'Ana Maria');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Jimenez Galan', 'Yasmin Ivette');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Davalos Lopez', 'Jose Carlos');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Gutierrez Garcia', 'Juan Jesus');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Dominguez Mendoza', 'Tatiana Nayeli');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Mujica Ascencio', 'Cesar');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Lopez Leiva', 'Luis Octavio');
+INSERT INTO "schoolInfo_teacher"(name, lastname) VALUES('Cortes Galicia', 'Jorge');

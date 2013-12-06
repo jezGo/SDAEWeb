@@ -37,7 +37,6 @@ from django.contrib.auth.models import User, Group
 urlpatterns = patterns('',
     # Examples:
     url(r'^home/$', 'sdae.views.home', name='home'),
-    url(r'^accounts/profile/$', 'sdae.views.private', name='private'),
     # url(r'^sdae/', include('sdae.foo.urls')),
     url(r'^register/$', 'sdae.views.registerUser', name='register'),
     url(r'^registerCompany/$', 'sdae.views.registerCompany', name='registerCompany'),
