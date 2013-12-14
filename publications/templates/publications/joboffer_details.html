@@ -16,48 +16,31 @@
 {% endblock%}
 
 
-{% block filters %}
- <a href="#" class="list-group-item active">Categorías</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-{% endblock %}
-{
+
 
 {% block additionalInfo %}
      
  
 </br>
 <p>
+</br>
+      <p class="lead">Etiquetas:</p>
+        <div class="btn-group">
+       {%for tag in joboffer.publication.tags.all %} 
 
-      <p class="lead">Etiquetas: {%for tag in joboffer.publication.tags.all %} {{tag.name}} <br/> {% endfor %}}</p>
-      <p class="lead">Compañía: {{joboffer.company.name}}ew}}</p>
+       
+        <button type="button" class="btn btn-default"> {{tag.name}} </button>&nbsp;&nbsp;
+        {% endfor %}
+      </div>
+    <p class="lborder"></p>   <p class="ltextt">{{joboffer.company.name|upper}}</p><p class="rborder"></p>  
      
-     <p class="lead">Dirección : {{joboffer.appointmentAdress}}</p>
-       <p class="lead">Fecha:{{joboffer.apointmentDate}}</p>
-  <p class="lead">Salario:{{joboffer.compensation}}}</p>
+     <p class="lead">Dirección de la entrevista : {{joboffer.appointmentAdress}}</p>
+       <p class="lead">Fecha de entrevista:{{joboffer.apointmentDate}}</p>
    <p class="lead">Dirección para laborar:{{joboffer.laboralAddress}}</p>
-     <p class="lead">{{joboffer.isOpen}}</p>
+     <p class="rightP">Oferta disponible:{{joboffer.isOpen}}</p></br>
+     <p class="rightP">Salario:${{joboffer.compensation}}</p>
 </p>
 
 			
 {% endblock %}
 
-{% block breadcrumb %}
-<div>
-<ul class="breadcrumb">
-  <li><a href="/publications/Index">Inicio</a> <span class="divider">/</span></li>
-    <li><a href="/publications/">Publicaciones</a> <span class="divider">/</span></li>
-     <li><a href="/publications/joboffer">Oferta Laboral</a> <span class="divider">/</span></li>
-        <li class="active"> {{joboffer.publication.title}}<span class="divider">/</span></li>
-
-
-</ul>
-</div>
-{% endblock %}

@@ -15,15 +15,10 @@
 	
 
 	{% block extraJS%}
-<script></font></font><font></font><font><font>
-      window.addEventListener ("load", setTimeout (function () {window.scrollTo (0, 1)}, 0));</font></font><font></font><font><font>
-    </script>
-
-
 	{% endblock %}
 </head>
 
-<body onload="window.scrollTo(0, 1);">
+<body onLoad="hora()">
 	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="container">
 			<div class="nav-header">
@@ -32,30 +27,26 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/home/">SDAE</a>
+				<a class="navbar-brand" href="/">SDAE</a>
 			</div>
 
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					{% block menuNavBar %}
-
 					<li class="dropdown">
 						<a href="/publications/" class="dropdown-toggle" data-toggle="dropdown">
 							Publicaciones
 							<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="/publications/lostandfound/">Encontrado-Perdido</a></li>
-								{% if user.sdaeuser.type.name != "Empresa" %}
 							<li><a href="/publications/advertisement/">Avisos</a></li>
 							<li><a href="/publications/events/">Eventos</a></li>
 							<li><a href="/publications/joboffer/">Ofertas de Empleo</a></li>
-						
+							<li><a href="/publications/lostandfound/">Encontrado-Perdido</a></li>
 							<li><a href="/publications/buysell">Compra-Venta</a></li>
-							{% endif %}
 						</ul>
 					</li>
-{% if user.sdaeuser.type.name != "Empresa" %}
+
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							Info. Escolar
@@ -66,28 +57,11 @@
 							<li><a href="/schoolInfo/teachers/">Profesores</a></li>
 							<li><a href="/schoolInfo/subjects/">Materias</a></li>
 							<li><a href="/schoolInfo/locations/">Lugares</a></li>
-							<li><a href="/publications/material/">Materiales</a></li>
+							<li><a href="/schoolInfo/activities/">Materiales</a></li>
 						</ul>
 					</li>
-{% endif %}
 
-{% ifequal user.type.name  "Departamento Escolar" %}
-	<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							MENU
-							<b class="caret"></b>
-						</a>
-						<ul class="dropdown-menu">
-							<li><a href="/schoolInfo/">Horarios</a></li>
-							<li><a href="/schoolInfo/teachers/">Profesores</a></li>
-							<li><a href="/schoolInfo/subjects/">Materias</a></li>
-							<li><a href="/schoolInfo/locations/">Lugares</a></li>
-							<li><a href="/publication/material/">Materiales</a></li>
-						</ul>
-					</li>
-{% endifequal%}	
-
-						{% if user.is_authenticated %}
+					{% if user.is_authenticated %}
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							Publicar
@@ -95,32 +69,27 @@
 						</a>
 						<ul class="dropdown-menu">
 							{% block createPublicationMenuOptions %}
-
-							{% ifequal user.sdaeuser.type.name  "Departamento Escolar" %}
-						
+									{%ifequal UserType.name "Departamento Escolar" %}
 								<li><a href="/publications/events/create/">Evento</a></li>
-								<li><a href="/publications/advertisement/create/">Anuncio</a></li>
-							
+									<li><a href="/publications/advertisement/create/">Anuncio</a></li>
+
+								{% endifequal %}
+
 								<li><a href="/publications/lostandfound/create/">Encontrado-Perdido</a></li>
 								<li><a href="/publications/buysell/create/">Compra-Venta</a></li>
-							{% endifequal %}
-								{% ifequal user.sdaeuser.type|stringformat:"s"  "Empresa" %}
-							    	<li><a href="/publications/joboffer/create/">Oferta Laboral</a></li>
-							    {% endifequal %}
-							 {% ifequal user.sdaeuser.type|stringformat:"s"  "Maestro" %}
-								<li><a href="/publications/material/create/">Material Escolar</a></li>
-								<li><a href="/publications/lostandfound/create/">Encontrado-Perdido</a></li>
-								<li><a href="/publications/buysell/create/">Compra-Venta</a></li>
-							 {% endifequal %}
-							 {% ifequal user.sdaeuser.type|stringformat:"s"  "Alumno" %}
-							 	<li><a href="/publications/lostandfound/create/">Encontrado-Perdido</a></li>
-								<li><a href="/publications/buysell/create/">Compra-Venta</a></
-							 {% endifequal %}
-								<li><a href="/publications/tag/">Etiqueta</a></li>						
-									{% endblock %}
+								{%ifequal UserType.name "Empresa" %}
+									<li><a href="/publications/joboffer/create/">Oferta Laboral</a></li>
+								{% endifequal %}
+						
+
+								{%ifequal UserType.name "Maestro" %}
+									<li><a href="/publications/material/create/">Material Escolar</a></li>
+								{% endifequal %}
+								<li><a href="/publications/tag/">Etiqueta</a></li>	
+							{% endblock %}
 						</ul>
 					</li> <!-- publish menú -->
-					{% endif%}
+					{% endif %}
 					<!-- block menuNavBar -->
 					{% endblock %}
 				</ul> <!-- navbar left -->
@@ -128,15 +97,7 @@
 				<ul class="nav navbar-nav navbar-right">
 					{% if user.is_authenticated %}
 					<li class="navbar-right">
-						<a href="/logout">Cerrar Sesión ({{ user }})</a> 
-					</li>
-
-					<li class="navbar-right">
-						{%if plubications_newNotificationsCount > 0%}
-						<a href="/recomendations"><span class="text-danger">Recomendaciones (Nuevas)</span></a>
-						{% else %}
-						<a href="/recomendations">Recomendaciones</a>
-						{% endif %}
+						<a href="/logout">Cerrar Sesión ({{ user }})</a>
 					</li>
 					{% else %}
 					<li>
@@ -159,38 +120,7 @@
 		</div>
 	</div> <!-- navbar -->
 
-	<div class="container">
-		<ol class="breadcrumb">
-		{% block breadcrumbs %}
-		{% endblock %}
-		</ol>
-
-		<div class="row row-offcanvas row-offcanvas-left">
-			<div id="sidebar" class="col-xs-6 col-sm-3 sidebar-offcanvas" role="navigation">
-				{% block sidebarItems %}
-<!-- 
-				<div class="pane panel-default">
-					<div class="panel-heading">Heading</div>
-
-					<div class="list-group">
-						<a class="list-group-item" href="/">Inicio</a>
-					</div>
-				</div>
-				 -->
-				{% endblock %}
-			</div> <!-- sidebar -->
-
-			<div class="col-xs-12 col-sm-9">
-				<div class="row">
-					<!-- <div class="container"> -->
-					{% block sidebarButton %}
-					<p class="pull-left visible-xs">
-						<button class="btn btn-primary btn-xs" data-toggle="offcanvas" type="button">Menú</button>
-					</p>
-					{% endblock%}
-					<!-- </div> -->
-				</div>
-
+	
 				<div class="container">
 				{% block content %}
 				{% endblock %}

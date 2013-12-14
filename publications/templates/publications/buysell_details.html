@@ -19,6 +19,17 @@
 
 <p>
 
+</br>
+</br>
+      <p class="lead">Etiquetas:</p>
+        <div class="btn-group">
+       {%for tag in buysell.publication.tags.all %} 
+
+       
+        <button type="button" class="btn btn-default"> {{tag.name}} </button>&nbsp;&nbsp;
+        {% endfor %}
+      </div>
+<p class="lborder"></p>
       <p class="lead">Esta a la Venta: {{buysell.isSell}}</p>
       <p class="lead">Es nuevo: {{buysell.isNew}}</p>
      

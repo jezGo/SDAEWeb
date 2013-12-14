@@ -6,18 +6,37 @@
 <li><a href="/publications/">Publicaciones</a></li>
 <li><a href="/publications/events">Eventos</a></li>
 <li class="active"> {{event.publication.title}}<span class="divider">/</span></li>
+		{% ifequal user.sdaeuser.type|stringformat:"s"  "Alumno" %}
+	
+							<li><a href="/schoolInfo/schedules/">Horarios</a></li>
+							<li><a href="/schoolInfo/teachers/">Profesores</a></li>
+{%endifequal %}
+
 {% endblock %}
 
+
 {% block additionalInfo %}
+
+</br>
+</br><p class="lborder"></p>
+      <p class="lead">Etiquetas:</p></br>
+        <div class="btn-group">
+       {%for tag in event.publication.tags.all %} 
+
+       
+        <button type="button" class="btn btn-default"> {{tag.name}} </button>&nbsp;&nbsp;
+        {% endfor %}
+      </div>
 
 <p class="textt">
 Se realizará en: {{publication.event.location}}
 </p>
-<p class="cont">
-Organizado por:
-<ul class="contRight">
+<p class="textt">
+</br>
+<ul >
+
 {% for host in publication.event.host.all %}
-	<li class="contRight"><p class="contRight">{{host}}</p></li>
+	<li  class="rightP"> Organizado por: {{host}}</li>
 {% endfor %}
 </ul>
 </p>

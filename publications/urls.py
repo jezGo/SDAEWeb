@@ -33,19 +33,20 @@ url(r'^advertisement/edit/(?P<advertisementID>\d+)$', views.editAdvertisement, n
   # Job Offer actions
 url(r'^joboffer/$', views.joboffer, name='joboffer'),
 url(r'^joboffer/create/$', views.createJobOffer, name='createJobOffer'),
-url(r'^joboffer/details/(?P<jobofferID>\d+)$', views.JobOfferDetail, name='JobOfferDetail'),
+url(r'^joboffer/(?P<jobofferID>\d+)$', views.JobOfferDetail, name='JobOfferDetail'),
 
-  # Lost and Found Actions
+
+  # Lost and Found Actions(?P<lostandfoundID>\d
   url(r'^lostandfound/$', views.LostandFound, name='LostandFound'),
   url(r'^lostandfound/create/$', views.createLostAndFound, name='createLostAndFound'),
   url(r'^lostandfound/(?P<lostandfoundID>\d+)$', views.LostAndFoundDetails, name='LostAndFoundDetails'),
-  url(r'^lostandfound/edit/(?P<lostandfoundID>\d+)$', views.editLostAndFound, name='editLostAndFound'),
+  url(r'^lostandfound/edit/(?P<lostandfoundId>\d+)$', views.editLostAndFound, name='editLostAndFound'),
   
   # Buy and Sell Actions
 url(r'^buysell/$', views.buysell, name='buysell'),
 url(r'^buysell/create/$', views.createBuySell, name='createBuySell'),
 url(r'^buysell/(?P<buysellID>\d+)$', views.BuySellDetail, name=' BuySellDetail'),
-#url(r'^buysell/edit/(?P<buysellID>\d+)$', views.EditBuySell, name='EditBuySell'),
+url(r'^buysell/edit/(?P<buysellID>\d+)$', views.EditBuySell, name='EditBuySell'),
   #COurseMtaerial Actions
  url(r'^material/$', views.Coursematerial, name='Coursematerial'),
   url(r'^material/create/$', views.createCourseMaterial, name='createCourseMaterial'),

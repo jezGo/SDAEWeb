@@ -2,18 +2,12 @@
 
 {% block title %} SDAE - Lista de Empleo {% endblock %}
 
-{% block filters %}
- <a href="#" class="list-group-item active">Categorías</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
+{% block breadcrumbs %}
+<li><a href="/home/">Inicio</a></li>
+<li><a href="/publications/">Publicaciones</a></li>
+<li class="active">Oferta Laboral</a></li>
 {% endblock %}
+
 
 {% block content %}
 {% for joboffer in jobofferList %}  
@@ -21,8 +15,7 @@
 
 <div class="media">
               <a class="pull-left" href="#">
-                <img width="64" height="64" class="media-object" data-src="{{STATIC_URL}}media/{{publication.imageUrl}}" alt="publication">
-              </a>
+               <img src="{% ifequal joboffer.publication.imageUrl '' %}{{STATIC_URL}}publications/imgs/imagePlaceholder.png{% else %}{{STATIC_URL}}media/{{joboffer.publication.imageUrl}}{% endifequal %}" alt="{{joboffer.publication.title}}" style="width: 64px; height: auto;">
       
 	<div class="media-body">
                 <h4 class="media-heading"><strong>	 <a class="pull-left" href="/publications/joboffer/{{joboffer.publication.pk}}">

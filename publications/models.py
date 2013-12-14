@@ -2,6 +2,7 @@
 
 from django.db import models
 from django.contrib.auth.models import User
+from taggit.managers import TaggableManager
 
 # UserType
 class UserType(models.Model):
@@ -16,7 +17,7 @@ class SDAEUser(models.Model):
   """General user of the app. Integrates with the Django Users Model"""
   user = models.OneToOneField(User, verbose_name="usuario")
   type = models.ForeignKey(UserType, verbose_name="tipo")
-  profileImageUrl = models.CharField(max_length=200, blank=True, null=True, verbose_name="imagen de perfil")
+  profileImageUrl =  models.FileField(max_length=200, upload_to='publications/', blank=True, verbose_name="Imagen de perfil")
   # TODO: Replace bellow fields for a auth services table and detail table.
   # TODO: Search a social integration plugin
   facebookUsername = models.CharField(max_length=80, blank=True, null=True, verbose_name="usuario de facebook")
@@ -132,6 +133,10 @@ class Publication(models.Model):
   class Meta:
     verbose_name = "Publicación"
     verbose_name_plural = "Publicaciones"
+#recomendaciones
+#class Notifications(models.Model):
+  #  """Notificaciones table"""
+
 
 # Comment
 class Comment(models.Model):
@@ -217,7 +222,8 @@ class Event(models.Model):
   location = models.ForeignKey(Location, verbose_name="Lugar")
   host = models.ManyToManyField(SDAEUser, verbose_name="Organizadores")
   parentEvent = models.ForeignKey('Event', blank=True, null=True, verbose_name="Evento Principal")
-  speaker = models.CharField(max_length=100, blank=True, null=True)
+  speaker = models.CharField(max_length=100, blank=True, null=True,  verbose_name="Ponente")
+  tags = TaggableManager()
   #attendants = models.ManyToManyField(SDAEUser)
 
   def __unicode__(self):
@@ -240,7 +246,7 @@ class Event(models.Model):
 # JobType
 class JobType(models.Model):
   """Jobs Types table"""
-  name = models.CharField(max_length=50)
+  name = models.CharField(max_length=50,  verbose_name="Tipo de empleo")
   # Full time, Part time, Project, Social Service, Internship
 
   def __unicode__(self):
@@ -251,14 +257,15 @@ class JobOffer(models.Model):
   """JobOffers table"""
   publication = models.OneToOneField(Publication)
   company = models.ForeignKey(Company)
-  appointmentDate = models.CharField(max_length=60, blank=True)
-  appointmentAdress = models.CharField(max_length=200, blank=True)
-  laboralAddress = models.CharField(max_length=200, blank=True)
-  compensation = models.CharField(max_length=20, blank=True)
-  isOpen = models.BooleanField(default=True)
+  appointmentDate = models.CharField(max_length=60, blank=True,  verbose_name="Fecha de entrevistas")
+  appointmentAdress = models.CharField(max_length=200, blank=True,  verbose_name="Lugar de Entrevista")
+  laboralAddress = models.CharField(max_length=200, blank=True,  verbose_name="Dirección de la Empresa")
+  compensation = models.CharField(max_length=20, blank=True,  verbose_name="Salario")
+  isOpen = models.BooleanField(default=True,  verbose_name="Oferta Disponible")
+  tags = TaggableManager()
 
   def __unicode__(self):
-    return self.publiation.title
+    return self.publication.title
 
 # BuySell
 class BuySell(models.Model):
@@ -269,6 +276,7 @@ class BuySell(models.Model):
   price = models.DecimalField(blank=True, max_digits=7, decimal_places=2)
   specsUrl = models.URLField(blank=True)
   isAvailable = models.BooleanField(default=True)
+  tags = TaggableManager()
 
   def __unicode__(self):
     return self.publication.title
@@ -283,6 +291,7 @@ class LostAndFound(models.Model):
   lastSeenLocation = models.ForeignKey(Location, blank=True, null=True, verbose_name="Última localización donde se vio")
   reward = models.DecimalField(blank=True, max_digits=7, decimal_places=2, verbose_name="Recompenza")
   isActive = models.BooleanField(default=True)
+  tags = TaggableManager()
 
   def __unicode__(self):
     return self.publication.title
@@ -298,3 +307,13 @@ class Advertisement(models.Model):
 
   def __unicode__(self):
     return self.publication.title
+
+# Recomendations
+class Recomendation(models.Model):
+  sdaeuser = models.ForeignKey(SDAEUser, verbose_name="usuario")
+  publication = models.ForeignKey(Publication, verbose_name="publicación")
+  created = models.DateField(auto_now_add=True)
+  isRead = models.BooleanField(default=False, verbose_name="leída")
+
+  def __unicode__(self):
+    return "Para " + self.sdaeuser.user.username + ": " + self.publication.title

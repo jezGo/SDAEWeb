@@ -2,7 +2,11 @@
 
 {% block title %} SDAE - Lista de Compra/venta{% endblock %}
 
-
+{% block breadcrumbs %}
+<li><a href="/home/">Inicio</a></li>
+<li><a href="/publications/">Publicaciones</a></li>
+<li class="active">Compra/Venta</a></li>
+{% endblock %}
 {% block content %}
 
 {% for buysell in buysellList %}    
@@ -11,7 +15,7 @@
 
 <div class="media">
               <a class="pull-left" href="#">
-                <img width="64" height="64" class="media-object" data-src="{{STATIC_URL}}media/{{publication.imageUrl}}" alt="publication">
+                <img src="{% ifequal buysell.publication.imageUrl '' %}{{STATIC_URL}}publications/imgs/imagePlaceholder.png{% else %}{{STATIC_URL}}media/{{buysell.publication.imageUrl}}{% endifequal %}" alt="{{buysell.publication.title}}" style="width: 64px; height: auto;">
               </a>
       
 	<div class="media-body">

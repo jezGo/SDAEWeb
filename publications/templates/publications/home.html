@@ -19,7 +19,7 @@
 
 {% block content %}
 
-<div id="publications-carousel" class="carousel slide" data-ride="carousel">
+<div id="publications-carousel" class="carousel slide" data-ride="carousel" >
 	<ol class="carousel-indicators">
 		{% for index in publicationIndexes %}
 		<li data-target="#publications-carousel" data-slide-to="{{index}}" {% ifequal index publicationIndexes.0 %} class="active" {% endifequal %}></li>
@@ -30,8 +30,9 @@
 		{% for publication in highlightedPublications %}
 		<div class="item {% ifequal publication highlightedPublications.0 %} active {% endifequal %}">
 			<img src="{% ifequal publication.imageUrl '' %}{{STATIC_URL}}publications/imgs/imagePlaceholder.png{% else %}{{STATIC_URL}}media/{{publication.imageUrl}}{% endifequal %}" alt="{{publication.title}}">
-			<div class="carousel-caption">
-				<h3>{{publication.title}}</h3>
+		</br>
+			<div class="carousel-caption" >
+				<h4>{{publication.title}}</h4>
 				<p>{{publication.content}}</p>
 			</div>
 		</div>
@@ -46,8 +47,9 @@
 		<span class="glyphicon glyphicon-chevron-right"></span>
 	</a>
 </div>
-
-<hr class="featurette-divider"></hr>
+</br></br>
+<p class="rborder"></p>
+<!-- <hr class="featurette-divider"></hr> -->
 
 <div class="row">
 	<div class="container">

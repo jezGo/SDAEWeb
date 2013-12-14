@@ -4,6 +4,10 @@ from django.forms import TextInput, Textarea, FileInput, ClearableFileInput, Sel
 from publications.models import Publication, Event, Comment, UserType, LostAndFound, Vote, JobOffer, BuySell, Company, PublicationType, Tag, Student, SDAEUser, Advertisement,  CourseMaterial
 from django.contrib.auth.models import User
 
+from django.forms import MultiWidget
+from datetime import date
+from django.forms import widgets
+
 # Publication Form
 class PublicationForm(forms.ModelForm):
 	class Meta:
@@ -22,8 +26,8 @@ class EventForm (forms.ModelForm):
 		model = Event
 		fields = ["startDateTime", "endDateTime", "location", "host"]
 		widgets = {
-			"startDateTime" : DateTimeInput(attrs={"class":" form-control campofecha", "id":"relog","placeholder":"DD/MM/AAAA HH:MM"}),
-			"endDateTime" : DateTimeInput(attrs={"class":" form-control campofecha", "placeholder":"DD/MM/AAAA HH:MM"}),
+			"startDateTime" : DateTimeInput(attrs={"class":" form-control","placeholder":"DD/MM/AAAA HH:MM"}),
+			"endDateTime" : DateTimeInput(attrs={"class":" form-control", "placeholder":"DD/MM/AAAA HH:MM"}),
 			"location" : Select(attrs={"class":"form-control"}),
 			"host" : SelectMultiple(attrs={"class":"form-control"}),
 		}
@@ -79,16 +83,31 @@ class LostFoundForm(forms.ModelForm):
 	class Meta:
 		model= LostAndFound			
 		fields = ["isLostType", "lostOrFoundDate", "lostOrFoundTime", "lastSeenLocation", "reward", "isActive"]
+		widgets = {		
+			
+			"lostOrFoundDate" : TextInput(attrs={"class":" form-control campofecha","placeholder":"DD/MM/AAAA"}),
+			"lostOrFoundTime" : forms.TimeInput(format=('%d-%m-%Y'), attrs={"class":"form-control"}),
+			"lastSeenLocation" : Select(attrs={"class":"form-control"}),
+			
+		}
 
 class  AdvertisementForm(forms.ModelForm):
 	class Meta:
 		model=  Advertisement		
 		fields = ["EffectiveDate", "directedTo", "isActive"]
+		widgets = {
+			"EffectiveDate" :TextInput(attrs={"class":" form-control campofecha","placeholder":"DD/MM/AAAA HH:MM"}),
+			"directedTo" : TextInput(attrs={"class":"form-control"}),
+			
+		}
 
 class JobOfferForm(forms.ModelForm):
 	class Meta:
 		model= JobOffer			
 		fields = ["company", "appointmentDate", "appointmentAdress", "laboralAddress", "compensation", "isOpen"]
+		widgets = {
+			"appointmentDate" :TextInput(attrs={"class":" form-control campofecha","placeholder":"DD/MM/AAAA"})
+		}
 
 class BuySellForm(forms.ModelForm):
 	class Meta:
@@ -115,3 +134,4 @@ class  CourseMaterialForm(forms.ModelForm):
 			"attachment" : FileInput(attrs={"class":"btn"})
 			}
 			
+

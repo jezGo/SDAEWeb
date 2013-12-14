@@ -11,9 +11,20 @@
 	<div class="panel-heading">Secciones</div>
 
 	<div class="list-group">
-		<a class="list-group-item" href="/">Inicio</a>
+		<a class="list-group-item" href="/home/">Inicio</a>
 		<a class="list-group-item" href="/publications/">Publicaciones</a>
 		<a class="list-group-item" href="/publications/events/">Eventos</a>
+		<a class="list-group-item" href="/publications/lostandfound/">Perdido/Encontrado</a>
+		<a class="list-group-item" href="/publications/buysell/">Compra/Venta</a>
+	</div>
+
+
+<div class="panel-heading">Tags</div>
+
+	<div class="list-group">
+		{% for tags in tag.name.all %}
+		<a class="list-group-item" href="/">{{tags.name}} </a>
+		{% endfor %}
 	</div>
 </div>
 {% endblock %}
@@ -24,9 +35,32 @@
 <!-- controles de edicion-->
 					<div >
 						{% ifequal isAuthor True %}
+						{% ifequal publication.type.name 'Evento'%}
 						<div class="col-md-1">
 							<a class="btn btn-default btn-info" href="/publications/events/edit/{{publication.id}}">Editar</a>
 						</div>
+						{% endifequal %}
+
+						{% ifequal publication.type.name 'Perdido/Encontrado'%}
+						<div class="col-md-1">
+							<a class="btn btn-default btn-info" href="/publications/lostandfound/edit/{{publication.id}}">Editar</a>
+						</div>
+						{% endifequal %}
+						{% ifequal publication.type.name 'Compra/Venta'%}
+						<div class="col-md-1">
+							<a class="btn btn-default btn-info" href="/publications/buysell/edit/{{publication.id}}">Editar</a>
+						</div>
+						{% endifequal %}
+						{% ifequal publication.type.name 'Anuncio'%}
+						<div class="col-md-1">
+							<a class="btn btn-default btn-info" href="/publications/advertisement/edit/{{publication.id}}">Editar</a>
+						</div>
+						{% endifequal %}
+
+
+						
+
+
 						<div class="col-md-1">
 							<button class="btn btn-default  btn-warning" data-toggle="modal" data-target="#deletePublicationModal"/>Borrar</button>
 						</div>
@@ -68,13 +102,13 @@
 		<div class="jumbotron">
 		<div class="row">
 			<div class="col-md-4">
-				<img src="{% ifequal publication.imageUrl '' %}{{STATIC_URL}}publications/imgs/imagePlaceholder.png{% else %}{{STATIC_URL}}media/{{publication.imageUrl}}{% endifequal %}" alt="{{publication.title}}" style="width: 100%; height: auto;">
+				<img src="{% ifequal publication.imageUrl '' %}{{STATIC_URL}}publications/imgs/imagePlaceholder.png{% else %}{{STATIC_URL}}media/{{publication.imageUrl}}{% endifequal %}" alt="{{publication.title}}" style="width: 210px; height: 185px;">
 			</div>
 
 			<div class="col-md-8">
-			<p class="media-heading">{{publication.title|upper}}
-					
-				</p>
+			 <p class="titledetails">{{publication.title|upper}}
+					</p>
+				
 
 				<!-- CONTROLES DE VOTACIÓN -->
 
@@ -130,7 +164,7 @@
 			</div>
 		</div>
 
-		<hr class="featurette-divider"></hr>
+		<hr></hr>
 
 		<div class="row">
 			<div class="container">
@@ -145,7 +179,7 @@
 
 
 
-<hr class="featurette-divider">
+<hr></hr>
 
 <p class="lead">Comentarios</p>
 <!-- COMENTARIOS -->

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from publications.models import Tag, PublicationType, Publication, SDAEUser, Comment, Vote, Map, LocationType, Location, Event, JobType, Company, JobOffer, BuySell, LostAndFound, Student, UserTeacher, SchoolDepartment, StudentsClub, UserType, Advertisement, CourseMaterial
-from schoolInfo.models import Subject, Teacher, Course, ClassSession
+from schoolInfo.models import Subject, Teacher, Course, ClassSession, Group
 
 admin.site.register(Tag)
 admin.site.register(PublicationType)
@@ -29,3 +29,4 @@ admin.site.register(Subject)
 admin.site.register(Teacher)
 admin.site.register(Course)
 admin.site.register(ClassSession)
+admin.site.register(Group)

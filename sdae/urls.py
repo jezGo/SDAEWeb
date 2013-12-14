@@ -47,6 +47,8 @@ urlpatterns = patterns('',
 
     url(r'^publications/', include('publications.urls')),
     url(r'^schoolInfo/', include('schoolInfo.urls')),
+    url(r'^recomendations/$', 'sdae.views.recomendations', name='generateRecomendations'),
+    url(r'^generateRecomendations/$', 'sdae.views.createRecomendations', name='recomendations'),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

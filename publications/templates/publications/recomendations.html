@@ -1,0 +1,43 @@
+{% extends "publications/base.html" %}
+
+{% block title %} SDAE - Recomendaciones {% endblock %}
+
+{% block breadcrumbs %}
+	<li><a href="/">Inicio</a></li>
+	<li><a href="/recomendations/">Recomendaciones</a></li>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+	{% ifequal recomendations.0 None%}
+	<h3>
+		Por el momento no tenemos recomendaciones.
+	</h3>
+	<h3>
+		Te sugerimos votar algunas publicaciones y volver más tarde.
+	</h3>
+	{% endifequal %}
+
+	{% for recomendation in recomendations%}
+	<div class="media">
+		<a class="pull-left" href="/publications/events/{{recomendation.publication.pk}}">
+			<img class="media-object" src="{% ifequal recomendation.publication.imageUrl '' %}{{STATIC_URL}}publications/imgs/imagePlaceholder.png{% else %}{{STATIC_URL}}media/{{recomendation.publication.imageUrl}}{% endifequal %}" alt="{{recomendation.publication.title}}" style="width: 128px; height: auto">
+		</a>
+		<div class="media-body">
+			<form class="pull-right" action="/recomendations/" method="POST">
+					{% csrf_token %}
+					<input type="hidden" name="recomendationId" value="{{ recomendation.id }}" />
+					<input class="btn btn-primary" type="submit" value="Leída"/>
+				</form>
+			<a href="/publications/events/{{recomendation.publication.pk}}">
+				<h4 class="media-heading">{{recomendation.publication.title}}</h4>
+			</a>
+			{{recomendation.publication.content|truncatechars:280}}
+		</div>
+	</div>
+	{% endfor %}
+</div>
+
+{% endblock %}

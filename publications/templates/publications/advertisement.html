@@ -1,6 +1,12 @@
 {% extends "publications/base.html" %}
 
 {% block title %} SDAE - Lista de anuncios{% endblock %}
+{% block breadcrumbs %}
+<li><a href="/home/">Inicio</a></li>
+<li><a href="/publications/">Publicaciones</a></li>
+<li class="active">Anuncios</a></li>
+
+{% endblock %}
 
 {% block filters %}
  <a href="#" class="list-group-item active">Categorías</a>
@@ -28,7 +34,7 @@
 
 <div class="media">
               <a class="pull-left" href="#">
-                <img width="64" height="64" class="media-object" src="{{MEDIA_URL}}{{publication.imageUrl}}" alt="publication">
+              <img src="{% ifequal advertisement.publication.imageUrl '' %}{{STATIC_URL}}publications/imgs/imagePlaceholder.png{% else %}{{STATIC_URL}}media/{{advertisement.publication.imageUrl}}{% endifequal %}" alt="{{advertisement.publication.title}}" style="width: 64px; height: auto;">
               </a>
       
 	<div class="media-body">

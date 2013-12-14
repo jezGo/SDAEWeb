@@ -1,36 +1,62 @@
 {% extends "publications/base.html" %}
 
 {% block title %} SDAE - Info. Escolar - Profesor - {{teacher.name}} {{teacher.lastname}} {% endblock %}
+{% block sidebarItems %}
+<div class="pane panel-primary">
+  <div class="panel-heading">Categorías</div>
+
+  <div class="list-group">
+     
+    <a class="list-group-item" href="/schoolInfo/teachers/" >Maestros</a>
+        <a class="list-group-item" href="/schoolInfo/subjects/" >Materias</a>
+        <a class="list-group-item" href="/schoolInfo/schedules/" >Horarios</a>
+         <a class="list-group-item" href="/schoolInfo/locations/B/" >Localización</a>
+
+    
+  </div>
+    <div class="panel-heading">Visitar</div>
+     <div class="list-group">
+     
+    <a class="list-group-item" href="https://www.saes.escom.ipn.mx/" >SAES</a>
+        <a class="list-group-item" href="http://www.isc.escom.ipn.mx/swescom2012/" >ESCOM</a>
+        <a class="list-group-item" href="http://www.ipn.mx/Paginas/inicio.aspx" >IPN</a>
+</div>
+</div>
+  
+{% endblock %}
 
 {% block content %}
 
-<p>
-{{teacher.name}} {{teacher.lastname}}
-</p>
 
-<p>
+
+
+
+
+<h1 id="panels-alternatives">{{teacher.name}} {{teacher.lastname}}</h1>
+    <p><p>
 Departamento: {{teacher.department}}
 </p>
-
+</br>
 <p>
 Ubicación: {{teacher.office}}
-</p>
-
-<p>
+</p.</p>
+    <p class="media-heading">
 Horario:
-
-{% for day, classSessions in sessionsByDay.items %}
-
-<p>
-{{day}}<br/>
-
-{% for classSession in  classSessions %}
-{{classSession.get_hour_display}} {{classSession.course.subject}} {{classSession.classGroup}} {{classSession.location}}<br/>
-{% endfor %}
 </p>
-
-{% endfor %}
-
-</p>
+    <div class="bs-example">
+    	{% for day, classSessions in sessionsByDay.items %}
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{day}}</h3>
+        </div>
+        {% for classSession in  classSessions %}
+        <div class="panel-body">
+{{classSession.get_hour_display}} - {{classSession.course.subject}} - {{classSession.classGroup}} {{classSession.location}}
+        </div>
+        {% endfor %}
+       
+      </div>
+       {% endfor %}
+  </div>
 
 {% endblock %}

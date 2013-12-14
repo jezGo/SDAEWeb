@@ -61,6 +61,9 @@ class Teacher(models.Model):
 # Group
 class Group(models.Model):
 	name = models.CharField(max_length=4)
+	
+	def __unicode__(self):
+		return self.name
 
 # Course: Intermediate relation for a MtM relation between Teacher and Subject
 #		  which could be reused in the ClassSession model

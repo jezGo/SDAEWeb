@@ -11,14 +11,15 @@
 
 <div class="media">
               <a class="pull-left" href="#">
-                <img width="64" height="64" class="media-object" data-src="{{STATIC_URL}}media/{{publication.imageUrl}}" alt="publication">
+                       <img src="{% ifequal coursematerial.publication.imageUrl '' %}{{STATIC_URL}}publications/imgs/imagePlaceholder.png{% else %}{{STATIC_URL}}media/{{coursematerial.publication.imageUrl}}{% endifequal %}" alt="{{joboffer.publication.title}}" style="width: 64px; height: auto;">
+      
               </a>
       
 	<div class="media-body">
                 <h4 class="media-heading"><strong>	 <a class="pull-left" href="/publications/coursematerial/{{coursematerial.publication.pk}}">
 {{ coursematerial.publication.title|upper }}</a></strong></br>
 				<p>{{ coursematerial.publication.content }}</p>
-				<a>{{ coursematerial.attachment }}</a>
+				<a href="{{MEDIA_URL}}{{coursematerial.attachment}}">{{ coursematerial.attachment }}</a>
  	</div> <!--media-body-->
 	
 </div><!-- end media-->

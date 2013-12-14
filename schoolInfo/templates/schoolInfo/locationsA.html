@@ -22,7 +22,6 @@ function setup() {
         $("#map").click(function(e){
                 var location = getLocationAtCoord(e.pageX, e.pageY);
                 window.location = "/schoolInfo/locations/" + location.id
-              
         });
 
         $("#locationsSelect").change(function(e) {
@@ -49,9 +48,7 @@ function setup() {
         });
 }
 
-ubicaciones = {{locations|safe}}
-
-
+ubicaciones = {{locationsb|safe}}
 
 // {
 //         "u1":{"x1":0, "y1":123, "x2":105, "y2":223, "id":1, "name":"Sala Eduardo Torrijos"},
@@ -142,9 +139,6 @@ function goToLocationDetails(e)
 {
         var location = getLocationAtCoord(e.pageX, e.pageY);
         window.location = "/schoolInfo/locations/" + location.id
-        if (location.id == "119" ){
-                          window.location = "/schoolInfo/office/"
-                }
 }
 
 function showLocationOnMap(e)
@@ -180,12 +174,12 @@ var insideMap = true;
 
 	<div class="list-group">
      
-                <a class="list-group-item" href="/schoolInfo/locations/117" >Sala Lic. Torrijos</a>
+        <a class="list-group-item" href="/schoolInfo/locations/117" >Sala Lic. Torrijos</a>
         <a class="list-group-item" href="/schoolInfo/locations/74" >Control Escolar</a>
         <a class="list-group-item" href="/schoolInfo/locations/118" >Explanada</a>
 
     
-        </div>
+    </div>
 
 
 <div class="panel-heading">Niveles</div>
@@ -221,6 +215,7 @@ src="{{STATIC_URL}}/publications/images/planoESCOM.png"
 onmousemove = "showLocationInfo(event)"
 onclick="goToLocationDetails(event)"
 />
+
 
 
 <div id="marcador">

@@ -1,20 +1,51 @@
 {% extends "publications/base.html" %}
 
 {% block title %} SDAE - Info. Escolar - Horarios - {{dayName}} {% endblock %}
+{% block breadcrumbs %}
+<li><a href="/home/">Inicio</a></li>
+<li><a href="/schoolInfo/">Info Escolar</a></li>
+<li><a href="/schoolInfo/schedules/">Horario</a></li>
+<li class="active"> {{dayName}}<span class="divider">/</span></li>
+{% endblock %}
+{% block sidebarItems %}
+<div class="pane panel-primary">
+  <div class="panel-heading">Categorías</div>
 
+  <div class="list-group">
+     
+    <a class="list-group-item" href="/schoolInfo/teachers/" >Maestros</a>
+        <a class="list-group-item" href="/schoolInfo/subjects/" >Materias</a>
+        <a class="list-group-item" href="/schoolInfo/schedules/" >Horarios</a>
+         <a class="list-group-item" href="/schoolInfo/locations/B/" >Localización</a>
+
+    
+  </div>
+    <div class="panel-heading">Visitar</div>
+     <div class="list-group">
+     
+    <a class="list-group-item" href="https://www.saes.escom.ipn.mx/" >SAES</a>
+        <a class="list-group-item" href="http://www.isc.escom.ipn.mx/swescom2012/" >ESCOM</a>
+        <a class="list-group-item" href="http://www.ipn.mx/Paginas/inicio.aspx" >IPN</a>
+</div>
+</div>
+  
+{% endblock %}
 {% block content %}
 
-Horario del día {{dayName}}
+<h1>Horario del día {{dayName}}</h1>
 
 {% for hour, hourClasses in classesByHour.items %}
 
-<p>
+<p class="htextt">
 {{hour}}
 </p>
 
 {% for class in hourClasses %}
-{{class.course.subject}} {{class.classGroup}} {{class.location}}<br/>
+	<div class="media-body">
+		<p class="media-heading">
+{{class.course.subject}} - {{class.classGroup}}- {{class.location}}<br/><p>
+</div>
 {% endfor %}
-
+<div class="brd"></div>
 {% endfor %}
 {% endblock %}

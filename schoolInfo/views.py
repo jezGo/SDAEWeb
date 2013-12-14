@@ -1,6 +1,7 @@
 # Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render_to_response
 
 from schoolInfo.models import Teacher, Subject, Course, ClassSession
 from publications.models import Location, Map
@@ -9,7 +10,6 @@ from publications.models import Location, Map
 import json
 
 
-	return render(request, 'publications/company.html', context)
 
 def schoolInfo(request):
 	#return render(request, 'schoolInfo/teachers.html', {'teachersByLastnameDict':teachersByLastnameDict})
@@ -20,6 +20,8 @@ def schoolInfo(request):
 from string import ascii_uppercase
 # Teachers list
 def teachers(request):
+	if request.user.sdaeuser.type.name == 'Empresa':
+		return HttpResponseRedirect('/home/')
 	teachersList = Teacher.objects.all()
 	alphabet = list(ascii_uppercase)
 	teachersByLastnameDict = {}
@@ -64,7 +66,12 @@ from datetime import datetime
 
 # Schedules subcat page
 def schedules(request):
-	return HttpResponse("schedules")
+	if request.user.sdaeuser.type.name == 'Empresa':
+		return HttpResponseRedirect('/home/')
+	
+	subject = Subject.objects.all()
+	
+	return render(request,'schoolInfo/days.html',{'subject':subject})
 
 # Schedule of the day
 def daySchedule(request, dayNumber):
@@ -92,29 +99,69 @@ def daySchedule(request, dayNumber):
 
 # Subjects view
 def subjects(request):
-	teachersList = Subject.objects.all()
+	if request.user.sdaeuser.type.name == 'Empresa':
+		return HttpResponseRedirect('/home/')
+	subjectList = Subject.objects.all()
 	alphabet = list(ascii_uppercase)
-	teachersByLastnameDict = {}
+	subjectByLastnameDict = {}
 
 	for letter in alphabet:
-		teachersByLastnameDict.setdefault(letter, [])
+		subjectByLastnameDict.setdefault(letter, [])
 
-	for teacher in teachersList:
-		teachersWithLetterList = teachersByLastnameDict.get(teacher.name[0].upper())
-		teachersWithLetterList.append(teacher)
+	for subject in subjectList:
+		subjectWithLetterList = subjectByLastnameDict.get(subject.name[0].upper())
+		subjectWithLetterList.append(subject)
 
-	return render(request, 'schoolInfo/teachers.html', {'teachersByLastnameDict':teachersByLastnameDict})
+	return render(request, 'schoolInfo/subjects.html', {'subjectByLastnameDict':subjectByLastnameDict})
+
+# SUbject detailed info
+from collections import OrderedDict
+
+def subjectsDetails(request, subjectsId):
+	subject = get_object_or_404(Subject, pk=subjectsId)
+	
+
+	return render(request, 'schoolInfo/subject_detail.html', {'subject':subject})
+
+
 
 # Locations
 def locations(request):
+	if request.user.sdaeuser.type.name == 'Empresa':
+		return HttpResponseRedirect('/home/')
 	locations = Location.objects.filter(map=Map.objects.get(name='ESCOM Piso 1'))
-
+	
 	locsDict = {}
 	for l in locations:
 		locsDict[l.id] = {'id':l.id, 'name':l.name, 'x1':l.mapX1, 'x2':l.mapX2,  'y1':l.mapY1, 'y2':l.mapY2}
-
-	context = {"locations":json.dumps(locsDict)}
+		
+		if l.id == 119:
+			response = "<h1>" + l.name + "</h1> <br/><h3>imagen: </h3><div>"
+		context = {  "locations":json.dumps(locsDict)}
 	return render(request, 'schoolInfo/locations.html', context)
+
+	
+		
+# Locations
+def locationsA(request):
+
+	locationsb =  Location.objects.filter(map=Map.objects.get(name='ESCOM Piso 2'))
+	locsDict = {}
+	for l in locationsb:
+			locsDict[l.id] = {'id':l.id, 'name':l.name, 'x1':l.mapX1, 'x2':l.mapX2,  'y1':l.mapY1, 'y2':l.mapY2}
+	context = {"locationsb":json.dumps(locsDict)}		
+
+	return render(request, 'schoolInfo/locationsA.html', context)
+
+# Locations
+def locationsB(request):
+	locationsc =  Location.objects.filter(map=Map.objects.get(name='ESCOM Planta Baja'))
+	locsDict = {}
+	for l in locationsc:
+			locsDict[l.id] = {'id':l.id, 'name':l.name, 'x1':l.mapX1, 'x2':l.mapX2,  'y1':l.mapY1, 'y2':l.mapY2}
+	context = {"locationsc":json.dumps(locsDict)}		
+
+	return render(request, 'schoolInfo/locationsB.html', context)
 
 # Location Detail
 def locationDetail(request, locationId):
@@ -123,6 +170,7 @@ def locationDetail(request, locationId):
 	eventsList = location.event_set.all()
 	responseStr = "<h1>" + location.name + "</h1> <br/><h3>Eventos: </h3><div>"
 
+			
 	# for event in eventsList:
 	# 	responseStr += "<p>" + event.publication.title + "</p>"
 
@@ -130,6 +178,14 @@ def locationDetail(request, locationId):
 
 	return render(request, 'schoolInfo/location_detail.html', {'location' : location, 'eventsList': eventsList})
 	# return HttpResponse(responseStr)
+
+# Location Detail
+def locationsO(request):
+	loc ="<h1>location"
+
+	
+	return render(request, 'schoolInfo/office.html', {'loc' : loc})
+	# return HttpResponse(responseStr)	
 
 # School activity
 def activities(request):

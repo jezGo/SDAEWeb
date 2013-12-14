@@ -45,7 +45,7 @@
                      <p class="details">autor:{{ publi.author }}</p>
                       <p class="details">etiquetas:{%for tag in publi.tags.all %} {{tag.name}} {% endfor%}</p>
                        <p class="details">descripción:{{ publi.content }}</p>
-                    <a href="/publications/events/" class="more">- more details -</a>
+                    <a href="/publications/events/{{event.publication.pk}}" class="more">- more details -</a>
                     <div class="cl"></div>
                     </div>
               

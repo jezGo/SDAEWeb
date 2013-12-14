@@ -1,62 +1,68 @@
-{% extends "publications/base.html" %}
+{% extends "publications/baseP.html" %}
 
 {% block title %} SDAE - Publicaciones {% endblock %}
 
 {% block content %}
 
-<div class="media">
-	<a class="pull-left" href="/publications/events/announcements">
-		<img class="media-object" src="{{STATIC_URL}}publications/imgs/64x64.gif">
-	</a>
-	<div class="media-body">
-		<a href="/publications/announcements">
-			<h2 class="media-heading">Anuncios</h2>
-		</a>
-	</div>
-</div>
+<div class="container marketing">
 
-<div class="media">
-	<a class="pull-left" href="/publications/events/">
-		<img class="media-object" src="{{STATIC_URL}}publications/imgs/64x64.gif">
-	</a>
-	<div class="media-body">
-		<a href="/publications/events">
-			<h2>Eventos</h2>
-		</a>
-	</div>
-</div>
+      <!-- Three columns of text below the carousel -->
+      <div class="row">
+        <div class="col-lg-4">
+          <img class="img-circle" src="{{STATIC_URL}}publications/iconos/anuncio.png" alt="Generic placeholder image">
+          <h2>Anuncios</h2>
+          <p>Publica anuncios sobre temans escolares.</p>
+          <p><a class="btn btn-default  btn-primary" href="/publications/advertisement/" role="button">Ver Avisos &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
 
-<div class="media">
-	<a class="pull-left" href="/publications/joboffers/">
-		<img class="media-object" src="{{STATIC_URL}}publications/imgs/64x64.gif">
-	</a>
-	<div class="media-body">
-		<a href="/publications/joboffers">
-			<h2>Ofertas de Empleo</h2>
-		</a>
-	</div>
-</div>
+         <!-- Three columns of text below the carousel -->
+      <div class="row">
+        <div class="col-lg-4">
+          <img class="img-circle" src="{{STATIC_URL}}publications/iconos/evento.png" alt="Generic placeholder image">
+          <h2>Eventos</h2>
+          <p>Publica eventos que se realizaran en ESCOM</p>
+          <p><a class="btn btn-default  btn-info" href="/publications/events/" role="button">Ver eventos&raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
 
-<div class="media">
-	<a class="pull-left" href="/publications/lostandfound/">
-		<img class="media-object" src="{{STATIC_URL}}publications/imgs/64x64.gif">
-	</a>
-	<div class="media-body">
-		<a href="/publications/lostandfound">
-			<h2>Encontrado-Perdido</h2>
-		</a>
-	</div>
-</div>
+             <!-- Three columns of text below the carousel -->
+      <div class="row">
+        <div class="col-lg-4">
+          <img class="img-circle" src="{{STATIC_URL}}publications/iconos/trabajo.png"  alt="Generic placeholder image">
+          <h2>Ofertas de empleo</h2>
+          <p>Ve las ofertas laborales publicadas por empresas</p>
+          <p><a class="btn btn-default btn-primary" href="/publications/joboffer/" role="button">Ver Ofertas de trabajo &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+</br>
+       <!-- Three columns of text below the carousel -->
+      <div class="row">
+        <div class="col-lg-4">
+          <img class="img-circle" src="{{STATIC_URL}}publications/iconos/descarga.jpg"  alt="Generic placeholder image">
+          <h2>Objetos Perdidos</h2>
+          <p>COnsulta y publica los objetos que han sido encontrados o extraviados en ESCOM</p>
+          <p><a class="btn btn-default btn-info" href="/publications/lostandfound" role="button">Ver Objetos perdidos &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
 
-<div class="media">
-	<a class="pull-left" href="/publications/buyandsell/">
-		<img class="media-object" src="{{STATIC_URL}}publications/imgs/64x64.gif">
-	</a>
-	<div class="media-body">
-		<a href="/publications/buyandsell">
-			<h2>Compra-Venta</h2>
-		</a>
-	</div>
+   <!-- Three columns of text below the carousel -->
+      <div class="row">
+        <div class="col-lg-4">
+          <img class="img-circle" src="{{STATIC_URL}}publications/iconos/venta.png"  alt="Generic placeholder image">
+          <h2>Compra Venta</h2>
+          <p>Consulta y publica articulos de compra o venta en ESCOM</p>
+          <p><a class="btn btn-default btn-primary" href="/publications/buysell/" role="button">Ver Compra/Venta&raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+
+
+   <!-- Three columns of text below the carousel -->
+      <div class="row">
+        <div class="col-lg-4">
+          <img class="img-circle" src="{{STATIC_URL}}publications/iconos/material.png"  alt="Generic placeholder image">
+          <h2>Material Escolar</h2>
+          <p>Consulta los materiales escolares publicados por profesores de las  diversasasignaturas.</p>
+          <p><a class="btn btn-default btn-info" href="/publications/material/" role="button">Ver Material Escolar &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+
+
+
 </div>
 
 {% endblock %}

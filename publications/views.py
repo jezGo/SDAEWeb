@@ -2,7 +2,7 @@
 
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.shortcuts import render, get_object_or_404
-from publications.models import Publication, Event, PublicationType, SDAEUser, Comment, LostAndFound, JobOffer, Vote, BuySell, Company, Tag,  Advertisement, CourseMaterial
+from publications.models import Publication, Event, PublicationType, SDAEUser, Tag, Comment, LostAndFound, JobOffer, Vote, BuySell, Company,   Advertisement, CourseMaterial
 from publications.forms import  PublicationForm, EventForm, CommentForm, LostFoundForm,   AdvertisementForm, JobOfferForm, CourseMaterialForm, BuySellForm,  PublicationTypeForm, TagForm,CompanyForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -12,6 +12,7 @@ from django.db.models import Q
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
+
 
 # Publication types list
 def publications(request):
@@ -57,7 +58,7 @@ def votePublication(request):
 		previousVote.isPositive = isPositive
 		previousVote.save()
 	else:
-		vote = Vote(publication=publication, author=request.user.sdaeuser, isPositive=True)
+		vote = Vote(publication=publication, author=request.user.sdaeuser, isPositive=isPositive)
 		vote.save()
 
 	referer = request.META['HTTP_REFERER']
@@ -85,6 +86,21 @@ def deletePublication(request):
 		lostandfound.delete()
 	except:
 		pass
+	try:
+		buysell = publication.buysell
+		buysell.delete()
+	except:
+		pass	
+	try:
+		joboffer = publication.joboffer
+		joboffer.delete()
+	except:
+		pass
+	try:
+		advertisement = publication.advertisement
+		advertisement.delete()
+	except:
+		pass	
 
 	referer = request.META['HTTP_REFERER']
 
@@ -92,6 +108,8 @@ def deletePublication(request):
 
 # Events List
 def events(request):
+	if request.user.sdaeuser.type.name == 'Empresa':
+		return HttpResponseRedirect('/home/')
 	eventsList = Event.objects.all()
 
 	context = {'eventsList' : eventsList}
@@ -160,7 +178,8 @@ def saveEvent(eform, pform, user):
 	publication.type = publicationType
 	publication.author = publicationAuthor
 	publication.save()
-
+	pform.save_m2m()
+	
 	event = eform.save(commit = False)
 
 	event.publication = publication
@@ -195,11 +214,14 @@ def createTag(request):
 # Create Event
 @login_required(login_url='/login/')
 def createEvent(request):
+	if request.user.sdaeuser.type.name != 'Departamento Escolar':
+		return HttpResponseRedirect('/home/')
+
 	if request.method != 'POST':
 		pform = PublicationForm()
 		eform = EventForm()
 	else:
-		pform = PublicationForm(request.POST)
+		pform = PublicationForm(request.POST, request.FILES)
 		eform = EventForm(request.POST)
 
 		if pform.is_valid() and eform.is_valid():
@@ -212,6 +234,8 @@ def createEvent(request):
 # Edit event
 @login_required(login_url='/login/')
 def editEvent(request, eventId):
+	if request.user.sdaeuser.type.name != 'Departamento Escolar':
+		return HttpResponseRedirect('/home/')
 	publication = get_object_or_404(Publication, pk=eventId)
 
 	if publication.author.user != request.user:
@@ -236,12 +260,15 @@ def editEvent(request, eventId):
 #lostandfound List
 @login_required(login_url='/login/')
 def LostandFound(request):
+	if request.user.sdaeuser.type.name == 'Empresa':
+		return HttpResponseRedirect('/home/')
 	lostandfoundList = LostAndFound.objects.all()
 	context = {'lostandfoundList': lostandfoundList}
 	return render(request, 'publications/foundlost.html', context)
 
 # Lost and Found details
 def LostAndFoundDetails(request,lostandfoundID):
+		
 	lostandfound = get_object_or_404(Publication, pk=lostandfoundID).lostandfound
 
 	if request.method != 'POST':
@@ -302,8 +329,10 @@ def savelostandfound(lform, pform, user):
 	publicationAuthor = SDAEUser.objects.get(user=user)
 	publicationType = PublicationType.objects.get(name='Perdido/Encontrado')
 	publication.type = publicationType
+
 	publication.author = publicationAuthor
 	publication.save()
+	pform.save_m2m()
 
 	lostandfound = lform.save(commit = False)
 
@@ -330,30 +359,32 @@ def createLostAndFound(request):
 
 # Edit lostandfound
 @login_required(login_url='/login/')
-def editLostAndFound(request, eventId):
-	publication = get_object_or_404(Publication, pk=lostandfoundId)
+def editLostAndFound(request, lostandfoundId):
+	
+		publication = get_object_or_404(Publication, pk=lostandfoundId)
 
-	if publication.author.user != request.user:
-		return HttpResponseForbidden()
+		if publication.author.user != request.user:
+			return HttpResponseForbidden()
 
-	lostandfound= publication.lostandfound
+		lostandfound= publication.lostandfound
 
-	if request.method != 'POST':
-			pform = PublicationForm(instance=publication)
-			lform = LostFoundForm(instance=lostandfound)
-	else:
-		pform = PublicationForm(request.POST, instance = publication)
-		eform = LostFoundForm(request.POST, instance = lostandfound)
+		if request.method != 'POST':
+				pform = PublicationForm(instance=publication)
+				lform = LostFoundForm(instance=lostandfound)
+		else:
+				pform = PublicationForm(request.POST, instance = publication)
+				lform = LostFoundForm(request.POST, instance = lostandfound)
 
 		if pform.is_valid() and lform.is_valid():
-			savelostandfound(lform, pform, request.user)
+				savelostandfound(lform, pform, request.user)
 
-			return HttpResponseRedirect('/publications/lostandfound')
+				return HttpResponseRedirect('/publications/lostandfound')
 
-	return render(request, 'publications/foundlost_create.html', {'pform':pform, 'lform':lform})
+		return render(request, 'publications/foundlost_create.html', {'pform':pform, 'lform':lform})
 
 #SAVE BUYSELL
 def saveBuySell(bform, pform, user):
+
 	publication = pform.save(commit = False)
 
 	publicationAuthor = SDAEUser.objects.get(user=user)
@@ -361,6 +392,7 @@ def saveBuySell(bform, pform, user):
 	publication.type = publicationType
 	publication.author = publicationAuthor
 	publication.save()
+	pform.save_m2m()
 
 	buysell = bform.save(commit = False)
 
@@ -378,6 +410,7 @@ def saveAdvertisement(aform, pform, user):
 	publication.type = publicationType
 	publication.author = publicationAuthor
 	publication.save()
+	pform.save_m2m()
 
 	advertisement = aform.save(commit = False)
 
@@ -395,6 +428,7 @@ def saveCourseMaterial(cmform, pform, user):
 	publication.type = publicationType
 	publication.author = publicationAuthor
 	publication.save()
+	pform.save_m2m()
 
 	coursematerial = cmform.save(commit = False)
 
@@ -404,7 +438,7 @@ def saveCourseMaterial(cmform, pform, user):
 	cmform.save_m2m()
 
 #SAVE JOBOFFER
-def saveJobOffer(jform, pform, cform, user):
+def saveJobOffer(jform, pform,  user):
 	publication = pform.save(commit = False)
 	
 
@@ -413,17 +447,12 @@ def saveJobOffer(jform, pform, cform, user):
 	publication.type = publicationType
 	publication.author = publicationAuthor
 	publication.save()
-	company=cform .save(commit=False)
-	companyName= Company.objects.get(name=request.name)
-	company.name=companyName
-	company.save()
+
+	pform.save_m2m()
 
 	joboffer = jform.save(commit = False)
 
 	joboffer.publication = publication
-	joboffer.save()
-	joboffer=jform.save(commit=False)
-	joboffer.company=company
 	joboffer.save()
 
 	jform.save_m2m()
@@ -447,24 +476,26 @@ def joboffer(request):
 # Create JobOffer
 @login_required(login_url='/login/')
 def createJobOffer(request):
+		if request.user.sdaeuser.type.name != 'Empresa':
+			return HttpResponseRedirect('/home/')
 		if request.method != 'POST' :
 			pform = PublicationForm()
 			jform = JobOfferForm()
-			cform= CompanyForm()
+			
 		else:
 			pform = PublicationForm(request.POST)
 			jform = JobOfferForm(request.POST)
-			cform = CompanyForm(request.POST)
-			if pform.is_valid() and jform.is_valid() and cform.is_valid():
+			
+			if pform.is_valid() and jform.is_valid():
 
-				saveJobOffer(jform, cform, pform, request.user)
+				saveJobOffer(jform,  pform, request.user)
 
 			return HttpResponseRedirect('/publications/joboffer')
-		return render(request, 'publications/joboffer_create.html', {'pform':pform, 'jform':jform, 'cform':cform})
+		return render(request, 'publications/joboffer_create.html', {'pform':pform, 'jform':jform})
 
 #Create DetailsJobOffer
 def JobOfferDetail(request, jobofferID):
-	joboffer = get_object_or_404(JobOffer, pk=jobofferID).joboffer
+	joboffer = get_object_or_404(Publication, pk=jobofferID).joboffer
 	if request.method != 'POST':
 		commentForm = CommentForm()
 	else:
@@ -478,18 +509,18 @@ def JobOfferDetail(request, jobofferID):
 			comment.save()
 
 	if not request.user.is_authenticated():
-		userVote=None
 		isAuthor = False
-	
+		userVote = None
 	else:
-		#requestUser = SDAEUser.objects.get(user=request.user)y
-
+		# requestUser = SDAEUser.objects.get(user=request.user)
+		requestUser = request.user.sdaeuser
 		try:
-			userVotes = Vote.objects.filter(author=requestUser, publication=joboffer.publication)
+			userVote = Vote.objects.get(author=requestUser, publication=joboffer.publication)
 		except:
-				useVote=None
-				publicationAuthor = joboffer.publication.author
-				isAuthor = (requestUser == joboffert.publication.author)
+			userVote = None
+
+		publicationAuthor = joboffer.publication.author
+		isAuthor = (requestUser == joboffer.publication.author)
 
 	blockPositiveVote = False
 	blockNegativeVote = False
@@ -500,23 +531,24 @@ def JobOfferDetail(request, jobofferID):
 		else:
 			blockNegativeVote = True
 
-
 	publicationPoints = len(joboffer.publication.vote_set.filter(isPositive=True)) - len(joboffer.publication.vote_set.filter(isPositive=False))
 
 	context = {
 	'joboffer': joboffer,
-	'publication': joboffer.publication,
+	'publication':joboffer.publication,
 	'publicationPoints': publicationPoints,
-	'blockVotes': blockVotes,
+	'blockPositiveVote': blockPositiveVote,
+	'blockNegativeVote': blockNegativeVote,
 	'isAuthor': isAuthor,
 	'commentForm': commentForm,
 	}
-
 	return render(request, 'publications/joboffer_details.html', context)
 
 #BuySell List
 @login_required(login_url='/login/')
 def buysell(request):
+	if request.user.sdaeuser.type.name == 'Empresa':
+		return HttpResponseRedirect('/home/')
 	buysellList = BuySell.objects.all()
 	context = {'buysellList' : buysellList}
 	return render(request, 'publications/buysell.html', context)
@@ -538,6 +570,31 @@ def createBuySell(request):
 			return HttpResponseRedirect('/publications/buysell')
 
 	return render(request, 'publications/buysell_create.html', {'pform':pform, 'bform':bform})
+
+# Edit buysell
+@login_required(login_url='/login/')
+def EditBuySell(request, buysellID):
+	
+		publication = get_object_or_404(Publication, pk=buysellID)
+
+		if publication.author.user != request.user:
+			return HttpResponseForbidden()
+
+		buysell= publication.buysell
+
+		if request.method != 'POST':
+				pform = PublicationForm(instance=publication)
+				bform = BuySellForm(instance=buysell)
+		else:
+				pform = PublicationForm(request.POST, instance = publication)
+				bform =  BuySellForm(request.POST, instance =buysell)
+
+		if pform.is_valid() and bform.is_valid():
+				saveBuySell(bform, pform, request.user)
+
+				return HttpResponseRedirect('/publications/buysell')
+
+		return render(request, 'publications/buysell_create.html', {'pform':pform, 'bform':bform})
 
 
 #Create DetailsBuySell
@@ -632,11 +689,17 @@ def tagSelect(request):
 
 
 def advertisement(request):
+	if request.user.sdaeuser.type.name == 'Empresa':
+		return HttpResponseRedirect('/home/')
+
 	advertisementList= Advertisement.objects.all()
 	return render(request, 'publications/advertisement.html', {'advertisementList':advertisementList})
 
 
 def createAdvertisement(request):
+	if request.user.sdaeuser.type.name != 'Departamento Escolar':
+		return HttpResponseRedirect('/home/')
+
 	if request.method != 'POST':
 		pform = PublicationForm()
 		aform = AdvertisementForm()
@@ -695,12 +758,13 @@ def AdvertisementDetail(request, advertisementID):
 	# Edit advertisement
 @login_required(login_url='/login/')
 def editAdvertisement(request, advertisementID):
+
 	publication = get_object_or_404(Publication, pk=advertisementID)
 
 	if publication.author.user != request.user:
 		return HttpResponseForbidden()
 
-	Advertisement= publication.advertisement
+	advertisement= publication.advertisement
 
 	if request.method != 'POST':
 			pform = PublicationForm(instance=publication)
@@ -714,10 +778,12 @@ def editAdvertisement(request, advertisementID):
 
 			return HttpResponseRedirect('/publications/advertisement')
 
-	return render(request, 'publications/advertisement_create.html', {'aform':aform, 'lform':lform})
+	return render(request, 'publications/advertisement_create.html', {'aform':aform, 'pform':pform})
 
 	#CMaterial List
 def Coursematerial(request):
+	if request.user.sdaeuser.type.name == 'Empresa':
+		return HttpResponseRedirect('/home/')
 	coursematerialList = CourseMaterial.objects.all()
 	context = {'coursematerialList' : coursematerialList}
 	return render(request, 'publications/coursematerial.html', context)
@@ -725,6 +791,8 @@ def Coursematerial(request):
 # Create courseMaterial
 @login_required(login_url='/login/')
 def createCourseMaterial(request):
+	if request.user.sdaeuser.type.name!= 'Maestro':
+		return HttpResponseRedirect('/home/')
 	if request.method != 'POST':
 		pform = PublicationForm()
 		cmform = CourseMaterialForm()
@@ -738,3 +806,15 @@ def createCourseMaterial(request):
 			return HttpResponseRedirect('/publications/material')
 
 	return render(request, 'publications/material_create.html', {'pform':pform, 'cmform':cmform})
+
+def permition(request):
+	
+	sdaeUser = SDAEUser(user=user, type=UserType.objects.get(name="Alumno"))
+	return render(request, 'publications/base.html', {'sdaeUser ':sdaeUser })
+
+
+def taggit(request):
+	tagList = Tag.objects.all()
+	context = {'tagList' : tagList}
+	return render(request, 'publications/base_publication_detail.html', context)
+

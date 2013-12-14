@@ -16,8 +16,12 @@ urlpatterns = patterns('',
   url(r'^schedules/(?P<dayNumber>\d+)$', views.daySchedule, name='daySchedule'),
 
   url(r'^subjects/$', views.subjects, name='subjects'),
+  url(r'^subjects/(?P<subjectsId>\d+)$', views.subjectsDetails, name='subjectsDetails'),
 
   url(r'^locations/$', views.locations, name='locations'),
+  url(r'^locations/A/$', views.locationsA, name='locationsA'),
+  url(r'^locations/B/$', views.locationsB, name='locationsB'),
+  url(r'^office/$', views.locationsO, name='locationsO'),
   url(r'^locations/(?P<locationId>\d+)$', views.locationDetail, name='locationDetails'),
 
   url(r'^activities/$', views.activities, name='activities'),

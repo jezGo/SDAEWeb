@@ -14,7 +14,7 @@
 	{% for event in eventsList%}
 	<div class="media">
 		<a class="pull-left" href="/publications/events/{{event.publication.pk}}">
-			<img class="media-object" src="{% ifequal event.publication.imageUrl '' %}{{STATIC_URL}}publications/imgs/imagePlaceholder.png{% else %}{{STATIC_URL}}media/{{event.publication.imageUrl}}{% endifequal %}" alt="{{event.publication.title}}">
+		<img src="{% ifequal event.publication.imageUrl '' %}{{STATIC_URL}}publications/imgs/imagePlaceholder.png{% else %}{{STATIC_URL}}media/{{event.publication.imageUrl}}{% endifequal %}" alt="{{event.publication.title}}" style="width: 64px; height: auto;">
 		</a>
 		<div class="media-body">
 			<a href="/publications/events/{{event.publication.pk}}">

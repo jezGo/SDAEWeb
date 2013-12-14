@@ -1,0 +1,75 @@
+{% extends "publications/base.html" %}
+
+{% block title %} SDAE - Info. Escolar - Materia - {{subject.name}} } {% endblock %}
+{% block sidebarItems %}
+<div class="pane panel-primary">
+  <div class="panel-heading">Categorías</div>
+
+  <div class="list-group">
+     
+    <a class="list-group-item" href="/schoolInfo/teachers/" >Maestros</a>
+        <a class="list-group-item" href="/schoolInfo/subjects/" >Materias</a>
+        <a class="list-group-item" href="/schoolInfo/schedules/" >Horarios</a>
+         <a class="list-group-item" href="/schoolInfo/localitations/B/" >Localización</a>
+
+    
+  </div>
+    <div class="panel-heading">Visitar</div>
+     <div class="list-group">
+     
+    <a class="list-group-item" href="https://www.saes.escom.ipn.mx/" >SAES</a>
+        <a class="list-group-item" href="http://www.isc.escom.ipn.mx/swescom2012/" >ESCOM</a>
+        <a class="list-group-item" href="http://www.ipn.mx/Paginas/inicio.aspx" >IPN</a>
+</div>
+</div>
+  
+{% endblock %}
+{% block content %}
+
+
+<h3 id="list-group-custom-content">Tira Materias</h3>
+    <p>Plan 2009</p>
+    <div class="bs-example">
+      <div class="list-group">
+        <a href="#" class="list-group-item active">
+          <h4 class="list-group-item-heading">Materia</h4>
+          <p class="list-group-item-text">{{subject.name}}.</p>
+        </a>
+        <a href="#" class="list-group-item">
+          <h4 class="list-group-item-heading">Descripción</h4>
+          <p class="list-group-item-text">{{subject.description}}</p>
+        </a>
+        <a href="#" class="list-group-item">
+          <h4 class="list-group-item-heading">Temario</h4>
+          <p class="list-group-item-text"><a href="{{MEDIA_URL}}{{subject.syllabusUrl}}"> {{subject.syllabusUrl}}</a></p>
+        </a>
+		<a href="#" class="list-group-item">
+          <h4 class="list-group-item-heading">Horas de Teoría</h4>
+          <p class="list-group-item-text"> {{subject.theoryHours}}</p>
+        </a>
+
+        	<a href="#" class="list-group-item">
+          <h4 class="list-group-item-heading">Horas Practicas</h4>
+          <p class="list-group-item-text"> {{subject.practicHours}}</p>
+        </a>
+
+        <a href="#" class="list-group-item">
+          <h4 class="list-group-item-heading">Horas de Practica</h4>
+          <p class="list-group-item-text"> {{subject.credits}}</p>
+        </a>
+           <a href="#" class="list-group-item">
+          <h4 class="list-group-item-heading">Nivel</h4>
+          <p class="list-group-item-text"> {{subject.level}}</p>
+        </a>
+
+  			<a href="#" class="list-group-item">
+          <h4 class="list-group-item-heading">Formación</h4>
+          <p class="list-group-item-text"> {{subject.formation}}</p>
+        </a>
+
+
+      </div>
+    </div>
+
+{% endblock %}
+s
